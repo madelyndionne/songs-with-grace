@@ -16,6 +16,7 @@
 @media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
 @media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
 .favorite-btn.is-favorite{color:var(--deep)}
+.new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
@@ -25,7 +26,7 @@
 </script>
 </head>
 <body>
-<nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
+<nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span class="new-feature-mark" data-new-until="2026-10-19" aria-label="New">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
 <article class="resource" data-song="As the Worm Turns" data-topics="Creation, Joy, Humor, Gardening, Worms">
 <a class="back-songs" href="index.html">← Songs With Grace</a>
 <img alt="Songs With Grace logo" class="page-logo" src="assets/favicon.png"/>
@@ -150,5 +151,6 @@
 })();
 </script>
 <script>(function(){const b=document.getElementById('favorite-btn'),key='swgFavorites',page='as-the-worm-turns.html';function g(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}}function paint(){const on=g().includes(page);b.textContent=on?'♥ Favorited':'♡ Favorite';b.classList.toggle('is-favorite',on);b.setAttribute('aria-pressed',String(on))}b.addEventListener('click',()=>{let f=g();f=f.includes(page)?f.filter(x=>x!==page):f.concat(page);localStorage.setItem(key,JSON.stringify(f));paint()});paint()})();</script>
+<script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
 </body>
 </html>
