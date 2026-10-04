@@ -2,7 +2,8 @@
 
 <html><head><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Pruned | Songs With Grace</title>
 <link href="assets/favicon.png" rel="icon" type="image/png"/><link href="style.css" rel="stylesheet"><link href="site-nav.css" rel="stylesheet"/>
-<style>.resource{position:relative;max-width:850px;margin:auto;padding:40px 24px}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}.resource>a{color:#6d3b78}.resource h1{margin-top:25px}.resource h2{color:#6d3b78;border-bottom:1px solid #ddd;padding-top:45px}.resource p{line-height:1.65}.resource .cover{width:100%;max-width:850px;display:block;margin:22px auto;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.12)}.resource audio{width:100%;margin:20px 0}#lyrics{text-align:center}#lyrics h3{margin:1.35rem 0 .35rem}#lyrics p{margin:.08rem 0;line-height:1.35}</style>
+<style>.resource{position:relative;max-width:850px;margin:auto;padding:40px 24px}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}.resource>a{color:#6d3b78}.resource h1{margin-top:25px}.resource h2{color:#6d3b78;border-bottom:1px solid #ddd;padding-top:45px}.resource p{line-height:1.65}.resource .cover{width:100%;max-width:850px;display:block;margin:22px auto;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.12)}.resource audio{width:100%;margin:20px 0}#lyrics{text-align:center}#lyrics h3{margin:1.35rem 0 .35rem}#lyrics p{margin:.08rem 0;line-height:1.35}.share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}.favorite-btn.is-favorite{color:var(--deep)}
+</style>
 <style>
 .section-bar,.day-toc{max-width:900px;margin:20px auto;padding:12px 16px;border-radius:12px;background:#f3edf6;text-align:center;line-height:1.9}
 .section-bar a,.day-toc a,.back-top a{color:#65407a;text-decoration:none;font-weight:600}
@@ -26,7 +27,8 @@
 <a href="#lyrics">Lyrics</a><span>·</span>
 <a data-swg-event="devotional-open" href="#devotional">7-Day Devotional</a><span>·</span>
 <a href="#extra">Dig Deeper</a>
-</nav><audio controls="" id="listen" preload="none" src="assets/pruned.mp3"></audio><section id="lyrics"><h2>Lyrics</h2><h3>Verse 1</h3>
+</nav><audio controls="" id="listen" preload="none" src="assets/pruned.mp3"></audio>
+<div class="share-box" aria-label="Song actions"><div class="share-actions"><button class="favorite-btn" id="favorite-btn" type="button" aria-pressed="false">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a id="share-email" href="#">Email</a><a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a></div><div class="share-status" id="share-status" aria-live="polite"></div></div><section id="lyrics"><h2>Lyrics</h2><h3>Verse 1</h3>
 <p>There stands a tree that's bearing fruit,</p>
 <p>But something doesn't look quite right.</p>
 <p>Its branches bow beneath the load,</p>
@@ -280,4 +282,19 @@ Lord, tend Your growing tree.</em></p>
 <p>• Iowa State University Extension - How to Prune and Train Young Apple Trees</p>
 <p>• University of Maryland Extension - Pruning Trees in the Home Landscape</p>
 <p>• Penn State Extension - Understanding the Spread of Decay in Trees</p><div class="back-top"><a aria-label="Back to player" href="#top-player">↑ Back to top</a></div></section></article><footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
-<script src="assets/swg-analytics.js"></script></body></html>
+<script src="assets/swg-analytics.js"></script>
+<script>
+(function(){
+ const song='Pruned'; const pageUrl=window.location.href; const canonical=window.location.pathname.split('/').pop()||'pruned.html';
+ const text='I thought you might enjoy '+song+' on Songs With Grace.';
+ const nativeBtn=document.getElementById('share-native'), copyBtn=document.getElementById('share-copy'), email=document.getElementById('share-email'), facebook=document.getElementById('share-facebook'), status=document.getElementById('share-status'), favoriteBtn=document.getElementById('favorite-btn');
+ email.href='mailto:?subject='+encodeURIComponent(song+' | Songs With Grace')+'&body='+encodeURIComponent(text+'\n\n'+pageUrl); facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl);
+ if(!navigator.share) nativeBtn.style.display='none';
+ nativeBtn.addEventListener('click',async()=>{try{await navigator.share({title:song+' | Songs With Grace',text:text,url:pageUrl})}catch(e){if(e&&e.name!=='AbortError')status.textContent='Sharing was not available. You can copy the link instead.'}});
+ copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);status.textContent='Link copied.'}catch(e){const t=document.createElement('textarea');t.value=pageUrl;t.style.position='absolute';t.style.left='-9999px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Link copied.':'Please copy the address from your browser.'}});
+ const key='swgFavorites'; const getFavs=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+ function paint(){const on=getFavs().includes(canonical);favoriteBtn.textContent=on?'♥ Favorited':'♡ Favorite';favoriteBtn.classList.toggle('is-favorite',on);favoriteBtn.setAttribute('aria-pressed',String(on))}
+ favoriteBtn.addEventListener('click',()=>{let f=getFavs();if(f.includes(canonical))f=f.filter(x=>x!==canonical);else f.push(canonical);localStorage.setItem(key,JSON.stringify(f));paint();}); paint();
+})();
+</script>
+</body></html>
