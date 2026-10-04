@@ -15,6 +15,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Caladea",serif}.resource{position:relative;max-width:900px;margin:auto;padding:34px 24px 70px}.back-songs{color:var(--purple);text-decoration:none;font-weight:700}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}h1{font-size:clamp(2.4rem,6vw,4.3rem);color:var(--purple);margin:22px 0 8px;text-align:center}.resource-type{text-align:center;font-style:italic;color:#6b626f;margin-bottom:16px}.intro-note{max-width:760px;margin:0 auto 22px;padding:16px 20px;border-radius:12px;background:#f3edf6;line-height:1.55}.intro-note h2{margin:0 0 8px;padding:0;border:0;color:var(--purple);font-size:1.35rem;text-align:center}.intro-note p{margin:.45rem 0}.cover{width:100%;max-width:900px;display:block;margin:18px auto 24px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.14)}audio{width:100%;margin:12px 0 26px}.section-bar{margin:20px auto;padding:12px 16px;border-radius:12px;background:#f3edf6;text-align:center;line-height:1.9}.section-bar a,.back-top a,.print-btn{color:var(--purple);text-decoration:none;font-weight:700}.section-bar span{margin:0 5px;color:#9b8ca3}.print-btn{border:0;background:transparent;font-family:inherit;font-size:inherit;cursor:pointer;padding:0}section{scroll-margin-top:12px}section h2{color:var(--purple);font-size:2rem;border-bottom:1px solid #ddd;padding-top:32px;padding-bottom:8px}#lyrics{text-align:center}#lyrics h3{margin:1.25rem 0 .28rem;color:var(--deep)}#lyrics p{margin:.08rem 0;line-height:1.35}#devotional{text-align:left}#devotional h3{color:var(--deep);font-size:1.55rem;margin:1.7rem 0 .45rem}.devotional-body p,#extra p{line-height:1.62}.back-top{text-align:right;margin:24px 0 30px;font-size:.9rem}#top-player{scroll-margin-top:10px}h4{color:var(--purple);font-size:1.1rem;margin-bottom:5px}.share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-box p{display:inline;margin:0 8px 0 0}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}
 @media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
 @media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
+.favorite-btn.is-favorite{color:var(--deep)}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
@@ -43,7 +44,7 @@
 <audio controls="" id="listen" preload="none" src="assets/as-the-worm-turns.mp3"></audio>
 <div class="share-box" aria-label="Share this song">
 <div class="share-actions">
-<button id="share-native" type="button">Share</button>
+<button class="favorite-btn" id="favorite-btn" type="button" aria-pressed="false">♡ Favorite</button><button id="share-native" type="button">Share</button>
 <button id="share-copy" type="button">Copy Link</button>
 <a id="share-email" href="#">Email</a>
 <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -133,5 +134,21 @@
   });
 })();
 </script>
+
+<script>
+(function(){
+ const song='As the Worm Turns'; const pageUrl=window.location.href; const canonical=window.location.pathname.split('/').pop()||'as-the-worm-turns.html';
+ const text='I thought you might enjoy '+song+' on Songs With Grace.';
+ const nativeBtn=document.getElementById('share-native'), copyBtn=document.getElementById('share-copy'), email=document.getElementById('share-email'), facebook=document.getElementById('share-facebook'), status=document.getElementById('share-status'), favoriteBtn=document.getElementById('favorite-btn');
+ email.href='mailto:?subject='+encodeURIComponent(song+' | Songs With Grace')+'&body='+encodeURIComponent(text+'\n\n'+pageUrl); facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl);
+ if(!navigator.share) nativeBtn.style.display='none';
+ nativeBtn.addEventListener('click',async()=>{try{await navigator.share({title:song+' | Songs With Grace',text:text,url:pageUrl})}catch(e){if(e&&e.name!=='AbortError')status.textContent='Sharing was not available. You can copy the link instead.'}});
+ copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);status.textContent='Link copied.'}catch(e){const t=document.createElement('textarea');t.value=pageUrl;t.style.position='absolute';t.style.left='-9999px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Link copied.':'Please copy the address from your browser.'}});
+ const key='swgFavorites'; const getFavs=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+ function paint(){const on=getFavs().includes(canonical);favoriteBtn.textContent=on?'♥ Favorited':'♡ Favorite';favoriteBtn.classList.toggle('is-favorite',on);favoriteBtn.setAttribute('aria-pressed',String(on))}
+ favoriteBtn.addEventListener('click',()=>{let f=getFavs();if(f.includes(canonical))f=f.filter(x=>x!==canonical);else f.push(canonical);localStorage.setItem(key,JSON.stringify(f));paint();}); paint();
+})();
+</script>
+<script>(function(){const b=document.getElementById('favorite-btn'),key='swgFavorites',page='as-the-worm-turns.html';function g(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}}function paint(){const on=g().includes(page);b.textContent=on?'♥ Favorited':'♡ Favorite';b.classList.toggle('is-favorite',on);b.setAttribute('aria-pressed',String(on))}b.addEventListener('click',()=>{let f=g();f=f.includes(page)?f.filter(x=>x!==page):f.concat(page);localStorage.setItem(key,JSON.stringify(f));paint()});paint()})();</script>
 </body>
 </html>
