@@ -16,9 +16,9 @@
 .new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
 
 /* SWG email signup popup */
-.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
-.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 30px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:absolute;top:8px;right:9px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer}.swg-signup-close:hover,.swg-signup-close:focus{background:#eee7f2;outline:2px solid transparent}.swg-signup-embed{min-height:54px}.swg-signup-popup .formkit-form{margin:0!important;max-width:100%!important;font-family:"Caladea",serif!important}.swg-signup-popup .formkit-fields{gap:6px!important}.swg-signup-popup input[type="email"]{font-family:"Caladea",serif!important;font-size:1rem!important}.swg-signup-popup button{font-family:"Caladea",serif!important}.swg-signup-loading{font-size:.88rem;color:#6b626f;margin:4px 0}.swg-signup-popup[hidden]{display:none!important}
-@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}}
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));max-height:calc(100vh - 36px);overflow:auto;background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 38px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:sticky;float:right;top:0;z-index:2147483647;width:34px;height:34px;margin:-10px -10px 0 8px;border:1px solid #d8cadf;border-radius:50%;background:#fbfaf7;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(0,0,0,.12);padding:0}.swg-signup-close:hover,.swg-signup-close:focus-visible{background:#eee7f2;outline:2px solid #65407a;outline-offset:2px}.swg-popup-form{display:flex;gap:8px;margin:12px 0 4px}.swg-popup-form input{flex:1;min-width:0;padding:10px 11px;border:1px solid #cfc6d4;border-radius:8px;background:white;font:inherit}.swg-popup-form button{border:0;border-radius:8px;background:#65407a;color:white;font:inherit;font-weight:700;padding:10px 13px;cursor:pointer;white-space:nowrap}.swg-popup-status{font-size:.86rem;color:#6b626f;min-height:1.2em;margin:6px 0 0}.swg-signup-embed{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}.swg-popup-form{flex-direction:column}.swg-popup-form button{width:100%}}
 @media print{.swg-signup-popup{display:none!important}}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
@@ -121,7 +121,13 @@
   <button class="swg-signup-close" id="swgSignupClose" type="button" aria-label="Close signup popup">×</button>
   <h2 id="swgSignupTitle">Connections are good.</h2>
   <p id="swgSignupCopy">For news about new songs, devotionals, or new features, add your email and delicately hit Enter.</p>
-  <div class="swg-signup-embed" id="swgSignupEmbed"><p class="swg-signup-loading">Loading the signup form…</p></div>
+  <form class="swg-popup-form" id="swgPopupForm" novalidate>
+    <label class="sr-only" for="swgPopupEmail" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Email address</label>
+    <input autocomplete="email" id="swgPopupEmail" inputmode="email" name="email" placeholder="Email Address" required type="email"/>
+    <button type="submit">Sign Me Up</button>
+  </form>
+  <p aria-live="polite" class="swg-popup-status" id="swgPopupStatus"></p>
+  <div aria-hidden="true" class="swg-signup-embed" id="swgSignupEmbed"></div>
   <p class="swg-no-smash">No smashing anything here.</p>
 </aside>
 <footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer><script src="assets/swg-analytics.js"></script>
@@ -150,7 +156,10 @@
   const popup=document.getElementById('swgSignupPopup');
   const close=document.getElementById('swgSignupClose');
   const embed=document.getElementById('swgSignupEmbed');
-  if(!popup||!close||!embed) return;
+  const proxy=document.getElementById('swgPopupForm');
+  const email=document.getElementById('swgPopupEmail');
+  const status=document.getElementById('swgPopupStatus');
+  if(!popup||!close||!embed||!proxy||!email||!status) return;
   function dismissed(){
     const until=Number(localStorage.getItem(KEY)||0);
     return until>Date.now();
@@ -165,16 +174,30 @@
     const s=document.createElement('script');
     s.async=true; s.dataset.uid='ed835af4b2';
     s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
-    s.onerror=function(){embed.innerHTML='<p class="swg-signup-loading">The signup form is unavailable just now. Please try again later.</p>';};
+    s.onerror=function(){status.textContent='The signup form is unavailable just now. Please try again later.';};
     embed.appendChild(s);
   }
+  proxy.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!email.checkValidity()){email.reportValidity();return;}
+    const kitForm=embed.querySelector('form.formkit-form, form[data-sv-form]');
+    if(!kitForm){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    const kitEmail=kitForm.querySelector('input[name="email_address"], input[type="email"]');
+    if(!kitEmail){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    kitEmail.value=email.value.trim();
+    kitEmail.dispatchEvent(new Event('input',{bubbles:true}));
+    kitEmail.dispatchEvent(new Event('change',{bubbles:true}));
+    status.textContent='Sending…';
+    if(typeof kitForm.requestSubmit==='function') kitForm.requestSubmit(); else kitForm.submit();
+    setTimeout(function(){if(status.textContent==='Sending…')status.textContent='Thank you. Please check your email if confirmation is requested.';},1200);
+  });
   function show(){
     if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
     popup.hidden=false;
     popup.classList.add('is-open');
-    if(!popup.classList.contains('is-open')) return;
     sessionStorage.setItem(SESSION,'1');
     loadKit();
+    setTimeout(function(){email.focus({preventScroll:true});},50);
   }
   close.addEventListener('click',dismiss);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
