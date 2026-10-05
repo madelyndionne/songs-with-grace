@@ -5,6 +5,12 @@
 @media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
 
 #letter{max-width:760px;margin:auto}#letter h2{border:0;text-align:left;font-size:1.65rem;padding-top:12px}#letter h3{color:var(--deep);font-size:1.2rem;margin:1.7rem 0 .45rem;letter-spacing:.02em}#letter p{line-height:1.62}.gift{text-align:center;margin:30px 0}.gift a{display:inline-block;background:#f3edf6;color:var(--purple);font-weight:700;text-decoration:none;padding:14px 20px;border-radius:12px}.christmas-note{text-align:center;font-style:italic;color:#6b626f;margin-bottom:20px}.new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
+
+/* SWG email signup popup */
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 30px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:absolute;top:8px;right:9px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer}.swg-signup-close:hover,.swg-signup-close:focus{background:#eee7f2;outline:2px solid transparent}.swg-signup-embed{min-height:54px}.swg-signup-popup .formkit-form{margin:0!important;max-width:100%!important;font-family:"Caladea",serif!important}.swg-signup-popup .formkit-fields{gap:6px!important}.swg-signup-popup input[type="email"]{font-family:"Caladea",serif!important;font-size:1rem!important}.swg-signup-popup button{font-family:"Caladea",serif!important}.swg-signup-loading{font-size:.88rem;color:#6b626f;margin:4px 0}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}}
+@media print{.swg-signup-popup{display:none!important}}
 </style></head><body><article class="resource" id="letter"><img alt="Songs With Grace logo" class="page-logo" src="assets/favicon.png"/><h1>The Worm Family Christmas Newsletter</h1><div class="christmas-note">Merry Christmas from our bin to yours.</div><img alt="Worm Family Christmas portrait" class="cover" src="assets/worm-family-christmas.webp"/><h2>Dear Friends and Family,</h2>
 <p>Since this is our first Christmas card to you, we should probably introduce ourselves. We are the <strong>Worm Family</strong>, and we live together in a lovely, climate-controlled residence known locally as “the bin.”</p>
 <p>It isn't much from the outside, but the neighborhood is quiet, the soil is good, and meals arrive right at our door.</p>
@@ -19,5 +25,56 @@
 <h3>OUR CHRISTMAS GIFT TO YOU</h3><p>This Christmas, rather than exchanging expensive gifts—we have no money, pockets, or convenient access to retail establishments—we decided to give you something of ourselves. We are giving you <strong>our story</strong>.</p>
 <p class="gift"><a href="as-the-worm-turns.html#listen">▶ Hear our gift: <em>As the Worm Turns</em></a></p>
 <p>It is performed on our behalf because our vocal range is extremely limited.</p><p>We hope it makes you laugh. We hope you think of us occasionally when you see a garden, a bit of compost, or a particularly appealing peach peel.</p><p>And should you ever meet one of our relatives out in the world, please be kind. They may simply be looking for a new opportunity.</p>
-<h3>MERRY CHRISTMAS FROM OUR BIN TO YOURS</h3><p>With love,<br/><strong>The Worm Family</strong></p><p><em>P.S. Please don't send rice.<br/><strong>We have people for that.</strong></em> 😂</p></article><footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer><script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+<h3>MERRY CHRISTMAS FROM OUR BIN TO YOURS</h3><p>With love,<br/><strong>The Worm Family</strong></p><p><em>P.S. Please don't send rice.<br/><strong>We have people for that.</strong></em> 😂</p></article>
+<!-- SWG email signup popup -->
+<aside class="swg-signup-popup" id="swgSignupPopup" role="dialog" aria-modal="false" aria-labelledby="swgSignupTitle" aria-describedby="swgSignupCopy" hidden>
+  <button class="swg-signup-close" id="swgSignupClose" type="button" aria-label="Close signup popup">×</button>
+  <h2 id="swgSignupTitle">Connections are good.</h2>
+  <p id="swgSignupCopy">For news about new songs, devotionals, or new features, add your email and delicately hit Enter.</p>
+  <div class="swg-signup-embed" id="swgSignupEmbed"><p class="swg-signup-loading">Loading the signup form…</p></div>
+  <p class="swg-no-smash">No smashing anything here.</p>
+</aside>
+<footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer><script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+
+<script>
+(function(){
+  const KEY='swg-signup-popup-v2-dismissed-until';
+  const SESSION='swg-signup-popup-v2-shown';
+  const DELAY=25000;
+  const HIDE_DAYS=14;
+  const popup=document.getElementById('swgSignupPopup');
+  const close=document.getElementById('swgSignupClose');
+  const embed=document.getElementById('swgSignupEmbed');
+  if(!popup||!close||!embed) return;
+  function dismissed(){
+    const until=Number(localStorage.getItem(KEY)||0);
+    return until>Date.now();
+  }
+  function dismiss(){
+    localStorage.setItem(KEY,String(Date.now()+HIDE_DAYS*24*60*60*1000));
+    popup.classList.remove('is-open'); popup.hidden=true;
+  }
+  function loadKit(){
+    if(embed.dataset.loaded==='1') return;
+    embed.dataset.loaded='1'; embed.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true; s.dataset.uid='ed835af4b2';
+    s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
+    s.onerror=function(){embed.innerHTML='<p class="swg-signup-loading">The signup form is unavailable just now. Please try again later.</p>';};
+    embed.appendChild(s);
+  }
+  function show(){
+    if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
+    popup.hidden=false;
+    popup.classList.add('is-open');
+    if(!popup.classList.contains('is-open')) return;
+    sessionStorage.setItem(SESSION,'1');
+    loadKit();
+  }
+  close.addEventListener('click',dismiss);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+  if(!dismissed()) window.setTimeout(show,DELAY);
+})();
+</script>
+
 </body></html>
