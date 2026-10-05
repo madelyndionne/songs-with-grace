@@ -8,6 +8,12 @@
 @media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
 .share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}.favorite-btn.is-favorite{color:var(--deep)}
 .new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
+
+/* SWG email signup popup */
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 30px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:absolute;top:8px;right:9px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer}.swg-signup-close:hover,.swg-signup-close:focus{background:#eee7f2;outline:2px solid transparent}.swg-signup-embed{min-height:54px}.swg-signup-popup .formkit-form{margin:0!important;max-width:100%!important;font-family:"Caladea",serif!important}.swg-signup-popup .formkit-fields{gap:6px!important}.swg-signup-popup input[type="email"]{font-family:"Caladea",serif!important;font-size:1rem!important}.swg-signup-popup button{font-family:"Caladea",serif!important}.swg-signup-loading{font-size:.88rem;color:#6b626f;margin:4px 0}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}}
+@media print{.swg-signup-popup{display:none!important}}
 </style><!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
 <script>
@@ -70,7 +76,16 @@
 <p><strong>Galatians 1:10</strong> — Paul contrasts seeking human approval with serving Christ. Day 3 uses this as a second test of what is shaping our message and our response to truth.</p>
 <p><strong>Galatians 1:11-12</strong> — Paul insists that the Gospel he preached was not fashioned by man but received through the revelation of Jesus Christ. This is the foundation of Verse 1 and Day 1.</p>
 <p><strong>Galatians 1:15-16</strong> — Paul again speaks of God's grace, calling, and the revelation of His Son. The chapter keeps returning to the same center: God calls, Christ is revealed, and the Gospel is received rather than invented.</p>
-<div class="back-top"><a href="#top-player">↑ Back to top</a></div></section></article><footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
+<div class="back-top"><a href="#top-player">↑ Back to top</a></div></section></article>
+<!-- SWG email signup popup -->
+<aside class="swg-signup-popup" id="swgSignupPopup" role="dialog" aria-modal="false" aria-labelledby="swgSignupTitle" aria-describedby="swgSignupCopy" hidden>
+  <button class="swg-signup-close" id="swgSignupClose" type="button" aria-label="Close signup popup">×</button>
+  <h2 id="swgSignupTitle">Connections are good.</h2>
+  <p id="swgSignupCopy">For news about new songs, devotionals, or new features, add your email and delicately hit Enter.</p>
+  <div class="swg-signup-embed" id="swgSignupEmbed"><p class="swg-signup-loading">Loading the signup form…</p></div>
+  <p class="swg-no-smash">No smashing anything here.</p>
+</aside>
+<footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
 <script src="assets/swg-analytics.js"></script>
 <script>
 (function(){
@@ -87,4 +102,46 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+
+<script>
+(function(){
+  const KEY='swg-signup-popup-v2-dismissed-until';
+  const SESSION='swg-signup-popup-v2-shown';
+  const DELAY=25000;
+  const HIDE_DAYS=14;
+  const popup=document.getElementById('swgSignupPopup');
+  const close=document.getElementById('swgSignupClose');
+  const embed=document.getElementById('swgSignupEmbed');
+  if(!popup||!close||!embed) return;
+  function dismissed(){
+    const until=Number(localStorage.getItem(KEY)||0);
+    return until>Date.now();
+  }
+  function dismiss(){
+    localStorage.setItem(KEY,String(Date.now()+HIDE_DAYS*24*60*60*1000));
+    popup.classList.remove('is-open'); popup.hidden=true;
+  }
+  function loadKit(){
+    if(embed.dataset.loaded==='1') return;
+    embed.dataset.loaded='1'; embed.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true; s.dataset.uid='ed835af4b2';
+    s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
+    s.onerror=function(){embed.innerHTML='<p class="swg-signup-loading">The signup form is unavailable just now. Please try again later.</p>';};
+    embed.appendChild(s);
+  }
+  function show(){
+    if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
+    popup.hidden=false;
+    popup.classList.add('is-open');
+    if(!popup.classList.contains('is-open')) return;
+    sessionStorage.setItem(SESSION,'1');
+    loadKit();
+  }
+  close.addEventListener('click',dismiss);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+  if(!dismissed()) window.setTimeout(show,DELAY);
+})();
+</script>
+
 </body></html>
