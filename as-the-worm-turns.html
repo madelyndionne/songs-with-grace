@@ -89,8 +89,8 @@
   <h2 id="scriptureTitle">Read the Scriptures — NIV</h2>
   <p>Scriptures referenced in this devotional:</p>
   <div class="scripture-picks">
-   <button type="button" data-passage="GEN.1.24-GEN.1.25" data-label="Genesis 1:24–25">Genesis 1:24–25</button>
-   <button type="button" data-passage="JOB.12.7-JOB.12.10" data-label="Job 12:7–10">Job 12:7–10</button>
+   <button type="button" data-passage="GEN.1.24-25" data-label="Genesis 1:24–25">Genesis 1:24–25</button>
+   <button type="button" data-passage="JOB.12.7-10" data-label="Job 12:7–10">Job 12:7–10</button>
    <button type="button" data-passage="PSA.104.24" data-label="Psalm 104:24">Psalm 104:24</button>
    <button type="button" data-passage="PRO.17.22" data-label="Proverbs 17:22">Proverbs 17:22</button>
   </div>
@@ -265,14 +265,25 @@
  document.querySelectorAll('.scripture-picks button').forEach(btn=>btn.addEventListener('click',async()=>{
    title.textContent=btn.dataset.label+' — NIV'; text.textContent='Loading Scripture…';
    try{
-     const url='https://api.youversion.com/v1/bibles/'+BIBLE_ID+'/passages/'+encodeURIComponent(btn.dataset.passage)+'?format=html';
+     const url='https://api.youversion.com/v1/bibles/'+BIBLE_ID+'/passages/'+encodeURIComponent(btn.dataset.passage)+'?format=text';
      const res=await fetch(url,{headers:{'X-YVP-App-Key':APP_KEY}});
-     if(!res.ok) throw new Error('HTTP '+res.status);
+     if(!res.ok){
+       let details='';
+       try{details=await res.text();}catch(_e){}
+       throw new Error('HTTP '+res.status+(details?' — '+details.slice(0,180):''));
+     }
      const body=await res.json(); const d=body.data||body;
-     text.innerHTML=d.content||d.html||d.text||'<p>Scripture text was returned, but could not be displayed.</p>';
-     try{const meta=await fetch('https://api.youversion.com/v1/bibles/'+BIBLE_ID,{headers:{'X-YVP-App-Key':APP_KEY}}); if(meta.ok){const m=await meta.json();const b=m.data||m;copy.innerHTML=(b.copyright||'New International Version')+'<br>Scripture supplied through YouVersion Platform.';}}catch(_e){}
+     text.textContent=d.content||d.text||'Scripture text was returned, but could not be displayed.';
+     try{
+       const meta=await fetch('https://api.youversion.com/v1/bibles/'+BIBLE_ID,{headers:{'X-YVP-App-Key':APP_KEY,'Accept':'application/json'}});
+       if(meta.ok){
+         const m=await meta.json(); const b=m.data||m;
+         copy.textContent=(b.copyright||b.promotional_content||'New International Version')+'  Scripture supplied through YouVersion Platform.';
+       }
+     }catch(_e){}
    }catch(err){
-     text.innerHTML='<p>NIV Scripture is not available to this app yet. This usually means the NIV publisher license still needs to be accepted in YouVersion Platform.</p>';
+     console.error('YouVersion Scripture request failed:',err);
+     text.innerHTML='<p>Scripture could not be loaded from YouVersion just now.</p><p class="scripture-error-detail">'+String(err.message||err).replace(/[&<>"]/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];})+'</p>';
    }
  }));
 })();
