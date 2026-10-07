@@ -25,7 +25,6 @@
 @media print{.swg-signup-popup{display:none!important}}
 
 /* YouVersion Scripture reader prototype */
-.scripture-open{display:inline-block;margin:.25rem 0 1.15rem;padding:.62rem .9rem;border:1px solid var(--purple);border-radius:9px;background:#f3edf6;color:var(--purple);font:700 1rem "Caladea",serif;cursor:pointer}.scripture-modal[hidden]{display:none}.scripture-modal{position:fixed;inset:0;z-index:10000;background:rgba(30,20,34,.55);display:flex;align-items:center;justify-content:center;padding:20px}.scripture-card{position:relative;width:min(760px,100%);max-height:86vh;overflow:auto;background:var(--paper);border-radius:15px;padding:24px;box-shadow:0 18px 55px rgba(0,0,0,.28)}.scripture-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:var(--purple);font-size:2rem;cursor:pointer}.scripture-card h2{margin:0 42px 10px 0;padding:0;border:0}.scripture-picks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}.scripture-picks button{border:1px solid #cbbbd3;border-radius:8px;background:#fff;padding:.45rem .65rem;font-family:inherit;cursor:pointer}.scripture-text{line-height:1.65}.scripture-copy{font-size:.85rem;color:#6b626f;margin-top:18px;border-top:1px solid #ddd;padding-top:10px}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
@@ -82,23 +81,6 @@
 <div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
 <nav aria-label="As the Worm Turns sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
 <section class="devotional-body" id="devotional"><h2>Devotional</h2>
-<button class="scripture-open" id="scriptureOpen" type="button">📖 Read the Scriptures</button>
-<div class="scripture-modal" id="scriptureModal" role="dialog" aria-modal="true" aria-labelledby="scriptureTitle" hidden>
- <div class="scripture-card">
-  <button class="scripture-close" id="scriptureClose" type="button" aria-label="Close Scripture reader">×</button>
-  <h2 id="scriptureTitle">Read the Scriptures — NIV</h2>
-  <p>Scriptures referenced in this devotional:</p>
-  <div class="scripture-picks">
-   <button type="button" data-passage="GEN.1.24-25" data-label="Genesis 1:24–25">Genesis 1:24–25</button>
-   <button type="button" data-passage="JOB.12.7-10" data-label="Job 12:7–10">Job 12:7–10</button>
-   <button type="button" data-passage="PSA.104.24" data-label="Psalm 104:24">Psalm 104:24</button>
-   <button type="button" data-passage="PRO.17.22" data-label="Proverbs 17:22">Proverbs 17:22</button>
-  </div>
-  <h3 id="scripturePassageTitle">Choose a passage</h3>
-  <div class="scripture-text" id="scriptureText">The passage will appear here.</div>
-  <div class="scripture-copy" id="scriptureCopyright">Scripture supplied through YouVersion Platform.</div>
- </div>
-</div>
 <h3>Paying Attention</h3>
 <p>Scripture begins by telling us that God made <strong>“the living creature after his kind”</strong>, including the creatures that move close to the ground (Genesis 1:24–25). Job later says, <strong>“ask now the beasts, and they shall teach thee”</strong>, and reminds us that <strong>“in whose hand is the soul of every living thing”</strong> (Job 12:7–10). We do not have to make something grand before it can remind us to notice the world He made.</p>
 <p>The song, <em>As the Worm Turns</em>, starts in one of the least glamorous places imaginable: a worm bin. It notices escapes, growth, tiny new worms, strange biology, and the ordinary cycle of life. Then it does something wonderfully human with what it notices—it laughs.</p>
@@ -253,40 +235,5 @@
 </script>
 
 
-<script>
-(function(){
- const APP_KEY='vP7lCWRfAQmzU6Jl8Hb8g0e6ve3ae9ppV0aUJkYDVe911ADB';
- const BIBLE_ID=111; // NIV
- const open=document.getElementById('scriptureOpen'), modal=document.getElementById('scriptureModal'), close=document.getElementById('scriptureClose');
- const text=document.getElementById('scriptureText'), title=document.getElementById('scripturePassageTitle'), copy=document.getElementById('scriptureCopyright');
- function shut(){modal.hidden=true;open.focus();}
- open.addEventListener('click',()=>{modal.hidden=false;}); close.addEventListener('click',shut);
- modal.addEventListener('click',e=>{if(e.target===modal)shut();}); document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)shut();});
- document.querySelectorAll('.scripture-picks button').forEach(btn=>btn.addEventListener('click',async()=>{
-   title.textContent=btn.dataset.label+' — NIV'; text.textContent='Loading Scripture…';
-   try{
-     const url='https://api.youversion.com/v1/bibles/'+BIBLE_ID+'/passages/'+encodeURIComponent(btn.dataset.passage)+'?format=text';
-     const res=await fetch(url,{headers:{'X-YVP-App-Key':APP_KEY}});
-     if(!res.ok){
-       let details='';
-       try{details=await res.text();}catch(_e){}
-       throw new Error('HTTP '+res.status+(details?' — '+details.slice(0,180):''));
-     }
-     const body=await res.json(); const d=body.data||body;
-     text.textContent=d.content||d.text||'Scripture text was returned, but could not be displayed.';
-     try{
-       const meta=await fetch('https://api.youversion.com/v1/bibles/'+BIBLE_ID,{headers:{'X-YVP-App-Key':APP_KEY,'Accept':'application/json'}});
-       if(meta.ok){
-         const m=await meta.json(); const b=m.data||m;
-         copy.textContent=(b.copyright||b.promotional_content||'New International Version')+'  Scripture supplied through YouVersion Platform.';
-       }
-     }catch(_e){}
-   }catch(err){
-     console.error('YouVersion Scripture request failed:',err);
-     text.innerHTML='<p>Scripture could not be loaded from YouVersion just now.</p><p class="scripture-error-detail">'+String(err.message||err).replace(/[&<>"]/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];})+'</p>';
-   }
- }));
-})();
-</script>
 </body>
 </html>
