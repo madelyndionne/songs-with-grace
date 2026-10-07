@@ -20,3 +20,14 @@
     });
   });
 })();
+
+/* Load the shared SWG Scripture reader on song pages. */
+(function(){
+  if(!document.querySelector('#devotional')) return;
+  if(document.querySelector('script[data-swg-scripture-loader]')) return;
+  var s=document.createElement('script');
+  s.src='assets/swg-scripture.js?v=20261007';
+  s.defer=true;
+  s.setAttribute('data-swg-scripture-loader','');
+  document.head.appendChild(s);
+})();
