@@ -1,0 +1,128 @@
+html
+<html lang="en"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="assets/favicon.png" rel="icon" type="image/png"/>
+<title>Candlelight | Songs With Grace</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="site-nav.css" rel="stylesheet"/>
+<style>
+:root{--purple:#65407a;--deep:#382742;--paper:#fbfaf7;--ink:#29262b;--soft:#eee7f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Caladea",serif}.resource{position:relative;max-width:900px;margin:auto;padding:34px 24px 70px}.back-songs{color:var(--purple);text-decoration:none;font-weight:700}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}h1{font-size:clamp(2.4rem,6vw,4.3rem);color:var(--purple);margin:22px 0 8px;text-align:center}.resource-type{text-align:center;font-style:italic;color:#6b626f;margin-bottom:22px}.cover{width:100%;max-width:900px;display:block;margin:18px auto 24px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.14)}audio{width:100%;margin:12px 0 26px}.section-bar{margin:20px auto;padding:12px 16px;border-radius:12px;background:#f3edf6;text-align:center;line-height:1.9}.section-bar a,.back-top a,.print-btn{color:var(--purple);text-decoration:none;font-weight:700}.section-bar span{margin:0 5px;color:#9b8ca3}.print-btn{border:0;background:transparent;font-family:inherit;font-size:inherit;cursor:pointer;padding:0}section{scroll-margin-top:12px}section h2{color:var(--purple);font-size:2rem;border-bottom:1px solid #ddd;padding-top:32px;padding-bottom:8px}#lyrics{text-align:center}#lyrics h3{margin:1.25rem 0 .28rem;color:var(--deep)}#lyrics p{margin:.08rem 0;line-height:1.35}#devotional{text-align:left}#devotional h3{color:var(--deep);font-size:1.55rem;margin:1.7rem 0 .45rem}.devotional-body p,#extra p{line-height:1.62}.back-top{text-align:right;margin:24px 0 30px;font-size:.9rem}#top-player{scroll-margin-top:10px}h4{color:var(--purple);font-size:1.1rem;margin-bottom:5px}
+@media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
+@media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
+.share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}.favorite-btn.is-favorite{color:var(--deep)}
+.new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
+
+/* SWG email signup popup */
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));max-height:calc(100vh - 36px);overflow:auto;background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 38px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:sticky;float:right;top:0;z-index:2147483647;width:34px;height:34px;margin:-10px -10px 0 8px;border:1px solid #d8cadf;border-radius:50%;background:#fbfaf7;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(0,0,0,.12);padding:0}.swg-signup-close:hover,.swg-signup-close:focus-visible{background:#eee7f2;outline:2px solid #65407a;outline-offset:2px}.swg-popup-form{display:flex;gap:8px;margin:12px 0 4px}.swg-popup-form input{flex:1;min-width:0;padding:10px 11px;border:1px solid #cfc6d4;border-radius:8px;background:white;font:inherit}.swg-popup-form button{border:0;border-radius:8px;background:#65407a;color:white;font:inherit;font-weight:700;padding:10px 13px;cursor:pointer;white-space:nowrap}.swg-popup-status{font-size:.86rem;color:#6b626f;min-height:1.2em;margin:6px 0 0}.swg-signup-embed{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}.swg-popup-form{flex-direction:column}.swg-popup-form button{width:100%}}
+@media print{.swg-signup-popup{display:none!important}}
+
+.listener-comments blockquote{margin:12px 0 6px;padding:15px 20px;border-left:3px solid var(--purple);background:#f3edf6;border-radius:0 10px 10px 0;line-height:1.55}.listener-source,.listener-credit{color:#6b626f;font-style:italic}.listener-credit{margin:0 0 12px;text-align:right}@media print{#listener-comments{display:none!important}}
+</style>
+</head><body>
+<nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
+<article class="resource" data-song="Candlelight">
+<a class="back-songs" href="index.html">← Songs With Grace</a>
+<img alt="Songs With Grace logo" class="page-logo" src="assets/favicon.png"/>
+<h1>Candlelight</h1><div class="resource-type">Devotional · Surrender, Christlikeness &amp; the Holy Spirit</div>
+<img alt="Candlelight cover artwork" class="cover" src="assets/candlelight-cover.webp"/>
+<div id="top-player"></div>
+<nav aria-label="Candlelight sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<audio controls="" id="listen" preload="none" src="assets/candlelight.mp3"></audio>
+<div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
+<section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>An unlit candle waits in silence</p><p>Perfect as the day it's made</p><p>Keeping every drop it carries</p><p>Never giving what was paid.</p><p>Then a single flame is offered</p><p>Quietly it says "yes"</p><p>Losing what it cannot keep</p><p>To give back what God has blessed.</p><h3>Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... more of You.</p><h3>Verse 2</h3><p>Every hour leaves it smaller</p><p>Every moment, something's gone</p><p>Yet the darkness grows much lighter</p><p>As the little flame lives on.</p><p>What remains is not the candle</p><p>Or the wax upon the stand</p><p>But the warmth that found another</p><p>Like a touch from holy hands.</p><h3>Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... more of You.</p><h3>Bridge</h3><p>The wick can never be the fire</p><p>It only bears the flame</p><p>Fed by some One deep within it</p><p>To glorify His name.</p><p>If it tries to shine alone</p><p>Only smoke is left to see</p><p>When the Source becomes its fuel</p><p>His Spirit's light glows free.</p><h3>Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... more of You.</p><h3>Final Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... and more... of... You.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<nav aria-label="Candlelight sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<section class="devotional-body" id="devotional"><h2>Devotional</h2><h3>Candlelight — Less of Me, More of You</h3><p>John 3:30 records a remarkably simple statement from John the Baptist: <strong>“He must increase, but I must decrease.”</strong> Those words do not describe a life becoming worthless or disappearing into insignificance. They describe a life finding its proper purpose: pointing beyond itself to Jesus Christ.</p><p>The song, <em>Candlelight</em>, approaches that truth through something ordinary. An unlit candle can remain perfectly intact for years. Its wax is preserved, its shape unchanged, its potential untouched. But a candle is made to give light. When the flame is kindled, the candle begins to be spent. What appears to be loss becomes the very means by which it fulfills its purpose.</p><p>There is an important distinction, however. <strong>Our suffering or self-denial does not produce spiritual light by itself.</strong> The candle is an illustration, not the source of truth. Scripture tells us who the true Light is. Jesus says in John 8:12, <strong>“I am the light of the world: he that followeth me shall not walk in darkness, but shall have the light of life.”</strong> Without Him, all our effort can amount to little more than smoke.</p><p>That is why the bridge matters so much: <em>“The wick can never be the fire / It only bears the flame.”</em> A wick has a necessary place, but it cannot claim to be the source of the fire it carries. Likewise, a believer may serve, encourage, teach, give, and comfort, but none of these acts makes us the source of God's power or glory.</p><p>Jesus speaks directly to our dependence on Him in John 15:5: <strong>“I am the vine, ye are the branches”</strong> and <strong>“without me ye can do nothing.”</strong> A branch cannot manufacture life apart from the vine. In the same way, the light of a Christian life is not sustained by personality, talent, resolve, or the desire to be useful. Its life comes from abiding in Christ.</p><p>The chorus becomes a prayer: <em>“Burn away what isn't You... Leave behind what still is true.”</em> This is not a request for God to erase the personality, gifts, or dignity He has given us. It is a request that pride, selfish ambition, bitterness, and whatever obstructs obedience be brought under His transforming work.</p><p>Romans 12:1 calls believers to <strong>“present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service.”</strong> The following verse calls us to be <strong>“transformed by the renewing of your mind.”</strong> Christian surrender is therefore not merely a dramatic moment of sacrifice. It is a continuing offering of our ordinary lives, our decisions, our habits, and our motives to the Lord.</p><p>And this surrender does not mean that our worth decreases as Christ increases. Our worth rests in God's love and grace, not in the quantity of our accomplishments. What decreases is the claim that our lives belong to ourselves or that the glory should be ours.</p><p>Galatians 2:20 expresses the heart of this exchange: <strong>“I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me.”</strong> Paul does not say that his life has ceased to matter. He says that his life now has a new center. His identity, hope, and daily walk are grounded in the Son of God, <strong>“who loved me, and gave himself for me.”</strong></p><p>The second verse of the song notices a striking paradox. As the candle grows smaller, the surrounding darkness grows lighter. The wax cannot be kept and spent at the same time. In our own lives, generosity also requires something of us: attention, patience, time, effort, forgiveness, or the willingness to set aside our own convenience.</p><p>Yet giving is not always loud or publicly recognized. A quiet word may strengthen someone who is struggling. A patient response may prevent a wound. A small act of service may communicate the love of Christ more clearly than an impressive display of ability. Matthew 5:16 instructs us, <strong>“Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.”</strong> The destination of the praise is essential: <strong>our Father</strong>, not ourselves.</p><p>That brings us back to the candle's flame. The Holy Spirit is not an impersonal force we can summon by trying harder. He is God, dwelling in believers and producing the fruit that reflects His character. Galatians 5:22–23 names <strong>“love, joy, peace, longsuffering, gentleness, goodness, faith, meekness, temperance.”</strong> Such fruit is not manufactured by self-display. It grows through the Spirit's work as we walk in obedience to Him.</p><p>There is also a necessary caution in this metaphor. A burning candle is consumed, but the Lord does not command us to pursue exhaustion, neglect necessary rest, or imagine that the more we suffer, the holier we become. Jesus Himself withdrew to pray and called His disciples to rest. The point is not to destroy ourselves. <strong>The point is to offer ourselves faithfully to God, trusting Him to direct both our giving and our resting.</strong></p><p>The words <em>“Less of me... more of You”</em> are therefore not a rejection of the person God made. They are a reordering of the heart. Less pride, more humility. Less self-reliance, more dependence. Less desire to be noticed, more desire for Christ to be known. Less grasping to preserve everything for ourselves, more willingness to give what God has entrusted to us.</p><p>A candle does not choose who will enter the room or who will be helped by its light. It simply shines where it has been placed. We cannot know every person who may be encouraged by an act of kindness, a word of truth, or a faithful life. Nor can we measure the reach of God's work by what we can see.</p><p>Perhaps that is the quiet beauty of this picture. The candle's usefulness is not measured by how much wax remains, but by the light it has given. Even so, the measure of a Christian life is not how impressive it appears or how much attention it gathers. It is faithfulness to the Lord whose light we are called to reflect.</p><p>And when our strength is small, His sufficiency is not. Second Corinthians 4:7 says, <strong>“we have this treasure in earthen vessels, that the excellency of the power may be of God, and not of us.”</strong> The vessel is fragile; the treasure is glorious. We are never asked to pretend otherwise.</p><p>So let the prayer be sincere, not merely beautiful: Lord, remove what obscures Your character. Teach me to abide in Christ. Make my words and actions useful in Your service. And when others see any good in me, may they recognize its true Source.</p><p><strong>The wick is not the fire. The candle is not the Light of the world. But a life yielded to Christ can bear witness to the One who is.</strong></p><h3>A Moment for Reflection</h3><p>Where am I trying to be the source of light rather than depending on Christ?</p><p>What attitudes or habits may be obscuring His character in my life?</p><p>How might I give warmth, truth, or encouragement to someone God has placed near me?</p><p>Am I seeking to be noticed for my good works, or to bring glory to my Father?</p><h3>Closing Prayer</h3><p>Heavenly Father, thank You for giving us Your Son, the true Light of the world. Forgive me when I try to shine in my own strength or seek praise that belongs to You. Search my heart and remove the pride, fear, selfishness, and distractions that keep me from reflecting Your love. Teach me to abide in Christ and to walk in the Holy Spirit. Make me willing to give my time, my attention, and my gifts where You would have me serve, and wise enough to rest when You call me to rest. Let my life offer warmth to those who are hurting, encouragement to those who are weary, and truth to those who are searching. May others see Your goodness rather than my importance. He must increase, and I must decrease. In Jesus’ name, Amen.</p></section>
+<section id="extra"><h2>Extra Info — Scripture Map</h2><p><strong>Christ must increase: </strong>John 3:30</p><p><strong>Jesus, the true Light: </strong>John 8:12</p><p><strong>Abiding in the Source: </strong>John 15:4–5</p><p><strong>A living sacrifice and renewed mind: </strong>Romans 12:1–2</p><p><strong>Christ living in the believer: </strong>Galatians 2:20</p><p><strong>Good works glorify the Father: </strong>Matthew 5:14–16</p><p><strong>The fruit of the Holy Spirit: </strong>Galatians 5:22–25</p><p><strong>Treasure in fragile vessels: </strong>2 Corinthians 4:7</p></section>
+</article>
+ SWG email signup popup 
+<aside aria-describedby="swgSignupCopy" aria-labelledby="swgSignupTitle" aria-modal="false" class="swg-signup-popup" hidden="" id="swgSignupPopup" role="dialog">
+<button aria-label="Close signup popup" class="swg-signup-close" id="swgSignupClose" type="button">×</button>
+<h2 id="swgSignupTitle">Connections are good.</h2>
+<p id="swgSignupCopy">For news about new songs, devotionals, or new features, <strong>Sign Me Up</strong> with your email — delicately, of course.</p>
+<form class="swg-popup-form" id="swgPopupForm" novalidate="">
+<label class="sr-only" for="swgPopupEmail" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Email address</label>
+<input autocomplete="email" id="swgPopupEmail" inputmode="email" name="email" placeholder="Email Address" required="" type="email"/>
+<button type="submit">Sign Me Up</button>
+</form>
+<p aria-live="polite" class="swg-popup-status" id="swgPopupStatus"></p>
+<div aria-hidden="true" class="swg-signup-embed" id="swgSignupEmbed"></div>
+<p class="swg-no-smash">No smashing anything here.</p>
+</aside>
+<footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer><script src="assets/swg-analytics.js"></script>
+<script>
+(function(){
+ const song='Candlelight'; const pageUrl=window.location.href; const canonical=window.location.pathname.split('/').pop()||'candlelight.html';
+ const text='I thought you might enjoy '+song+' on Songs With Grace.';
+ const nativeBtn=document.getElementById('share-native'), copyBtn=document.getElementById('share-copy'), email=document.getElementById('share-email'), facebook=document.getElementById('share-facebook'), status=document.getElementById('share-status'), favoriteBtn=document.getElementById('favorite-btn');
+ email.href='mailto:?subject='+encodeURIComponent(song+' | Songs With Grace')+'&body='+encodeURIComponent(text+'\n\n'+pageUrl); facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl);
+ if(!navigator.share) nativeBtn.style.display='none';
+ nativeBtn.addEventListener('click',async()=>{try{await navigator.share({title:song+' | Songs With Grace',text:text,url:pageUrl})}catch(e){if(e&&e.name!=='AbortError')status.textContent='Sharing was not available. You can copy the link instead.'}});
+ copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);status.textContent='Link copied.'}catch(e){const t=document.createElement('textarea');t.value=pageUrl;t.style.position='absolute';t.style.left='-9999px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Link copied.':'Please copy the address from your browser.'}});
+ const key='swgFavorites'; const getFavs=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+ function paint(){const on=getFavs().includes(canonical);favoriteBtn.textContent=on?'♥ Favorited':'♡ Favorite';favoriteBtn.classList.toggle('is-favorite',on);favoriteBtn.setAttribute('aria-pressed',String(on))}
+ favoriteBtn.addEventListener('click',()=>{let f=getFavs();if(f.includes(canonical))f=f.filter(x=>x!==canonical);else f.push(canonical);localStorage.setItem(key,JSON.stringify(f));paint();}); paint();
+})();
+</script>
+<script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+<script>
+(function(){
+  const KEY='swg-signup-popup-v2-dismissed-until';
+  const SESSION='swg-signup-popup-v2-shown';
+  const DELAY=25000;
+  const HIDE_DAYS=14;
+  const popup=document.getElementById('swgSignupPopup');
+  const close=document.getElementById('swgSignupClose');
+  const embed=document.getElementById('swgSignupEmbed');
+  const proxy=document.getElementById('swgPopupForm');
+  const email=document.getElementById('swgPopupEmail');
+  const status=document.getElementById('swgPopupStatus');
+  if(!popup||!close||!embed||!proxy||!email||!status) return;
+  function dismissed(){
+    const until=Number(localStorage.getItem(KEY)||0);
+    return until>Date.now();
+  }
+  function dismiss(){
+    localStorage.setItem(KEY,String(Date.now()+HIDE_DAYS*24*60*60*1000));
+    popup.classList.remove('is-open'); popup.hidden=true;
+  }
+  function loadKit(){
+    if(embed.dataset.loaded==='1') return;
+    embed.dataset.loaded='1'; embed.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true; s.dataset.uid='ed835af4b2';
+    s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
+    s.onerror=function(){status.textContent='The signup form is unavailable just now. Please try again later.';};
+    embed.appendChild(s);
+  }
+  proxy.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!email.checkValidity()){email.reportValidity();return;}
+    const kitForm=embed.querySelector('form.formkit-form, form[data-sv-form]');
+    if(!kitForm){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    const kitEmail=kitForm.querySelector('input[name="email_address"], input[type="email"]');
+    if(!kitEmail){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    kitEmail.value=email.value.trim();
+    kitEmail.dispatchEvent(new Event('input',{bubbles:true}));
+    kitEmail.dispatchEvent(new Event('change',{bubbles:true}));
+    status.textContent='Sending…';
+    if(typeof kitForm.requestSubmit==='function') kitForm.requestSubmit(); else kitForm.submit();
+    setTimeout(function(){if(status.textContent==='Sending…')status.textContent='Thank you. Please check your email if confirmation is requested.';},1200);
+  });
+  function show(){
+    if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
+    popup.hidden=false;
+    popup.classList.add('is-open');
+    sessionStorage.setItem(SESSION,'1');
+    loadKit();
+    setTimeout(function(){email.focus({preventScroll:true});},50);
+  }
+  close.addEventListener('click',dismiss);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+  if(!dismissed()) window.setTimeout(show,DELAY);
+})();
+</script>
+</body></html>
