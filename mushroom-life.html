@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="assets/favicon.png" rel="icon" type="image/png"/>
+<title>Mushroom Life | Songs With Grace</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="site-nav.css" rel="stylesheet"/>
+<style>
+:root{--purple:#65407a;--deep:#382742;--paper:#fbfaf7;--ink:#29262b;--soft:#eee7f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Caladea",serif}.resource{position:relative;max-width:900px;margin:auto;padding:34px 24px 70px}.back-songs{color:var(--purple);text-decoration:none;font-weight:700}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}h1{font-size:clamp(2.4rem,6vw,4.3rem);color:var(--purple);margin:22px 0 8px;text-align:center}.resource-type{text-align:center;font-style:italic;color:#6b626f;margin-bottom:22px}.cover{width:100%;max-width:900px;display:block;margin:18px auto 24px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.14)}audio{width:100%;margin:12px 0 26px}.section-bar{margin:20px auto;padding:12px 16px;border-radius:12px;background:#f3edf6;text-align:center;line-height:1.9}.section-bar a,.back-top a,.print-btn{color:var(--purple);text-decoration:none;font-weight:700}.section-bar span{margin:0 5px;color:#9b8ca3}.print-btn{border:0;background:transparent;font-family:inherit;font-size:inherit;cursor:pointer;padding:0}section{scroll-margin-top:12px}section h2{color:var(--purple);font-size:2rem;border-bottom:1px solid #ddd;padding-top:32px;padding-bottom:8px}#lyrics{text-align:center}#lyrics h3{margin:1.25rem 0 .28rem;color:var(--deep)}#lyrics p{margin:.08rem 0;line-height:1.35}#devotional{text-align:left}#devotional h3{color:var(--deep);font-size:1.55rem;margin:1.7rem 0 .45rem}.devotional-body p,#extra p{line-height:1.62}.back-top{text-align:right;margin:24px 0 30px;font-size:.9rem}#top-player{scroll-margin-top:10px}h4{color:var(--purple);font-size:1.1rem;margin-bottom:5px}
+@media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
+@media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
+.share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}.favorite-btn.is-favorite{color:var(--deep)}
+.new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
+
+/* SWG email signup popup */
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));max-height:calc(100vh - 36px);overflow:auto;background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 38px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:sticky;float:right;top:0;z-index:2147483647;width:34px;height:34px;margin:-10px -10px 0 8px;border:1px solid #d8cadf;border-radius:50%;background:#fbfaf7;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(0,0,0,.12);padding:0}.swg-signup-close:hover,.swg-signup-close:focus-visible{background:#eee7f2;outline:2px solid #65407a;outline-offset:2px}.swg-popup-form{display:flex;gap:8px;margin:12px 0 4px}.swg-popup-form input{flex:1;min-width:0;padding:10px 11px;border:1px solid #cfc6d4;border-radius:8px;background:white;font:inherit}.swg-popup-form button{border:0;border-radius:8px;background:#65407a;color:white;font:inherit;font-weight:700;padding:10px 13px;cursor:pointer;white-space:nowrap}.swg-popup-status{font-size:.86rem;color:#6b626f;min-height:1.2em;margin:6px 0 0}.swg-signup-embed{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}.swg-popup-form{flex-direction:column}.swg-popup-form button{width:100%}}
+@media print{.swg-signup-popup{display:none!important}}
+
+.listener-comments blockquote{margin:12px 0 6px;padding:15px 20px;border-left:3px solid var(--purple);background:#f3edf6;border-radius:0 10px 10px 0;line-height:1.55}.listener-source,.listener-credit{color:#6b626f;font-style:italic}.listener-credit{margin:0 0 12px;text-align:right}@media print{#listener-comments{display:none!important}}
+</style>
+</head><body>
+<nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
+<article class="resource" data-song="As Jesus Would">
+<a class="back-songs" href="index.html">← Songs With Grace</a>
+<img alt="Songs With Grace logo" class="page-logo" src="assets/favicon.png"/>
+<h1>Mushroom Life</h1><div class="resource-type">Devotional · Spiritual Growth &amp; Trust</div>
+<img alt="Mushroom Life cover artwork" class="cover" src="assets/mushroom-life-cover.webp"/>
+<div id="top-player"></div>
+<nav aria-label="Mushroom Life sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><a href="#listener-comments">Listener Comments</a><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<audio controls="" id="listen" preload="none" src="assets/mushroom-life.mp3"></audio>
+<div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
+<section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>Ever wonder how mushrooms are grown?</p><p>It all depends on what kind</p><p>To grow them well, they have to be known</p><p>And their environment clearly defined.</p><p>Each species needs a special recipe</p><p>That is required to keep them around</p><p>Each has their own eccentricity</p><p>Grown right, the results are clearly profound.</p><h3>Chorus</h3><p>They don't have to shrink and lurk</p><p>They get what they need to grow</p><p>Even when you can't see the work</p><p>Something is changing down below.</p><h3>Verse 2</h3><p>Generally speaking, they all need one thing</p><p>A clean place for their predecessor to grow</p><p>Mycelium is from what Mushrooms spring</p><p>And it starts from way down below.</p><p>This part of growth is in the dark.</p><p>It's where the mycelium begins</p><p>After the spores have invaded the dark</p><p>That's when the mushrooms can pin.</p><h3>Chorus</h3><p>They don't have to shrink and lurk</p><p>They get what they need to grow</p><p>Even when you can't see the work</p><p>Something is changing down below.</p><h3>Bridge</h3><p>I remember when God came into my heart</p><p>I wasn't sure what came next.</p><p>I felt a bit in the dark</p><p>And I wasn't sure what to request.</p><p>And then I realized I was at the start</p><p>Of a beautiful spiritual journey</p><p>Once He actually lived in my heart</p><p>I knew I was no longer unworthy.</p><h3>Chorus</h3><p>Mushrooms don't have to shrink and lurk</p><p>They get what they need to grow</p><p>Even when you can't see the work</p><p>Something is changing down below.</p><h3>Final Chorus</h3><p>I don't have to shrink and lurk</p><p>He is what I need to grow</p><p>Even when I can't see His work</p><p>Change is happening, I know.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<nav aria-label="Mushroom Life sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><a href="#listener-comments">Listener Comments</a><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<section class="devotional-body" id="devotional"><h2>Devotional</h2><h3>Mushroom Life — When God Is Working Beneath the Surface</h3><p>There is something remarkable about a mushroom. What we see above the ground is only a small part of a much larger living system. Beneath the surface, hidden from sight, an intricate network of mycelium develops, drawing nourishment from its surroundings and preparing for growth that will eventually become visible. Long before a mushroom appears, much has already happened.</p><p>The Apostle Paul wrote in Philippians 1:6, <strong>“he which hath begun a good work in you will perform it until the day of Jesus Christ.”</strong> What a reassuring promise! God’s work in the believer does not depend upon our ability to observe it. The absence of visible progress does not necessarily mean the absence of spiritual growth.</p><p>The song, <em>Mushroom Life</em>, begins with a simple observation about nature. Different mushrooms require different growing conditions. Each has its own characteristics, needs, and environment. Yet beneath those differences is a common principle: growth requires nourishment and conditions that sustain life.</p><p>Our spiritual development is not identical from person to person, either. Some believers experience dramatic changes early in their Christian walk. Others grow quietly, gradually developing patience, understanding, compassion, and faith. We may be tempted to compare ourselves with others, but God knows each of us completely. His work is personal, purposeful, and not confined to someone else’s timetable.</p><p>Colossians 2:6–7 encourages believers to walk in Christ, <strong>“Rooted and built up in him, and stablished in the faith.”</strong> Although mushrooms do not have roots, their hidden mycelial networks provide a useful illustration of the importance of what develops beneath the visible surface. Likewise, a Christian’s outward life is strengthened through an inward relationship with Christ, nourished by His Word, prayer, obedience, and fellowship.</p><p>Sometimes those hidden seasons are uncomfortable. We pray for direction but cannot yet discern the answer. We struggle with circumstances that seem unchanged. We wonder whether we are making any spiritual progress at all. Yet growth is not always immediately apparent.</p><p>In 1 Corinthians 3:6–7, Paul explains, <strong>“I have planted, Apollos watered; but God gave the increase.”</strong> The people involved had meaningful responsibilities, but the power to produce spiritual growth belonged to God. That distinction matters. We are called to faithfulness, not to manufacture the results that only God can bring.</p><p>The bridge of the song moves from the natural world into a personal recollection of salvation. It remembers the uncertainty of beginning a relationship with God, not knowing what would come next, and gradually recognizing that a new life had begun.</p><p>Second Corinthians 5:17 declares, <strong>“if any man be in Christ, he is a new creature: old things are passed away; behold, all things are become new.”</strong> This transformation is not merely an improvement of our former selves. It is the beginning of a new life in Christ.</p><p>There is also a beautiful opportunity to understand the song’s reference to worthiness through Ephesians 2:8–10. Scripture teaches that salvation is <strong>“by grace ... through faith”</strong> and <strong>“not of works.”</strong> We do not become worthy of salvation through our achievements or spiritual progress. Rather, God graciously receives us through Christ and creates us anew <strong>“unto good works.”</strong> Our acceptance rests upon His grace, not our merit.</p><p>And so the final chorus makes an important transition. The earlier choruses describe mushrooms receiving what they need to grow. The final chorus becomes a personal declaration of dependence upon God: <em>“He is what I need to grow.”</em></p><p>That is the heart of the illustration. Spiritual growth is not simply a matter of trying harder, appearing stronger, or producing visible evidence that will impress others. It is a continuing relationship with the One who gives life.</p><p>There may be seasons when we cannot see what God is accomplishing. There may be times when the most significant changes are taking place quietly, beneath the surface of our daily lives. But we can trust His faithfulness, continue walking in obedience, and allow His Word to shape us.</p><p><strong>We do not have to see every change to trust the One who is changing us.</strong> And when growth finally becomes visible, may we remember who gave the increase.</p><h3>A Thought to Carry With You</h3><p>What might God be developing in your life today that you cannot yet see? Perhaps the most important growth is not the part others notice, but the work God is doing within your heart.</p><h3>Prayer</h3><p>Heavenly Father, thank You for the work You are doing in my life, even when I cannot see it. Help me to trust Your timing, remain faithful in the quiet seasons, and draw my strength and nourishment from You. When I become discouraged by what seems like a lack of progress, remind me that You are faithful to complete the work You have begun. May the changes You make within me become evident in how I live, love, and serve others. In Jesus’ name, Amen.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<section id="extra"><h2>Extra Info — Scripture Map</h2><p><strong>God completes His work:</strong> Philippians 1:6</p><p><strong>God gives spiritual growth:</strong> 1 Corinthians 3:6–7</p><p><strong>Rooted and built up in Christ:</strong> Colossians 2:6–7</p><p><strong>New life in Christ:</strong> 2 Corinthians 5:17</p><p><strong>Saved by grace, created for good works:</strong> Ephesians 2:8–10</p></section><section class="listener-comments" id="listener-comments"><h2>What Listeners Are Saying</h2><p class="listener-source">Selected public comments from SoundCloud</p><blockquote>“Wow, i love the production on this track, keep creating.”</blockquote><p class="listener-credit">— UrbanPitchPromo</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+</article>
+<!-- SWG email signup popup -->
+<aside aria-describedby="swgSignupCopy" aria-labelledby="swgSignupTitle" aria-modal="false" class="swg-signup-popup" hidden="" id="swgSignupPopup" role="dialog">
+<button aria-label="Close signup popup" class="swg-signup-close" id="swgSignupClose" type="button">×</button>
+<h2 id="swgSignupTitle">Connections are good.</h2>
+<p id="swgSignupCopy">For news about new songs, devotionals, or new features, <strong>Sign Me Up</strong> with your email — delicately, of course.</p>
+<form class="swg-popup-form" id="swgPopupForm" novalidate="">
+<label class="sr-only" for="swgPopupEmail" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Email address</label>
+<input autocomplete="email" id="swgPopupEmail" inputmode="email" name="email" placeholder="Email Address" required="" type="email"/>
+<button type="submit">Sign Me Up</button>
+</form>
+<p aria-live="polite" class="swg-popup-status" id="swgPopupStatus"></p>
+<div aria-hidden="true" class="swg-signup-embed" id="swgSignupEmbed"></div>
+<p class="swg-no-smash">No smashing anything here.</p>
+</aside>
+<footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer><script src="assets/swg-analytics.js"></script>
+<script>
+(function(){
+ const song='Mushroom Life'; const pageUrl=window.location.href; const canonical=window.location.pathname.split('/').pop()||'as-jesus-would.html';
+ const text='I thought you might enjoy '+song+' on Songs With Grace.';
+ const nativeBtn=document.getElementById('share-native'), copyBtn=document.getElementById('share-copy'), email=document.getElementById('share-email'), facebook=document.getElementById('share-facebook'), status=document.getElementById('share-status'), favoriteBtn=document.getElementById('favorite-btn');
+ email.href='mailto:?subject='+encodeURIComponent(song+' | Songs With Grace')+'&body='+encodeURIComponent(text+'\n\n'+pageUrl); facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl);
+ if(!navigator.share) nativeBtn.style.display='none';
+ nativeBtn.addEventListener('click',async()=>{try{await navigator.share({title:song+' | Songs With Grace',text:text,url:pageUrl})}catch(e){if(e&&e.name!=='AbortError')status.textContent='Sharing was not available. You can copy the link instead.'}});
+ copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);status.textContent='Link copied.'}catch(e){const t=document.createElement('textarea');t.value=pageUrl;t.style.position='absolute';t.style.left='-9999px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Link copied.':'Please copy the address from your browser.'}});
+ const key='swgFavorites'; const getFavs=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+ function paint(){const on=getFavs().includes(canonical);favoriteBtn.textContent=on?'♥ Favorited':'♡ Favorite';favoriteBtn.classList.toggle('is-favorite',on);favoriteBtn.setAttribute('aria-pressed',String(on))}
+ favoriteBtn.addEventListener('click',()=>{let f=getFavs();if(f.includes(canonical))f=f.filter(x=>x!==canonical);else f.push(canonical);localStorage.setItem(key,JSON.stringify(f));paint();}); paint();
+})();
+</script>
+<script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+<script>
+(function(){
+  const KEY='swg-signup-popup-v2-dismissed-until';
+  const SESSION='swg-signup-popup-v2-shown';
+  const DELAY=25000;
+  const HIDE_DAYS=14;
+  const popup=document.getElementById('swgSignupPopup');
+  const close=document.getElementById('swgSignupClose');
+  const embed=document.getElementById('swgSignupEmbed');
+  const proxy=document.getElementById('swgPopupForm');
+  const email=document.getElementById('swgPopupEmail');
+  const status=document.getElementById('swgPopupStatus');
+  if(!popup||!close||!embed||!proxy||!email||!status) return;
+  function dismissed(){
+    const until=Number(localStorage.getItem(KEY)||0);
+    return until>Date.now();
+  }
+  function dismiss(){
+    localStorage.setItem(KEY,String(Date.now()+HIDE_DAYS*24*60*60*1000));
+    popup.classList.remove('is-open'); popup.hidden=true;
+  }
+  function loadKit(){
+    if(embed.dataset.loaded==='1') return;
+    embed.dataset.loaded='1'; embed.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true; s.dataset.uid='ed835af4b2';
+    s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
+    s.onerror=function(){status.textContent='The signup form is unavailable just now. Please try again later.';};
+    embed.appendChild(s);
+  }
+  proxy.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!email.checkValidity()){email.reportValidity();return;}
+    const kitForm=embed.querySelector('form.formkit-form, form[data-sv-form]');
+    if(!kitForm){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    const kitEmail=kitForm.querySelector('input[name="email_address"], input[type="email"]');
+    if(!kitEmail){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    kitEmail.value=email.value.trim();
+    kitEmail.dispatchEvent(new Event('input',{bubbles:true}));
+    kitEmail.dispatchEvent(new Event('change',{bubbles:true}));
+    status.textContent='Sending…';
+    if(typeof kitForm.requestSubmit==='function') kitForm.requestSubmit(); else kitForm.submit();
+    setTimeout(function(){if(status.textContent==='Sending…')status.textContent='Thank you. Please check your email if confirmation is requested.';},1200);
+  });
+  function show(){
+    if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
+    popup.hidden=false;
+    popup.classList.add('is-open');
+    sessionStorage.setItem(SESSION,'1');
+    loadKit();
+    setTimeout(function(){email.focus({preventScroll:true});},50);
+  }
+  close.addEventListener('click',dismiss);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+  if(!dismissed()) window.setTimeout(show,DELAY);
+})();
+</script>
+</body></html>
