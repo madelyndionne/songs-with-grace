@@ -39,6 +39,9 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 
 /* SWG Playlist */
 .playlist-add{border:1px solid #d8cce0;background:#fff;color:var(--purple);font:inherit;font-size:.92rem;padding:8px 10px;border-radius:8px;cursor:pointer}.playlist-add.is-added{background:#f3edf6;font-weight:700}.playlist-launch{border:1px solid #d8cce0;background:#fff;color:var(--purple);font-family:inherit;font-weight:700;border-radius:10px;padding:10px 14px;cursor:pointer}.playlist-panel{position:fixed;right:18px;bottom:18px;z-index:10000;width:min(430px,calc(100% - 30px));max-height:min(72vh,650px);display:none;flex-direction:column;background:#fbfaf7;border:1px solid #d8cce0;border-radius:16px;box-shadow:0 12px 34px rgba(0,0,0,.20);overflow:hidden}.playlist-panel.is-open{display:flex}.playlist-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 16px 10px;border-bottom:1px solid #e9e1ed}.playlist-head h2{font-size:1.35rem;margin:0}.playlist-close{border:0;background:transparent;color:var(--purple);font:700 1.45rem/1 Caladea,serif;cursor:pointer}.playlist-list{list-style:none;margin:0;padding:8px 12px;overflow:auto}.playlist-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 4px;border-bottom:1px solid #eee7f2}.playlist-item.is-current{font-weight:700;color:var(--deep)}.playlist-item-actions{display:flex;gap:3px}.playlist-item button{border:0;background:transparent;color:var(--purple);font:inherit;cursor:pointer;padding:4px 5px}.playlist-empty{padding:18px;text-align:center;color:#6d6370}.playlist-player{padding:12px 16px 16px;border-top:1px solid #e9e1ed;background:#fff}.playlist-now{font-size:.9rem;margin:0 0 8px;color:#5e5960;min-height:1.2em}.playlist-player audio{width:100%;margin:0 0 9px}.playlist-controls{display:flex;gap:7px;flex-wrap:wrap}.playlist-controls button{border:0;border-radius:8px;background:var(--purple);color:#fff;font:inherit;font-weight:700;padding:8px 11px;cursor:pointer}.playlist-controls button.secondary{background:#eee7f2;color:var(--purple)}@media(max-width:560px){.playlist-panel{right:15px;bottom:15px;width:calc(100% - 30px);max-height:78vh}.playlist-add{font-size:.78rem;padding:7px}}@media print{.playlist-panel,.playlist-launch,.playlist-add{display:none!important}}
+
+/* Download license confirmation (index playlist only) */
+.swg-download-dialog[hidden]{display:none!important}.swg-download-dialog{position:fixed;inset:0;z-index:20000;background:rgba(30,20,37,.64);display:flex;align-items:center;justify-content:center;padding:16px}.swg-download-box{width:min(650px,100%);max-height:92vh;display:flex;flex-direction:column;background:#fbfaf7;border-radius:16px;padding:22px;box-shadow:0 14px 44px rgba(0,0,0,.3);font-family:Caladea,serif}.swg-download-box h2{margin:0 35px 8px 0;font-size:1.65rem}.swg-download-close{float:right;border:0;background:transparent;color:#65407a;font-size:1.7rem;cursor:pointer}.swg-license-toggle{align-self:flex-start;color:#65407a;background:#eee7f2;border:1px solid #d8cce0;border-radius:8px;font:inherit;padding:9px 12px;cursor:pointer}.swg-license-scroll{overflow-y:auto;min-height:0;max-height:38vh;border:1px solid #ded4e3;border-radius:9px;padding:12px 16px;margin:12px 0;line-height:1.5;background:white}.swg-license-scroll[hidden]{display:none}.swg-license-scroll .license-content{padding:0;max-width:none}.swg-license-scroll h1{font-family:Caladea,serif;font-size:1.7rem;white-space:normal}.swg-license-scroll h2{font-size:1.2rem;margin:1em 0 .35em}.swg-license-scroll p{margin:.5em 0}.swg-download-accept{display:flex;align-items:flex-start;gap:9px;margin:14px 0}.swg-download-accept input{width:auto;margin-top:4px}.swg-download-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}.swg-download-actions button{font:inherit;border-radius:8px;padding:9px 15px;cursor:pointer;border:1px solid #d8cce0}.swg-download-confirm{background:#65407a;color:white}.swg-download-confirm:disabled{opacity:.45;cursor:not-allowed}.swg-download-help{font-size:.9rem;color:#6d6370}.playlist-controls .swg-download-button{background:#eee7f2;color:#65407a}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
@@ -209,12 +212,13 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 <ol class="playlist-list" id="playlistList"></ol>
 <div class="playlist-player">
 <p class="playlist-now" id="playlistNow">Choose songs, then press Play All.</p>
-<audio controls="" id="playlistAudio" preload="none"></audio>
+<audio controls="" controlslist="nodownload" id="playlistAudio" preload="none"></audio>
 <div class="playlist-controls">
 <button id="playlistPlayAll" type="button">▶ Play All</button>
 <button class="secondary" id="playlistPrev" type="button">◀ Previous</button>
 <button class="secondary" id="playlistNext" type="button">Next ▶</button>
 <button class="secondary" id="playlistClear" type="button">Clear</button>
+<button class="secondary swg-download-button" id="swgDownloadOpen" type="button">↓ Download Song</button>
 </div>
 </div>
 </aside><footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
@@ -260,4 +264,61 @@ function updateNewSongMarkers(){
 }
 updateNewSongMarkers();
 </script>
-<script src="assets/swg-playlist.js"></script></body></html>
+<script src="assets/swg-playlist.js"></script><section class="swg-download-dialog" id="swgDownloadDialog" role="dialog" aria-modal="true" aria-labelledby="swgDownloadTitle" hidden>
+<div class="swg-download-box"><div><button class="swg-download-close" type="button" id="swgDownloadClose" aria-label="Close download dialog">×</button><h2 id="swgDownloadTitle">Download a Song</h2></div>
+<p id="swgDownloadSong">Please review the Free Use License before downloading.</p>
+<button class="swg-license-toggle" type="button" id="swgLicenseToggle" aria-expanded="false" aria-controls="swgLicenseText">Read the Free Use License ▾</button>
+<div class="swg-license-scroll" id="swgLicenseText" tabindex="0" hidden>
+
+<h1>Free Use License</h1>
+<p class="intro">These songs and devotionals are here to be heard, read, and shared freely.</p>
+<h2>What you may do</h2>
+<p>Madelyn Dionne grants permission, without a fee, to use the original lyrics, sound recordings, and devotionals on <em>Songs With Grace</em> for personal, church, ministry, and educational purposes that are not commercial. You may:</p>
+<ul>
+<li>Listen, download, and share unaltered copies with others.</li>
+<li>Print and distribute lyrics or devotionals without charge.</li>
+<li>Perform the songs in worship services, church gatherings, or other free, noncommercial events.</li>
+<li>Include the songs in free church livestreams or recordings of those gatherings.</li>
+</ul>
+<p>When sharing a recording, lyrics, or devotional online or in print, please credit <strong>Madelyn Dionne</strong> and link to <em>Songs With Grace</em> when practical. No public announcement or on-screen credit is required during a worship service.</p>
+<h2>What requires permission</h2>
+<p>Please obtain written permission before selling the material, charging for access, including it in anything offered for sale, using it in advertising or promotion of a business, or making any other commercial use. Please also ask before changing, remixing, or releasing a new recording or adaptation of a song or devotional.</p>
+<h2>Questions or permission requests</h2>
+<p>Email <a href="mailto:MadelynDionneWrites@gmail.com">MadelynDionneWrites@gmail.com</a>. If you are unsure whether your use is covered, please ask.</p>
+<p>This permission applies only to material for which Madelyn Dionne holds the necessary rights. Scripture and any separately identified third-party material are not licensed by this notice. All rights not expressly granted are reserved.</p>
+<p><strong>End of Free Use License</strong></p></div>
+<p class="swg-download-help" id="swgDownloadHint" aria-live="polite">Open the license and scroll to the bottom to enable acceptance.</p>
+<label class="swg-download-accept"><input type="checkbox" id="swgDownloadAccept" disabled> <span>I have read and agree to the Free Use License.</span></label>
+<div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button type="button" class="swg-download-confirm" id="swgDownloadConfirm" disabled>Download</button></div>
+</div></section>
+<script>
+(function(){
+ const audio=document.getElementById('playlistAudio'), open=document.getElementById('swgDownloadOpen');
+ const dialog=document.getElementById('swgDownloadDialog'), close=document.getElementById('swgDownloadClose'), cancel=document.getElementById('swgDownloadCancel');
+ const toggle=document.getElementById('swgLicenseToggle'), terms=document.getElementById('swgLicenseText'), accept=document.getElementById('swgDownloadAccept');
+ const confirm=document.getElementById('swgDownloadConfirm'), hint=document.getElementById('swgDownloadHint'), song=document.getElementById('swgDownloadSong');
+ let downloadUrl='',downloadTitle='',returnFocus=null,reviewed=false;
+ function shut(){dialog.hidden=true;document.body.style.overflow='';if(returnFocus)returnFocus.focus();}
+ function title(){const now=document.getElementById('playlistNow');return (now?.textContent||'').replace(/^Now playing:\s*/i,'').trim()||'Selected song';}
+ function scrollCheck(){if(terms.hidden||reviewed)return; if(terms.scrollTop+terms.clientHeight>=terms.scrollHeight-8){reviewed=true;accept.disabled=false;hint.textContent='You have reached the end of the license. You may now accept its terms.';}}
+ open.addEventListener('click',function(){
+   downloadUrl=audio.currentSrc||audio.src||'';
+   if(!downloadUrl){alert('Choose and play a song in your playlist first.');return;}
+   downloadTitle=title();song.textContent='Selected recording: '+downloadTitle;
+   reviewed=false;accept.checked=false;accept.disabled=true;confirm.disabled=true;terms.hidden=true;terms.scrollTop=0;
+   toggle.setAttribute('aria-expanded','false');toggle.textContent='Read the Free Use License ▾';hint.textContent='Open the license and scroll to the bottom to enable acceptance.';
+   returnFocus=document.activeElement;dialog.hidden=false;document.body.style.overflow='hidden';toggle.focus();
+ });
+ toggle.addEventListener('click',function(){terms.hidden=!terms.hidden;toggle.setAttribute('aria-expanded',String(!terms.hidden));toggle.textContent=terms.hidden?'Read the Free Use License ▾':'Close the Free Use License ▴';if(!terms.hidden){terms.scrollTop=0;scrollCheck();}});
+ terms.addEventListener('scroll',scrollCheck);terms.addEventListener('keydown',function(e){if(['End','PageDown','ArrowDown',' '].includes(e.key))setTimeout(scrollCheck,0);});
+ accept.addEventListener('change',function(){confirm.disabled=!(reviewed&&accept.checked);});
+ close.addEventListener('click',shut);cancel.addEventListener('click',shut);
+ dialog.addEventListener('click',function(e){if(e.target===dialog)shut();});
+ document.addEventListener('keydown',function(e){if(dialog.hidden)return;if(e.key==='Escape')shut();if(e.key==='Tab'){const controls=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled])')].filter(el=>el.offsetParent!==null);const first=controls[0],last=controls[controls.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+ confirm.addEventListener('click',function(){
+   if(!reviewed||!accept.checked||!downloadUrl)return;
+   if(typeof window.plausible==='function')window.plausible('SWG Song Download',{props:{song:downloadTitle,source:'index playlist',license_accepted:'yes'}});
+   const a=document.createElement('a');a.href=downloadUrl;a.download=(downloadTitle||'SWG-song').replace(/[\/:*?"<>|]/g,'-')+'.mp3';document.body.appendChild(a);a.click();a.remove();shut();
+ });
+})();
+</script></body></html>
