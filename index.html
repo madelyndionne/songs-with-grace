@@ -42,6 +42,15 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 
 /* Download license confirmation (index playlist only) */
 .swg-download-dialog[hidden]{display:none!important}.swg-download-dialog{position:fixed;inset:0;z-index:20000;background:rgba(30,20,37,.64);display:flex;align-items:center;justify-content:center;padding:16px}.swg-download-box{width:min(650px,100%);max-height:92vh;display:flex;flex-direction:column;background:#fbfaf7;border-radius:16px;padding:22px;box-shadow:0 14px 44px rgba(0,0,0,.3);font-family:Caladea,serif}.swg-download-box h2{margin:0 35px 8px 0;font-size:1.65rem}.swg-download-close{float:right;border:0;background:transparent;color:#65407a;font-size:1.7rem;cursor:pointer}.swg-license-toggle{align-self:flex-start;color:#65407a;background:#eee7f2;border:1px solid #d8cce0;border-radius:8px;font:inherit;padding:9px 12px;cursor:pointer}.swg-license-scroll{overflow-y:auto;min-height:0;max-height:38vh;border:1px solid #ded4e3;border-radius:9px;padding:12px 16px;margin:12px 0;line-height:1.5;background:white}.swg-license-scroll[hidden]{display:none}.swg-license-scroll .license-content{padding:0;max-width:none}.swg-license-scroll h1{font-family:Caladea,serif;font-size:1.7rem;white-space:normal}.swg-license-scroll h2{font-size:1.2rem;margin:1em 0 .35em}.swg-license-scroll p{margin:.5em 0}.swg-download-accept{display:flex;align-items:flex-start;gap:9px;margin:14px 0}.swg-download-accept input{width:auto;margin-top:4px}.swg-download-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}.swg-download-actions button{font:inherit;border-radius:8px;padding:9px 15px;cursor:pointer;border:1px solid #d8cce0}.swg-download-confirm{background:#65407a;color:white}.swg-download-confirm:disabled{opacity:.45;cursor:not-allowed}.swg-download-help{font-size:.9rem;color:#6d6370}.playlist-controls .swg-download-button{background:#eee7f2;color:#65407a}
+
+/* Private visitor messages */
+.swg-message-form{max-width:650px;margin:22px 0 8px;padding:24px;background:#fff;border:1px solid #e5dce9;border-radius:14px}
+.swg-message-form label{display:block;margin:14px 0 6px;font-weight:700;color:var(--deep)}
+.swg-message-form input,.swg-message-form textarea{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;background:white;font:inherit}
+.swg-message-form textarea{resize:vertical}
+.swg-message-form button{margin-top:16px;background:var(--purple);color:white;border:0;border-radius:9px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer}
+.swg-message-form button:hover,.swg-message-form button:focus-visible{background:var(--deep)}
+.swg-message-note{font-size:.9rem;color:#5e5960;line-height:1.5}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
@@ -169,7 +178,20 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 <div class="no-results" id="noResults">Nothing here yet. Try another word—or browse what's here.</div>
 </main>
 <div class="site-info">
-<section id="contact-us"><h2>Contact Us</h2><p>Questions, comments, or a request to use a song or devotional? Email <a href="mailto:MadelynDionneWrites@gmail.com">MadelynDionneWrites@gmail.com</a> or reach Madelyn through her <a href="https://soundcloud.com/madelyn-dionne" rel="noopener noreferrer" target="_blank">SoundCloud profile</a>.</p></section>
+<section id="contact-us"><h2>Contact Us</h2>
+<p>Have a question, a thought to share, or a prayer request? You are welcome to write to me here.</p>
+<form class="swg-message-form" action="https://formspree.io/f/mwlvbpak" method="POST">
+<label for="visitor-name">Your Name</label>
+<input id="visitor-name" name="name" type="text" autocomplete="name" required>
+<label for="visitor-email">Your Email</label>
+<input id="visitor-email" name="email" type="email" autocomplete="email" required>
+<label for="visitor-message">Your Message</label>
+<textarea id="visitor-message" name="message" rows="6" required></textarea>
+<input type="hidden" name="_subject" value="Songs With Grace — Share Your Thoughts">
+<p class="swg-message-note">Your message is sent privately to Madelyn, not posted publicly. Please avoid including sensitive personal information.</p>
+<button type="submit">Send Your Message</button>
+</form>
+<p>Or email <a href="mailto:MadelynDionneWrites@gmail.com">MadelynDionneWrites@gmail.com</a> directly, or reach Madelyn through her <a href="https://soundcloud.com/madelyn-dionne" rel="noopener noreferrer" target="_blank">SoundCloud profile</a>.</p></section>
 </div>
 <aside aria-hidden="true" aria-label="My Playlist" class="playlist-panel" id="playlistPanel">
 <div class="playlist-head"><h2>My Playlist</h2><button aria-label="Close playlist" class="playlist-close" id="playlistClose" type="button">×</button></div>
