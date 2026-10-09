@@ -21,13 +21,15 @@
 @media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}.swg-popup-form{flex-direction:column}.swg-popup-form button{width:100%}}
 @media print{.swg-signup-popup{display:none!important}}
 
-/* Share Your Thoughts */
-#share-thoughts{margin:34px 0 12px;padding:22px 24px;background:#f8f4fa;border:1px solid #ded4e3;border-radius:14px;text-align:center}
-#share-thoughts h2{padding:0;margin:0 0 10px;border:0;font-size:1.65rem}
-#share-thoughts p{line-height:1.55;margin:0 auto 17px;max-width:620px}
-#share-thoughts .message-link{display:inline-block;background:#65407a;color:#fff;border-radius:9px;padding:11px 20px;font-weight:700;text-decoration:none}
-#share-thoughts .message-link:hover,#share-thoughts .message-link:focus-visible{background:#382742}
-@media print{#share-thoughts{display:none!important}}
+/* Share Your Thoughts — preview form; delivery requires activation */
+.swg-message{margin:34px 0 12px;padding:24px;background:#f8f4fa;border:1px solid #d8cce0;border-radius:14px}
+.swg-message h2{color:var(--purple);font-size:1.7rem;margin:0 0 8px}
+.swg-message p{line-height:1.5}.swg-message-form{display:grid;gap:12px;max-width:620px}
+.swg-message-form label{display:grid;gap:5px;font-weight:700;color:var(--deep)}
+.swg-message-form input,.swg-message-form textarea{width:100%;font:inherit;font-weight:400;padding:11px;border:1px solid #cfc6d4;border-radius:8px;background:white;color:var(--ink)}
+.swg-message-form textarea{min-height:125px;resize:vertical}.swg-message-form button{justify-self:start;border:0;border-radius:8px;background:var(--purple);color:white;padding:11px 20px;font:inherit;font-weight:700;opacity:.6;cursor:not-allowed}
+.swg-message .swg-message-note{font-size:.92rem;color:#6b626f;margin-bottom:0}
+@media print{.swg-message{display:none!important}}
 </style>
 </head><body>
 <nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span class="new-feature-mark" data-new-until="2026-10-19" aria-label="New">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
@@ -107,10 +109,17 @@
 <section id="extra"><h2>Extra Info — Scripture Map</h2>
 <p><strong>Love made visible in action:</strong> John 13:34–35; 1 John 3:18; James 2:14–18</p><p><strong>Barnabas coming alongside others:</strong> Acts 9:26–28; Acts 15:36–39</p><p><strong>God completing His work in us:</strong> Philippians 1:6</p><p><strong>God gives the growth:</strong> 1 Corinthians 3:6–7</p>
 <div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
-<section id="share-thoughts" aria-labelledby="share-thoughts-title">
-<h2 id="share-thoughts-title">Share Your Thoughts</h2>
-<p>Did this song encourage you, bring something to mind, or give you something to reflect on? I'd love to hear from you. Your message will be sent privately by email.</p>
-<a class="message-link" href="mailto:madelyndionnewrites@gmail.com?subject=Songs%20With%20Grace%20%E2%80%94%20As%20Jesus%20Would">Send a Message</a>
+<section class="swg-message" id="share-your-thoughts" aria-labelledby="swgMessageTitle">
+<h2 id="swgMessageTitle">Share Your Thoughts</h2>
+<p>Did this song speak to you? You're welcome to send me a private message.</p>
+<form class="swg-message-form" aria-label="Message about As Jesus Would">
+<label for="swgVisitorName">First name <input id="swgVisitorName" name="name" autocomplete="given-name" required></label>
+<label for="swgVisitorEmail">Your email <input id="swgVisitorEmail" name="email" type="email" autocomplete="email" required></label>
+<label for="swgVisitorMessage">Your message <textarea id="swgVisitorMessage" name="message" required></textarea></label>
+<input type="hidden" name="song" value="As Jesus Would">
+<button type="button" disabled aria-describedby="swgMessagePreviewNote">Send Message</button>
+</form>
+<p class="swg-message-note" id="swgMessagePreviewNote"><strong>Preview only:</strong> Sending will be enabled after we connect a secure form-delivery service. Messages will be private.</p>
 </section>
 </article>
 <!-- SWG email signup popup -->
