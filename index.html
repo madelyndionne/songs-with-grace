@@ -30,7 +30,7 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 .resource-type-card{font-size:.9rem;font-style:italic;color:#6d6370;margin:0 0 12px}.new-song-marker{display:none;margin-left:.28rem;color:var(--purple);font-weight:700;font-size:1rem;vertical-align:super;line-height:1}
 .actions{display:flex;flex-wrap:wrap;gap:8px}.actions a{padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--purple);background:var(--soft);font-size:.92rem}.actions a.listen{background:var(--purple);color:white}
 .meta{font-size:.84rem;margin-top:13px;color:#68616b}.no-results{display:none;padding:20px;background:white;border-radius:12px}
-.signup-wrap{max-width:720px;margin:18px auto 30px;padding:0 24px}.signup-panel{background:#f8f4fa;border:1px solid #d8cce0;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.05);padding:16px 18px}.signup-copy{text-align:center}.signup-copy h2{font-size:1.55rem;margin:0 0 5px}.signup-copy p{margin:2px 0;line-height:1.35}.signup-copy .gentle-note{font-style:italic;margin-top:4px}.swg-signup-form{display:flex;gap:10px;max-width:590px;margin:14px auto 2px}.swg-signup-form input{flex:1;min-width:0}.swg-signup-form button{border:0;border-radius:9px;background:var(--purple);color:#fff;font:inherit;font-weight:700;padding:12px 18px;cursor:pointer;white-space:nowrap}.swg-signup-status{text-align:center;font-size:.9rem;color:#6d6370;min-height:1.2em;margin:7px 0 0}.signup-kit-host{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.signup-kit-host .formkit-form{font-family:"Caladea",serif!important}@media(max-width:560px){.swg-signup-form{flex-direction:column}.swg-signup-form button{width:100%}}
+
 @media(max-width:920px){.controls{grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:720px){.hero{min-height:68vh;padding:20px}.hero-box{padding:24px 92px 24px 24px}.hero-logo{top:18px;right:18px;width:56px;height:56px}.controls{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card-body{padding:13px}.actions{gap:5px}.actions a{font-size:.78rem;padding:7px}}
 .favorites-toggle{border:1px solid #d8cce0;background:#fff;color:var(--purple);font-family:inherit;font-weight:700;border-radius:10px;padding:10px 14px;cursor:pointer}.favorites-toggle.active{background:#f3edf6}.favorites-note{text-align:center;color:#6d6370;font-size:.9rem;margin:8px 0 16px}
@@ -51,7 +51,7 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 </script>
 </head>
 <body id="browse-top">
-<nav aria-label="Site menu" class="site-menu"><a href="#browse-top">Home</a><a href="#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="#stay-in-touch">Updates</a><a href="how-to-use.html">How to Use This Site</a><a href="about.html">About Us</a><a href="#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
+<nav aria-label="Site menu" class="site-menu"><a href="#browse-top">Home</a><a href="#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="how-to-use.html">How to Use This Site</a><a href="about.html">About Us</a><a href="#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
 <section class="hero">
 <div class="hero-box">
 <img alt="Songs With Grace logo" class="hero-logo" src="assets/favicon.png"/>
@@ -168,41 +168,6 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 </section>
 <div class="no-results" id="noResults">Nothing here yet. Try another word—or browse what's here.</div>
 </main>
-<section aria-label="Stay in Touch" class="signup-wrap" id="stay-in-touch">
-<div class="signup-panel">
-<div class="signup-copy"><h2>Connections are good.</h2><p>For news about new songs, devotionals, or new features, <strong>Sign Me Up</strong> with your email — delicately, of course.</p><p class="gentle-note">No smashing anything here.</p></div>
-<form class="swg-signup-form" id="swgSignupForm" novalidate="">
-<label class="sr-only" for="swgSignupEmail">Email address</label>
-<input autocomplete="email" id="swgSignupEmail" inputmode="email" name="email" placeholder="Email Address" required="" type="email"/>
-<button type="submit">Sign Me Up</button>
-</form>
-<p aria-live="polite" class="swg-signup-status" id="swgSignupStatus"></p>
-<p class="signup-unsubscribe"><em>You can unsubscribe at any time using the link in any email.</em></p>
-<div aria-hidden="true" class="signup-kit-host" id="signupKitHost"><script async="" data-uid="ed835af4b2" src="https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js"></script></div>
-</div>
-</section>
-<script>
-(function(){
-  const proxy=document.getElementById('swgSignupForm');
-  const email=document.getElementById('swgSignupEmail');
-  const status=document.getElementById('swgSignupStatus');
-  if(!proxy||!email||!status) return;
-  proxy.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(!email.checkValidity()){ email.reportValidity(); return; }
-    const kitForm=document.querySelector('#signupKitHost form.formkit-form, #signupKitHost form[data-sv-form]');
-    if(!kitForm){ status.textContent='The signup form is still loading. Please try again in a moment.'; return; }
-    const kitEmail=kitForm.querySelector('input[name="email_address"], input[type="email"]');
-    if(!kitEmail){ status.textContent='The signup form is still loading. Please try again in a moment.'; return; }
-    kitEmail.value=email.value.trim();
-    kitEmail.dispatchEvent(new Event('input',{bubbles:true}));
-    kitEmail.dispatchEvent(new Event('change',{bubbles:true}));
-    status.textContent='Sending…';
-    if(typeof kitForm.requestSubmit==='function') kitForm.requestSubmit(); else kitForm.submit();
-    setTimeout(function(){ if(status.textContent==='Sending…') status.textContent='Thank you. Please check your email if confirmation is requested.'; },1200);
-  });
-})();
-</script>
 <div class="site-info">
 <section id="contact-us"><h2>Contact Us</h2><p>Questions, comments, or a request to use a song or devotional? Email <a href="mailto:MadelynDionneWrites@gmail.com">MadelynDionneWrites@gmail.com</a> or reach Madelyn through her <a href="https://soundcloud.com/madelyn-dionne" rel="noopener noreferrer" target="_blank">SoundCloud profile</a>.</p></section>
 </div>
