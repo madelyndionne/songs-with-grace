@@ -30,6 +30,14 @@
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
+<style>
+.swg-message{margin:34px 0 12px;padding:24px;background:#f8f4fa;border:1px solid #d8cce0;border-radius:14px}
+.swg-message h2{color:#65407a;font-size:1.7rem;margin:0 0 8px}
+.swg-message p{line-height:1.5}.swg-message-form{display:grid;gap:12px;max-width:620px}
+.swg-message-form label{display:block;font-weight:bold}.swg-message-form input:not([type=hidden]),.swg-message-form textarea{display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #d1c4d9;border-radius:9px;font:inherit;background:#fff}
+.swg-message-form textarea{min-height:120px}.swg-message-form button{width:max-content;padding:12px 22px;background:#65407a;color:white;border:0;border-radius:9px;font:inherit;font-weight:bold;cursor:pointer}
+.swg-message-note{font-size:.9rem;color:#6d6073}
+</style>
 </head>
 <body>
 <nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span class="new-feature-mark" data-new-until="2026-10-19" aria-label="New">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
@@ -128,6 +136,18 @@
 <p><strong>Grace for salvation and daily life:</strong> Ephesians 2:8–10; 2 Corinthians 12:9</p>
 <p><strong>God’s faithfulness to complete His work:</strong> Philippians 1:6</p>
 <div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<section class="swg-message" id="share-your-thoughts" aria-labelledby="swgMessageTitle">
+<h2 id="swgMessageTitle">Share Your Thoughts or Prayer Request</h2>
+<p>Did this song speak to your heart? I'd love to hear your thoughts, and if there's something you'd like me to pray about, you're welcome to share that, too. Your message will remain private.</p>
+<form class="swg-message-form" action="https://formspree.io/f/mwlvbpak" method="POST" aria-label="Message about My Power">
+<label for="swgVisitorName">First name <input id="swgVisitorName" name="name" autocomplete="given-name" required></label>
+<label for="swgVisitorEmail">Your email <input id="swgVisitorEmail" name="email" type="email" autocomplete="email" required></label>
+<label for="swgVisitorMessage">Your message <textarea id="swgVisitorMessage" name="message" required></textarea></label>
+<input type="hidden" name="song" value="My Power">
+<button type="submit">Send Message</button>
+</form>
+<p class="swg-message-note">Your message is private and is not posted publicly. Please avoid including sensitive personal information.</p>
+</section>
 </article>
 
 <!-- SWG email signup popup -->
