@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="assets/favicon.png" rel="icon" type="image/png"/>
+<title>Never Alone | Songs With Grace</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="site-nav.css" rel="stylesheet"/>
+<style>
+:root{--purple:#65407a;--deep:#382742;--paper:#fbfaf7;--ink:#29262b;--soft:#eee7f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Caladea",serif}.resource{position:relative;max-width:900px;margin:auto;padding:34px 24px 70px}.back-songs{color:var(--purple);text-decoration:none;font-weight:700}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}h1{font-size:clamp(2.4rem,6vw,4.3rem);color:var(--purple);margin:22px 0 8px;text-align:center}.resource-type{text-align:center;font-style:italic;color:#6b626f;margin-bottom:22px}.cover{width:100%;max-width:900px;display:block;margin:18px auto 24px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.14)}audio{width:100%;margin:12px 0 26px}.section-bar{margin:20px auto;padding:12px 16px;border-radius:12px;background:#f3edf6;text-align:center;line-height:1.9}.section-bar a,.back-top a,.print-btn{color:var(--purple);text-decoration:none;font-weight:700}.section-bar span{margin:0 5px;color:#9b8ca3}.print-btn{border:0;background:transparent;font-family:inherit;font-size:inherit;cursor:pointer;padding:0}section{scroll-margin-top:12px}section h2{color:var(--purple);font-size:2rem;border-bottom:1px solid #ddd;padding-top:32px;padding-bottom:8px}#lyrics{text-align:center}#lyrics h3{margin:1.25rem 0 .28rem;color:var(--deep)}#lyrics p{margin:.08rem 0;line-height:1.35}#devotional{text-align:left}#devotional h3{color:var(--deep);font-size:1.55rem;margin:1.7rem 0 .45rem}.devotional-body p,#extra p{line-height:1.62}.back-top{text-align:right;margin:24px 0 30px;font-size:.9rem}#top-player{scroll-margin-top:10px}h4{color:var(--purple);font-size:1.1rem;margin-bottom:5px}
+@media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
+@media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
+.share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}.favorite-btn.is-favorite{color:var(--deep)}
+.new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
+
+/* SWG email signup popup */
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));max-height:calc(100vh - 36px);overflow:auto;background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 38px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:sticky;float:right;top:0;z-index:2147483647;width:34px;height:34px;margin:-10px -10px 0 8px;border:1px solid #d8cadf;border-radius:50%;background:#fbfaf7;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(0,0,0,.12);padding:0}.swg-signup-close:hover,.swg-signup-close:focus-visible{background:#eee7f2;outline:2px solid #65407a;outline-offset:2px}.swg-popup-form{display:flex;gap:8px;margin:12px 0 4px}.swg-popup-form input{flex:1;min-width:0;padding:10px 11px;border:1px solid #cfc6d4;border-radius:8px;background:white;font:inherit}.swg-popup-form button{border:0;border-radius:8px;background:#65407a;color:white;font:inherit;font-weight:700;padding:10px 13px;cursor:pointer;white-space:nowrap}.swg-popup-status{font-size:.86rem;color:#6b626f;min-height:1.2em;margin:6px 0 0}.swg-signup-embed{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}.swg-popup-form{flex-direction:column}.swg-popup-form button{width:100%}}
+@media print{.swg-signup-popup{display:none!important}}
+</style>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<style>
+.swg-message{margin:34px 0 12px;padding:24px;background:#f8f4fa;border:1px solid #d8cce0;border-radius:14px}
+.swg-message h2{color:#65407a;font-size:1.7rem;margin:0 0 8px}
+.swg-message p{line-height:1.5}.swg-message-form{display:grid;gap:12px;max-width:620px}
+.swg-message-form label{display:block;font-weight:bold}.swg-message-form input:not([type=hidden]),.swg-message-form textarea{display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #d1c4d9;border-radius:9px;font:inherit;background:#fff}
+.swg-message-form textarea{min-height:120px}.swg-message-form button{width:max-content;padding:12px 22px;background:#65407a;color:white;border:0;border-radius:9px;font:inherit;font-weight:bold;cursor:pointer}
+.swg-message-note{font-size:.9rem;color:#6d6073}
+</style>
+</head>
+<body>
+<nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
+<article class="resource" data-song="Never Alone">
+<a class="back-songs" href="index.html">← Songs With Grace</a>
+<img alt="Songs With Grace logo" class="page-logo" src="assets/favicon.png"/>
+<h1>Never Alone</h1>
+<div class="resource-type">Devotional · God’s Presence, Comfort &amp; Hope</div>
+<img alt="Never Alone cover artwork" class="cover" src="assets/never-alone-cover.webp"/>
+<div id="top-player"></div>
+<nav aria-label="Never Alone sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<audio controls="" id="listen" preload="none" src="assets/never-alone.mp3"></audio>
+<div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
+<section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p>
+<h3>Verse 1</h3><p>I sat down hard</p><p>My heart undone</p><p>Beneath the blooms that caught the sun</p><p>Their petals whispered soft and low</p><p>More than I'd ever need to know</p>
+<h3>Chorus</h3><p>You are not alone</p><p>Not ever alone</p><p>Trust me, don't weep</p><p>Let echoes sleep</p><p>You are never, ever alone</p>
+<h3>Verse 2</h3><p>The gravel breathed beneath my knees</p><p>The air was full of orchid breeze</p><p>A white cat blinked and stayed nearby</p><p>And watched the sorrow leave my eyes</p>
+<h3>Chorus</h3><p>You are not alone</p><p>Not ever alone</p><p>Trust me, don't weep</p><p>Let echoes sleep</p><p>You are never, ever alone</p>
+<h3>Bridge</h3><p>No thunder roared, no shadows moved</p><p>Just peace that deeply soothed</p><p>And in that hush I felt it clear</p><p>A love that won't disappear</p>
+<h3>Final Chorus</h3><p>You are not alone</p><p>Not ever alone</p><p>Trust me, don't weep</p><p>Let echoes sleep</p><p>You are never, ever alone</p>
+<h3>Final Refrain</h3><p>You are not alone</p><p>Not ever alone</p><p>Trust me, don't weep</p><p>Let echoes sleep</p><p>You are never, ever alone</p><p>You are never, ever alone</p>
+<div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<nav aria-label="Never Alone sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<section class="devotional-body" id="devotional"><h2>Devotional</h2>
+<h3>Never Abandoned</h3><p>God's promise is not that His children will never know sorrow. It is that sorrow cannot separate them from His faithful care. Scripture says, <strong>“I will never leave thee, nor forsake thee”</strong> (Hebrews 13:5). Those words are stronger than a passing feeling of comfort. They rest on the character of the One who speaks them.</p>
+<p>The song, <em>Never Alone</em>, begins with a heart undone, in a place of flowers, sunlight, and quiet. Nothing spectacular interrupts the grief. Yet the repeated reassurance is unmistakable: “You are not alone.” The scene invites us to consider a God who is present even when nothing outwardly dramatic occurs.</p>
+<h3>Near to the Brokenhearted</h3><p>David wrote, <strong>“The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit”</strong> (Psalm 34:18). The verse does not deny that hearts break. It declares that the Lord is near in precisely those circumstances.</p>
+<p>The gravel beneath the knees, the orchids in the air, and the quiet white cat are small, ordinary details. They do not prove a supernatural message, nor does Scripture teach that every animal or coincidence carries one. But God's creation can give us a moment to notice, become still, and remember truths He has already spoken in His Word. The comfort is not grounded in the flowers or the cat. It is grounded in God.</p>
+<h3>Peace Without Thunder</h3><p>“No thunder roared, no shadows moved.” That is an important distinction. We sometimes expect God to make Himself known through unmistakable spectacle. Yet when Elijah stood before the Lord, the account moves through wind, earthquake, and fire before describing <strong>“a still small voice”</strong> (1 Kings 19:11–12). That passage belongs to Elijah's particular encounter; it does not promise that every quiet feeling is God's voice. It does remind us not to confuse God's power with noise.</p>
+<p>Jesus told His disciples, <strong>“Peace I leave with you, my peace I give unto you”</strong> and <strong>“Let not your heart be troubled, neither let it be afraid”</strong> (John 14:27). His peace is not dependent upon the absence of pain. It is a gift anchored in Him. When we are unsure what a peaceful moment means, we can test our thoughts against Scripture and bring our need to Him in prayer.</p>
+<h3>Love That Will Not Disappear</h3><p>The bridge speaks of “a love that won't disappear.” Romans 8 gives that hope a firm foundation. Paul declares that neither death nor life, nor any other creature, <strong>“shall be able to separate us from the love of God, which is in Christ Jesus our Lord”</strong> (Romans 8:38–39). This assurance is specifically about God's love in Christ. It is not a general promise that circumstances will always feel gentle, or that grief will immediately lift.</p>
+<p>Jesus also promised His followers, <strong>“I am with you alway, even unto the end of the world”</strong> (Matthew 28:20). His presence is not measured by how strongly we feel it on any particular day. When the heart is exhausted, His words remain true.</p>
+<h3>Let the Echoes Sleep</h3><p>The chorus says, “Trust me, don't weep / Let echoes sleep.” We need not hear those lines as a command to suppress grief. Jesus Himself wept (John 11:35). The Psalms give us language for tears, questions, and lament. Trusting God does not require pretending the hurt has vanished.</p>
+<p>Instead, the song can offer a gentle invitation to stop letting yesterday's pain speak the final word. <strong>“Casting all your care upon him; for he careth for you”</strong> (1 Peter 5:7) is not an instruction to become invulnerable. It is permission to bring the full weight of our concerns to the Lord. Sometimes peace comes slowly. Sometimes we must return to that invitation many times. His care does not diminish with our need.</p>
+<p>And so the final refrain remains simple. Not a promise of a trouble-free life, but a reminder of the faithful Savior who does not abandon His own. In Christ, we may be sorrowful and still held, uncertain and still loved, quiet and never forsaken.</p>
+<h3>For Reflection</h3><p>When have I mistaken the absence of a dramatic answer for the absence of God? What old sorrow or echo am I still carrying? Which promise from Scripture can I return to when I feel alone? Is there someone I can comfort with the same faithful truth?</p>
+<h3>Prayer</h3><p>Father, when my heart is undone, help me remember what You have promised. Thank You for being near to the brokenhearted and for giving us Your Son, Jesus Christ. Teach me to distinguish Your sure Word from my changing feelings. Help me bring my grief honestly to You instead of hiding it.</p><p>Grant me peace in the quiet, patience when healing takes time, and confidence in the love that is ours in Christ. Make me attentive to those who are lonely, that I might share Your comfort with gentleness and truth. Amen.</p>
+<div class="back-top"><a href="#top-player">↑ Back to top</a></div></section><section id="extra"><h2>Extra Info — Scripture Map</h2><p><strong>God's promise never to forsake His people:</strong> Hebrews 13:5–6</p><p><strong>The Lord near the brokenhearted:</strong> Psalm 34:17–19</p><p><strong>Elijah and the still small voice:</strong> 1 Kings 19:9–13</p><p><strong>Christ's gift of peace:</strong> John 14:25–27</p><p><strong>God's inseparable love in Christ:</strong> Romans 8:31–39</p><p><strong>Christ's continuing presence:</strong> Matthew 28:18–20</p><p><strong>Jesus wept:</strong> John 11:32–36</p><p><strong>Bringing our cares to God:</strong> 1 Peter 5:6–7</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<section aria-labelledby="swgMessageTitle" class="swg-message" id="share-your-thoughts">
+<h2 id="swgMessageTitle">Share Your Thoughts or Prayer Request</h2>
+<p>Did this song speak to your heart? I'd love to hear your thoughts, and if there's something you'd like me to pray about, you're welcome to share that, too. Your message will remain private.</p>
+<form action="https://formspree.io/f/mwlvbpak" aria-label="Message about Never Alone" class="swg-message-form" method="POST">
+<label for="swgVisitorName">First name <input autocomplete="given-name" id="swgVisitorName" name="name" required=""/></label>
+<label for="swgVisitorEmail">Your email <input autocomplete="email" id="swgVisitorEmail" name="email" required="" type="email"/></label>
+<label for="swgVisitorMessage">Your message <textarea id="swgVisitorMessage" name="message" required=""></textarea></label>
+<input name="song" type="hidden" value="Never Alone"/>
+<button type="submit">Send Message</button>
+</form>
+<p class="swg-message-note">Your message is private and is not posted publicly. Please avoid including sensitive personal information.</p>
+</section>
+</article>
+<!-- SWG email signup popup -->
+<aside aria-describedby="swgSignupCopy" aria-labelledby="swgSignupTitle" aria-modal="false" class="swg-signup-popup" hidden="" id="swgSignupPopup" role="dialog">
+<button aria-label="Close signup popup" class="swg-signup-close" id="swgSignupClose" type="button">×</button>
+<h2 id="swgSignupTitle">Connections are good.</h2>
+<p id="swgSignupCopy">For news about new songs, devotionals, or new features, <strong>Sign Me Up</strong> with your email — delicately, of course.</p>
+<form class="swg-popup-form" id="swgPopupForm" novalidate="">
+<label class="sr-only" for="swgPopupEmail" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Email address</label>
+<input autocomplete="email" id="swgPopupEmail" inputmode="email" name="email" placeholder="Email Address" required="" type="email">
+<button type="submit">Sign Me Up</button>
+</input></form>
+<p aria-live="polite" class="swg-popup-status" id="swgPopupStatus"></p>
+<div aria-hidden="true" class="swg-signup-embed" id="swgSignupEmbed"></div>
+<p class="swg-no-smash">No smashing anything here.</p>
+</aside>
+<footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
+<script src="assets/swg-analytics.js"></script>
+<script>
+(function(){
+ const song='Never Alone'; const pageUrl=window.location.href; const canonical=window.location.pathname.split('/').pop()||'never-alone.html';
+ const text='I thought you might enjoy '+song+' on Songs With Grace.';
+ const nativeBtn=document.getElementById('share-native'), copyBtn=document.getElementById('share-copy'), email=document.getElementById('share-email'), facebook=document.getElementById('share-facebook'), status=document.getElementById('share-status'), favoriteBtn=document.getElementById('favorite-btn');
+ email.href='mailto:?subject='+encodeURIComponent(song+' | Songs With Grace')+'&body='+encodeURIComponent(text+'\n\n'+pageUrl); facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl);
+ if(!navigator.share) nativeBtn.style.display='none';
+ nativeBtn.addEventListener('click',async()=>{try{await navigator.share({title:song+' | Songs With Grace',text:text,url:pageUrl})}catch(e){if(e&&e.name!=='AbortError')status.textContent='Sharing was not available. You can copy the link instead.'}});
+ copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);status.textContent='Link copied.'}catch(e){const t=document.createElement('textarea');t.value=pageUrl;t.style.position='absolute';t.style.left='-9999px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Link copied.':'Please copy the address from your browser.'}});
+ const key='swgFavorites'; const getFavs=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+ function paint(){const on=getFavs().includes(canonical);favoriteBtn.textContent=on?'♥ Favorited':'♡ Favorite';favoriteBtn.classList.toggle('is-favorite',on);favoriteBtn.setAttribute('aria-pressed',String(on))}
+ favoriteBtn.addEventListener('click',()=>{let f=getFavs();if(f.includes(canonical))f=f.filter(x=>x!==canonical);else f.push(canonical);localStorage.setItem(key,JSON.stringify(f));paint();}); paint();
+})();
+</script>
+<script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+<script>
+(function(){
+  const KEY='swg-signup-popup-v2-dismissed-until';
+  const SESSION='swg-signup-popup-v2-shown';
+  const DELAY=25000;
+  const HIDE_DAYS=14;
+  const popup=document.getElementById('swgSignupPopup');
+  const close=document.getElementById('swgSignupClose');
+  const embed=document.getElementById('swgSignupEmbed');
+  const proxy=document.getElementById('swgPopupForm');
+  const email=document.getElementById('swgPopupEmail');
+  const status=document.getElementById('swgPopupStatus');
+  if(!popup||!close||!embed||!proxy||!email||!status) return;
+  function dismissed(){
+    const until=Number(localStorage.getItem(KEY)||0);
+    return until>Date.now();
+  }
+  function dismiss(){
+    localStorage.setItem(KEY,String(Date.now()+HIDE_DAYS*24*60*60*1000));
+    popup.classList.remove('is-open'); popup.hidden=true;
+  }
+  function loadKit(){
+    if(embed.dataset.loaded==='1') return;
+    embed.dataset.loaded='1'; embed.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true; s.dataset.uid='ed835af4b2';
+    s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
+    s.onerror=function(){status.textContent='The signup form is unavailable just now. Please try again later.';};
+    embed.appendChild(s);
+  }
+  proxy.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!email.checkValidity()){email.reportValidity();return;}
+    const kitForm=embed.querySelector('form.formkit-form, form[data-sv-form]');
+    if(!kitForm){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    const kitEmail=kitForm.querySelector('input[name="email_address"], input[type="email"]');
+    if(!kitEmail){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    kitEmail.value=email.value.trim();
+    kitEmail.dispatchEvent(new Event('input',{bubbles:true}));
+    kitEmail.dispatchEvent(new Event('change',{bubbles:true}));
+    status.textContent='Sending…';
+    if(typeof kitForm.requestSubmit==='function') kitForm.requestSubmit(); else kitForm.submit();
+    setTimeout(function(){if(status.textContent==='Sending…')status.textContent='Thank you. Please check your email if confirmation is requested.';},1200);
+  });
+  function show(){
+    if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
+    popup.hidden=false;
+    popup.classList.add('is-open');
+    sessionStorage.setItem(SESSION,'1');
+    loadKit();
+    setTimeout(function(){email.focus({preventScroll:true});},50);
+  }
+  close.addEventListener('click',dismiss);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+  if(!dismissed()) window.setTimeout(show,DELAY);
+})();
+</script>
+</body>
+</html>
