@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="assets/favicon.png" rel="icon" type="image/png"/>
+<title>Just Enough | Songs With Grace</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="site-nav.css" rel="stylesheet"/>
+<style>
+:root{--purple:#65407a;--deep:#382742;--paper:#fbfaf7;--ink:#29262b;--soft:#eee7f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Caladea",serif}.resource{position:relative;max-width:900px;margin:auto;padding:34px 24px 70px}.back-songs{color:var(--purple);text-decoration:none;font-weight:700}.page-logo{position:absolute;top:24px;right:24px;width:60px;height:60px;object-fit:contain}h1{font-size:clamp(2.4rem,6vw,4.3rem);color:var(--purple);margin:22px 0 8px;text-align:center}.resource-type{text-align:center;font-style:italic;color:#6b626f;margin-bottom:22px}.cover{width:100%;max-width:900px;display:block;margin:18px auto 24px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.14)}audio{width:100%;margin:12px 0 26px}.section-bar{margin:20px auto;padding:12px 16px;border-radius:12px;background:#f3edf6;text-align:center;line-height:1.9}.section-bar a,.back-top a,.print-btn{color:var(--purple);text-decoration:none;font-weight:700}.section-bar span{margin:0 5px;color:#9b8ca3}.print-btn{border:0;background:transparent;font-family:inherit;font-size:inherit;cursor:pointer;padding:0}section{scroll-margin-top:12px}section h2{color:var(--purple);font-size:2rem;border-bottom:1px solid #ddd;padding-top:32px;padding-bottom:8px}#lyrics{text-align:center}#lyrics h3{margin:1.25rem 0 .28rem;color:var(--deep)}#lyrics p{margin:.08rem 0;line-height:1.35}#devotional{text-align:left}#devotional h3{color:var(--deep);font-size:1.55rem;margin:1.7rem 0 .45rem}.devotional-body p,#extra p{line-height:1.62}.back-top{text-align:right;margin:24px 0 30px;font-size:.9rem}#top-player{scroll-margin-top:10px}h4{color:var(--purple);font-size:1.1rem;margin-bottom:5px}
+@media(max-width:640px){.resource{padding:22px 15px 55px}.page-logo{top:18px;right:15px;width:46px;height:46px}.section-bar{font-size:.9rem}}
+@media print{body *{visibility:hidden}#devotional,#devotional *{visibility:visible}#devotional{position:absolute;left:0;top:0;width:100%;padding:0 10mm;color:#000}#devotional h2{padding-top:0}.back-top,.section-bar,.print-btn{display:none!important}}
+.share-box{margin:0 0 18px;text-align:center;font-size:.92rem}.share-actions{display:inline-flex;gap:6px;justify-content:center;flex-wrap:wrap;vertical-align:middle}.share-actions button,.share-actions a{border:0;background:transparent;color:var(--purple);font:inherit;font-weight:700;padding:3px 5px;text-decoration:none;cursor:pointer}.share-actions button:hover,.share-actions a:hover{text-decoration:underline}.share-status{margin-top:4px;font-size:.82rem;color:#6b626f;min-height:1em}.favorite-btn.is-favorite{color:var(--deep)}
+.new-feature-mark{color:var(--purple);font-weight:700;margin-left:2px}.new-feature-mark[hidden]{display:none!important}
+
+/* SWG email signup popup */
+.swg-signup-popup{position:fixed;right:18px;bottom:18px;z-index:9999;width:min(350px,calc(100% - 30px));max-height:calc(100vh - 36px);overflow:auto;background:#fbfaf7;border:1px solid #ded4e3;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.16);padding:18px 18px 14px;color:#29262b;font-family:"Caladea",serif;display:none}
+.swg-signup-popup.is-open{display:block}.swg-signup-popup h2{margin:0 38px 6px 0;padding:0;border:0;color:#65407a;font-size:1.28rem;text-align:left}.swg-signup-popup p{margin:0 0 10px;line-height:1.42;font-size:.96rem}.swg-signup-popup .swg-no-smash{font-size:.88rem;font-style:italic;color:#6b626f;margin-top:7px}.swg-signup-close{position:sticky;float:right;top:0;z-index:2147483647;width:34px;height:34px;margin:-10px -10px 0 8px;border:1px solid #d8cadf;border-radius:50%;background:#fbfaf7;color:#65407a;font:700 1.35rem/1 "Caladea",serif;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(0,0,0,.12);padding:0}.swg-signup-close:hover,.swg-signup-close:focus-visible{background:#eee7f2;outline:2px solid #65407a;outline-offset:2px}.swg-popup-form{display:flex;gap:8px;margin:12px 0 4px}.swg-popup-form input{flex:1;min-width:0;padding:10px 11px;border:1px solid #cfc6d4;border-radius:8px;background:white;font:inherit}.swg-popup-form button{border:0;border-radius:8px;background:#65407a;color:white;font:inherit;font-weight:700;padding:10px 13px;cursor:pointer;white-space:nowrap}.swg-popup-status{font-size:.86rem;color:#6b626f;min-height:1.2em;margin:6px 0 0}.swg-signup-embed{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.swg-signup-popup[hidden]{display:none!important}
+@media(max-width:520px){.swg-signup-popup{right:15px;bottom:15px;width:calc(100% - 30px);padding:16px 16px 12px}.swg-popup-form{flex-direction:column}.swg-popup-form button{width:100%}}
+@media print{.swg-signup-popup{display:none!important}}
+</style>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<style>
+.swg-message{margin:34px 0 12px;padding:24px;background:#f8f4fa;border:1px solid #d8cce0;border-radius:14px}
+.swg-message h2{color:#65407a;font-size:1.7rem;margin:0 0 8px}
+.swg-message p{line-height:1.5}.swg-message-form{display:grid;gap:12px;max-width:620px}
+.swg-message-form label{display:block;font-weight:bold}.swg-message-form input:not([type=hidden]),.swg-message-form textarea{display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #d1c4d9;border-radius:9px;font:inherit;background:#fff}
+.swg-message-form textarea{min-height:120px}.swg-message-form button{width:max-content;padding:12px 22px;background:#65407a;color:white;border:0;border-radius:9px;font:inherit;font-weight:bold;cursor:pointer}
+.swg-message-note{font-size:.9rem;color:#6d6073}
+</style>
+</head>
+<body>
+<nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
+<article class="resource" data-song="Just Enough">
+<a class="back-songs" href="index.html">← Songs With Grace</a>
+<img alt="Songs With Grace logo" class="page-logo" src="assets/favicon.png"/>
+<h1>Just Enough</h1>
+<div class="resource-type">Devotional · Trauma, Endurance &amp; Hope</div>
+<img alt="Just Enough cover artwork" class="cover" src="assets/just-enough-cover.webp"/>
+<div id="top-player"></div>
+<nav aria-label="Just Enough sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<audio controls="" id="listen" preload="none" src="assets/just-enough.mp3"></audio>
+<div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
+<section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>There’s a hum behind my breathing,</p><p>Like the world forgot to stop.</p><p>I’m a shadow in the hallway—</p><p>Just a flicker. Just a thought.</p><h3>Verse 2</h3><p>Someone’s crying in the mirror—</p><p>Might be me, but I can’t tell.</p><p>The echoes stay. The sights won’t leave.</p><p>It’s a slow and sinking hell.</p><h3>Chorus</h3><p>This is not happening to me.</p><p>It's not how I deserved to be.</p><p>I can’t unhear, unfeel, unsee—</p><p> </p><p>I rise again from deep below.</p><p>Not brand new, not worn and old,</p><p>I know what hurts, what heals, what holds.</p><h3>Verse 3</h3><p>All the clocks have quit their ticking.</p><p>Even time won’t stick around.</p><p>I keep walking through the silence,</p><p>Just to feel my feet on ground.</p><h3>Chorus</h3><p>This is not happening to me.</p><p>It's not how I deserved to be.</p><p>I can’t unhear, unfeel, unsee—</p><p> </p><p>I rise again from deep below.</p><p>Not brand new, not worn and old,</p><p>I know what hurts, what heals, what holds.</p><h3>Bridge</h3><p>Somewhere past the breaking point,</p><p>When breath was just a thread—</p><p>My Will stood up inside my bones,</p><p>And waked me up! That's what I said.</p><h3>Final Chorus</h3><p>This is not happeninG to me.</p><p>It's not how I deserved to be.</p><p>I can’t unhear, unfeel, unsee—</p><p> </p><p>I rise again from deep below.</p><p>Not brand new, not worn and old,</p><p>I know what hurts, what heals, what holds.</p><p> </p><p>I rise again from deep below.</p><p>Not brand new, not worn and old,</p><p>I know what hurts, what heals, what holds.</p><h3>Outro</h3><p>Not healed, not whole,</p><p>Just enough for me to be.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<nav aria-label="Just Enough sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
+<section class="devotional-body" id="devotional"><h2>Devotional</h2><h3>When Survival Is All We Can Manage</h3>
+<p><strong>“A bruised reed shall he not break, and the smoking flax shall he not quench.” — Isaiah 42:3 (KJV)</strong></p>
+<p>There are experiences that divide life into before and after. A fire, a violent storm, a devastating loss, an accident, an assault, or an unexpected tragedy can change everything in a moment. What was familiar becomes unrecognizable. What once felt safe no longer does.</p>
+<p>Sometimes the greatest struggle begins after the immediate danger has passed.</p>
+<p>The song, <em>Just Enough</em>, enters that bewildering aftermath. The world continues around us, but something within us seems suspended. Time loses its meaning. Memories intrude. Sounds and images return without invitation. We may feel disconnected from our surroundings, even from ourselves.</p>
+<p><strong>“My soul is weary of my life.”</strong> (Job 10:1, KJV)</p>
+<p>Job knew what it meant to have his world shattered. His suffering was not evidence that he had ceased to matter to God. Nor did his anguish make him faithless. Scripture allows us to hear his distress without pretending that his losses were small.</p>
+<p>There are times when suffering is too great for eloquent prayers, confident declarations, or even clear thoughts. And that is where this song begins.</p>
+<h3>What Remains After Everything Changes</h3>
+<p>The chorus begins with disbelief: <em>“This is not happening to me. / It's not how I deserved to be. / I can't unhear, unfeel, unsee—”</em></p>
+<p>Trauma does not always disappear when the danger ends. The mind and body may continue responding to what has happened. Recovery can be uneven, and the person who emerges may not feel like the person who existed before.</p>
+<p>Yet the chorus does not end in disbelief: <em>“I rise again from deep below. / Not brand new, not worn and old, / I know what hurts, what heals, what holds.”</em></p>
+<p>There is remarkable honesty in those words. Healing does not necessarily mean returning to who we were. Some experiences leave lasting changes. But being changed does not mean being without value, purpose, or hope.</p>
+<p>Paul wrote, <strong>“We are troubled on every side, yet not distressed; we are perplexed, but not in despair; Persecuted, but not forsaken; cast down, but not destroyed.”</strong> (2 Corinthians 4:8–9, KJV)</p>
+<p>These words do not deny suffering. They acknowledge it while declaring that suffering does not have the final authority over those who belong to Christ.</p>
+<h3>When Strength Is Almost Gone</h3>
+<p>The bridge marks a turning point: <em>“Somewhere past the breaking point, / When breath was just a thread— / My Will stood up inside my bones, / And waked me up!”</em></p>
+<p>Sometimes determination begins as something very small. Not a triumphant declaration, but a decision to take another breath, stand again, or endure another hour.</p>
+<p>That determination matters. Yet Scripture reminds us that our ultimate hope does not depend upon the strength of our own will.</p>
+<p>God told Paul, <strong>“My grace is sufficient for thee: for my strength is made perfect in weakness.”</strong> (2 Corinthians 12:9, KJV)</p>
+<p>The Lord does not require us to become strong before we can come to Him. His grace meets us in our weakness.</p>
+<p>Psalm 34:18 assures us, <strong>“The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.”</strong></p>
+<p>We may not feel His nearness. We may be too overwhelmed even to recognize comfort. But His faithfulness is not measured by our emotional awareness of it.</p>
+<h3>Just Enough</h3>
+<p>The song ends almost in a whisper: <em>“Not healed, not whole, / Just enough for me to be.”</em></p>
+<p>There is no grand celebration. No claim that every wound has closed or every memory has faded. Only the quiet recognition that life continues. And sometimes, that is an enormous accomplishment.</p>
+<p>The prophet Jeremiah wrote, <strong>“It is of the LORD'S mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.”</strong> (Lamentations 3:22–23, KJV)</p>
+<p>We are not promised that every morning will be easy. We are reminded that God's compassion has not been exhausted by yesterday's suffering.</p>
+<p>For someone struggling through the aftermath of devastation, tomorrow may be too much to contemplate. Today may be all that can be managed. And today, there may be just enough strength for one more step.</p>
+<h3>A Quiet Connection</h3>
+<p><em>Just Enough</em> is accompanied by the song, <a href="never-alone.html"><em>Never Alone</em></a>. The first acknowledges what it means to survive when everything seems broken. The second offers reassurance that God's presence remains, even when the suffering is too great for us to recognize it.</p>
+<p>The reassurance does not erase the devastation. Nor does it demand that healing happen on a schedule. It simply reminds us that we do not have to face the journey alone.</p>
+<p><strong>“I will never leave thee, nor forsake thee.” — Hebrews 13:5 (KJV)</strong></p>
+<h3>For Reflection</h3>
+<p>Have I expected myself or someone else to recover more quickly than circumstances allow? Can I acknowledge pain without allowing it to define the entirety of a life? When my own strength seems insufficient, am I willing to seek God's help and accept the care of others? What might one small step forward look like today?</p>
+<h3>Prayer</h3>
+<p>Heavenly Father, You know the wounds that cannot be seen and the memories that refuse to fade. You know how difficult it can be simply to rise and face another day.</p>
+<p>Draw near to those who are frightened, exhausted, grieving, or overwhelmed. Protect those who remain in danger, and bring trustworthy people alongside those who need help. Give wisdom to those providing care and patience to those traveling the long road toward recovery.</p>
+<p>When strength is almost gone, sustain us by Your grace. When tomorrow seems impossible, help us face today. And when we cannot sense Your presence, remind us through Your Word that You have not forsaken us.</p>
+<p>In Jesus' name, Amen.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section><section id="extra"><h2>Extra Info — Scripture Map</h2><p><strong>God's care for the bruised and vulnerable:</strong> Isaiah 42:1–4</p><p><strong>Job's anguish:</strong> Job 10:1–7</p><p><strong>Pressed, yet not destroyed:</strong> 2 Corinthians 4:7–12</p><p><strong>Strength made perfect in weakness:</strong> 2 Corinthians 12:7–10</p><p><strong>Near to the brokenhearted:</strong> Psalm 34:17–19</p><p><strong>Mercies new every morning:</strong> Lamentations 3:21–26</p><p><strong>Never forsaken:</strong> Hebrews 13:5–6</p><p><strong>Companion song:</strong> <a href="never-alone.html">Never Alone →</a></p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
+<section aria-labelledby="swgMessageTitle" class="swg-message" id="share-your-thoughts">
+<h2 id="swgMessageTitle">Share Your Thoughts or Prayer Request</h2>
+<p>Did this song speak to your heart? I'd love to hear your thoughts, and if there's something you'd like me to pray about, you're welcome to share that, too. Your message will remain private.</p>
+<form action="https://formspree.io/f/mwlvbpak" aria-label="Message about Just Enough" class="swg-message-form" method="POST">
+<label for="swgVisitorName">First name <input autocomplete="given-name" id="swgVisitorName" name="name" required=""/></label>
+<label for="swgVisitorEmail">Your email <input autocomplete="email" id="swgVisitorEmail" name="email" required="" type="email"/></label>
+<label for="swgVisitorMessage">Your message <textarea id="swgVisitorMessage" name="message" required=""></textarea></label>
+<input name="song" type="hidden" value="Just Enough"/>
+<button type="submit">Send Message</button>
+</form>
+<p class="swg-message-note">Your message is private and is not posted publicly. Please avoid including sensitive personal information.</p>
+</section>
+</article>
+<!-- SWG email signup popup -->
+<aside aria-describedby="swgSignupCopy" aria-labelledby="swgSignupTitle" aria-modal="false" class="swg-signup-popup" hidden="" id="swgSignupPopup" role="dialog">
+<button aria-label="Close signup popup" class="swg-signup-close" id="swgSignupClose" type="button">×</button>
+<h2 id="swgSignupTitle">Connections are good.</h2>
+<p id="swgSignupCopy">For news about new songs, devotionals, or new features, <strong>Sign Me Up</strong> with your email — delicately, of course.</p>
+<form class="swg-popup-form" id="swgPopupForm" novalidate="">
+<label class="sr-only" for="swgPopupEmail" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Email address</label>
+<input autocomplete="email" id="swgPopupEmail" inputmode="email" name="email" placeholder="Email Address" required="" type="email"/>
+<button type="submit">Sign Me Up</button>
+</form>
+<p aria-live="polite" class="swg-popup-status" id="swgPopupStatus"></p>
+<div aria-hidden="true" class="swg-signup-embed" id="swgSignupEmbed"></div>
+<p class="swg-no-smash">No smashing anything here.</p>
+</aside>
+<footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
+<script src="assets/swg-analytics.js"></script>
+<script>
+(function(){
+ const song='Just Enough'; const pageUrl=window.location.href; const canonical=window.location.pathname.split('/').pop()||'just-enough.html';
+ const text='I thought you might enjoy '+song+' on Songs With Grace.';
+ const nativeBtn=document.getElementById('share-native'), copyBtn=document.getElementById('share-copy'), email=document.getElementById('share-email'), facebook=document.getElementById('share-facebook'), status=document.getElementById('share-status'), favoriteBtn=document.getElementById('favorite-btn');
+ email.href='mailto:?subject='+encodeURIComponent(song+' | Songs With Grace')+'&body='+encodeURIComponent(text+'\n\n'+pageUrl); facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl);
+ if(!navigator.share) nativeBtn.style.display='none';
+ nativeBtn.addEventListener('click',async()=>{try{await navigator.share({title:song+' | Songs With Grace',text:text,url:pageUrl})}catch(e){if(e&&e.name!=='AbortError')status.textContent='Sharing was not available. You can copy the link instead.'}});
+ copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);status.textContent='Link copied.'}catch(e){const t=document.createElement('textarea');t.value=pageUrl;t.style.position='absolute';t.style.left='-9999px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Link copied.':'Please copy the address from your browser.'}});
+ const key='swgFavorites'; const getFavs=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+ function paint(){const on=getFavs().includes(canonical);favoriteBtn.textContent=on?'♥ Favorited':'♡ Favorite';favoriteBtn.classList.toggle('is-favorite',on);favoriteBtn.setAttribute('aria-pressed',String(on))}
+ favoriteBtn.addEventListener('click',()=>{let f=getFavs();if(f.includes(canonical))f=f.filter(x=>x!==canonical);else f.push(canonical);localStorage.setItem(key,JSON.stringify(f));paint();}); paint();
+})();
+</script>
+<script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+<script>
+(function(){
+  const KEY='swg-signup-popup-v2-dismissed-until';
+  const SESSION='swg-signup-popup-v2-shown';
+  const DELAY=25000;
+  const HIDE_DAYS=14;
+  const popup=document.getElementById('swgSignupPopup');
+  const close=document.getElementById('swgSignupClose');
+  const embed=document.getElementById('swgSignupEmbed');
+  const proxy=document.getElementById('swgPopupForm');
+  const email=document.getElementById('swgPopupEmail');
+  const status=document.getElementById('swgPopupStatus');
+  if(!popup||!close||!embed||!proxy||!email||!status) return;
+  function dismissed(){
+    const until=Number(localStorage.getItem(KEY)||0);
+    return until>Date.now();
+  }
+  function dismiss(){
+    localStorage.setItem(KEY,String(Date.now()+HIDE_DAYS*24*60*60*1000));
+    popup.classList.remove('is-open'); popup.hidden=true;
+  }
+  function loadKit(){
+    if(embed.dataset.loaded==='1') return;
+    embed.dataset.loaded='1'; embed.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true; s.dataset.uid='ed835af4b2';
+    s.src='https://madelyn-dionne-writes.kit.com/ed835af4b2/index.js';
+    s.onerror=function(){status.textContent='The signup form is unavailable just now. Please try again later.';};
+    embed.appendChild(s);
+  }
+  proxy.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!email.checkValidity()){email.reportValidity();return;}
+    const kitForm=embed.querySelector('form.formkit-form, form[data-sv-form]');
+    if(!kitForm){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    const kitEmail=kitForm.querySelector('input[name="email_address"], input[type="email"]');
+    if(!kitEmail){status.textContent='The signup form is still loading. Please try again in a moment.';return;}
+    kitEmail.value=email.value.trim();
+    kitEmail.dispatchEvent(new Event('input',{bubbles:true}));
+    kitEmail.dispatchEvent(new Event('change',{bubbles:true}));
+    status.textContent='Sending…';
+    if(typeof kitForm.requestSubmit==='function') kitForm.requestSubmit(); else kitForm.submit();
+    setTimeout(function(){if(status.textContent==='Sending…')status.textContent='Thank you. Please check your email if confirmation is requested.';},1200);
+  });
+  function show(){
+    if(dismissed()||sessionStorage.getItem(SESSION)==='1') return;
+    popup.hidden=false;
+    popup.classList.add('is-open');
+    sessionStorage.setItem(SESSION,'1');
+    loadKit();
+    setTimeout(function(){email.focus({preventScroll:true});},50);
+  }
+  close.addEventListener('click',dismiss);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+  if(!dismissed()) window.setTimeout(show,DELAY);
+})();
+</script>
+</body>
+</html>
