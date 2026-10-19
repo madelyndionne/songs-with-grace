@@ -5,9 +5,16 @@
   document.addEventListener('DOMContentLoaded', function(){
     var song=songName();
     if(song) send('Song Open',{song:song});
+    var maryPlaySent=false;
     document.querySelectorAll('audio').forEach(function(a){
       var sent=false;
-      a.addEventListener('play',function(){ if(!sent){ sent=true; send('Song Play',{song:song}); }});
+      a.addEventListener('play',function(){
+        if(!sent){ sent=true; send('Song Play',{song:song}); }
+        if(song === "Mary's Song" && !maryPlaySent){
+          maryPlaySent=true;
+          send("Play: Mary's Song",{song:song});
+        }
+      });
     });
     // Offer a download link on individual song pages, and track download clicks.
     // This measures requests to download, not confirmed completed transfers.
