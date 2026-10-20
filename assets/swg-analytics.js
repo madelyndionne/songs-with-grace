@@ -5,11 +5,30 @@
   document.addEventListener('DOMContentLoaded', function(){
     var song=songName();
     if(song) send('Song Open',{song:song});
+    // Individual play goals for the ten-song Plausible Starter-plan trial.
+    // Names must match the custom event goals created in Plausible exactly.
+    var trialSongs = [
+      'After The Shimmer',
+      'As Jesus Would',
+      'As the Worm Turns',
+      'At His Feet',
+      'Becoming',
+      'Before Tomorrow Shows Me Now',
+      'Be Still and Know',
+      'Calibration of the Heart',
+      'Candlelight',
+      'Commit to the Changes'
+    ];
     var maryPlaySent=false;
+    var individualPlaySent=false;
     document.querySelectorAll('audio').forEach(function(a){
       var sent=false;
       a.addEventListener('play',function(){
         if(!sent){ sent=true; send('Song Play',{song:song}); }
+        if(song && !individualPlaySent && trialSongs.indexOf(song) !== -1){
+          individualPlaySent=true;
+          send('Play: ' + song,{song:song});
+        }
         if(song === "Mary's Song" && !maryPlaySent){
           maryPlaySent=true;
           send("Play: Mary's Song",{song:song});
