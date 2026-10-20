@@ -1,3 +1,21 @@
+/* Load Plausible on song pages, which do not include its tracking snippet.
+   The main index already loads Plausible; avoid loading it twice. */
+(function(){
+  var scriptUrl = 'https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js';
+  if(document.querySelector('script[src*="plausible.io/js/"]')) return;
+  window.plausible = window.plausible || function(){
+    (window.plausible.q = window.plausible.q || []).push(arguments);
+  };
+  window.plausible.init = window.plausible.init || function(options){
+    window.plausible.o = options || {};
+  };
+  window.plausible.init();
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = scriptUrl;
+  document.head.appendChild(script);
+})();
+
 (function(){
   window.plausible = window.plausible || function(){ (window.plausible.q = window.plausible.q || []).push(arguments); };
   function send(name, props){ window.plausible(name, {props: props || {}}); }
