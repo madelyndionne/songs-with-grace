@@ -30,6 +30,18 @@
   open.type = 'button'; open.className = 'swg-song-download-link';
   open.textContent = '↓ Download Song';
   wrap.appendChild(open);
+  // Remove older, page-level download controls so only this licensed control remains.
+  // Limit removal to the song player area, never the site's Free Use navigation.
+  let sibling = audio.nextElementSibling;
+  while (sibling && !sibling.matches('.share-box, section, nav')) {
+    const next = sibling.nextElementSibling;
+    if (sibling.matches('.swg-song-download-wrap') ||
+        (sibling.querySelector('a[href="license.html"]') && /download song/i.test(sibling.textContent)) ||
+        (sibling.matches('a, button') && /download song/i.test(sibling.textContent))) {
+      sibling.remove();
+    }
+    sibling = next;
+  }
   audio.insertAdjacentElement('afterend', wrap);
   const dialog = document.createElement('div');
   dialog.className = 'swg-song-download-dialog'; dialog.hidden = true;
