@@ -35,7 +35,9 @@
 <img alt="Candlelight cover artwork" class="cover" src="assets/candlelight-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Candlelight sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/candlelight.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/candlelight.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>An unlit candle waits in silence</p><p>Perfect as the day it's made</p><p>Keeping every drop it carries</p><p>Never giving what was paid.</p><p>Then a single flame is offered</p><p>Quietly it says "yes"</p><p>Losing what it cannot keep</p><p>To give back what God has blessed.</p><h3>Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... more of You.</p><h3>Verse 2</h3><p>Every hour leaves it smaller</p><p>Every moment, something's gone</p><p>Yet the darkness grows much lighter</p><p>As the little flame lives on.</p><p>What remains is not the candle</p><p>Or the wax upon the stand</p><p>But the warmth that found another</p><p>Like a touch from holy hands.</p><h3>Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... more of You.</p><h3>Bridge</h3><p>The wick can never be the fire</p><p>It only bears the flame</p><p>Fed by some One deep within it</p><p>To glorify His name.</p><p>If it tries to shine alone</p><p>Only smoke is left to see</p><p>When the Source becomes its fuel</p><p>His Spirit's light glows free.</p><h3>Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... more of You.</p><h3>Final Chorus</h3><p>Burn away what isn't You...</p><p>Leave behind what still is true.</p><p>Every moment I pursue</p><p>Less of me... and more... of... You.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
 <nav aria-label="Candlelight sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
@@ -71,6 +73,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>

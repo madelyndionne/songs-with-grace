@@ -42,7 +42,9 @@
 <img alt="Freedom Without Chaos cover artwork" class="cover" src="assets/freedom-without-chaos-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Freedom Without Chaos sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/freedom-without-chaos.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/freedom-without-chaos.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div class="share-box" aria-label="Song actions"><div class="share-actions"><button class="favorite-btn" id="favorite-btn" type="button" aria-pressed="false">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a id="share-email" href="#">Email</a><a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a><span class="new-feature-mark" data-new-until="2026-10-19" aria-label="New share and favorites features">*</span></div><div class="share-status" id="share-status" aria-live="polite"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>Fresh air drifting through an open window</p><p>Morning light upon the floor</p><p>Never thinking of the quiet screen there</p><p>Or what it was put there for.</p><p>Almost hidden, barely noticed</p><p>Standing watch both night and day...</p><p>Giving welcome to what's life-giving</p><p>Keeping other things away.</p><h3>Chorus</h3><p>Open wide the waiting window,</p><p>Welcome all that's true and bright.</p><p>Let the fresh air fill your spirit,</p><p>Let the morning bring its light.</p><p>Keep what stands between the chaos</p><p>And the peace within the heart.</p><p>Quiet things we hardly notice</p><p>Often play the biggest part.</p><h3>Verse 2</h3><p>Some would rather have no barrier</p><p>Nothing standing in the way...</p><p>Thinking every kind of freedom</p><p>Means removing every stay…</p><p>Sometimes we remove the boundaries</p><p>Certain we will finally see...</p><p>Only to invite the very things</p><p>That steal our liberty.</p><h3>Chorus</h3><p>Open wide the waiting window,</p><p>Welcome all that's true and bright.</p><p>Let the fresh air fill your spirit,</p><p>Let the morning bring its light.</p><p>Quiet things we hardly notice</p><p>Often play the biggest part.</p><p>Keep what stands between the chaos</p><p>And the peace within the heart.</p><h3>Bridge</h3><p>I have opened every window</p><p>And by letting go of the screen</p><p>The noise became so constant</p><p>I forgot to intervene.</p><p>Every window stood wide open</p><p>There was only chaos and commotion...</p><p>Little things became the din</p><p>Finally I welcomed the Spirit back in.</p><h3>Final Chorus</h3><p>Open wide the waiting window,</p><p>Welcome all that's true and bright.</p><p>Let the Spirit bring the fresh air in</p><p>Let the morning bring its light.</p><p>Quiet things we hardly notice</p><p>Often play the biggest part.</p><p>Heed the One who protects from chaos</p><p>And the peace within the heart.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section><nav aria-label="Freedom Without Chaos sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav><section class="devotional-body" id="devotional"><h2>Devotional</h2><h3>Freedom Without Chaos</h3>
 <p>An open window feels like freedom. Fresh air moves through the room, morning light spills across the floor, and the world outside seems suddenly close. Yet between that open room and the outdoors is something we hardly notice at all: a screen. It does not stop the light. It does not stop the breeze. It simply keeps certain things from coming in. The song, <em>Freedom Without Chaos</em>, uses that ordinary screen to ask a much larger question: <em>Does freedom require the absence of every boundary, or can wise boundaries actually protect freedom?</em></p>
@@ -93,11 +95,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-
-
-
-
-
-
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>

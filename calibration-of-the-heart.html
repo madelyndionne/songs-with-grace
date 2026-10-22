@@ -28,7 +28,9 @@
 <img alt="Calibration of the Heart cover artwork, a tuning fork with radiant concentric circles" class="cover" src="assets/calibration-of-the-heart-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Calibration of the Heart sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/calibration-of-the-heart.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/calibration-of-the-heart.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>We all begin with default settings...<br/>Then life rewrites a few.<br/>Every now and then it's worth<br/>Checking what is still true.</p><h3>Chorus</h3><p>Before assuming something's broken...<br/>Before changing every part...<br/>Maybe all that's really needed<br/>Is calibration of the heart.</p><h3>Verse 2</h3><p>When life hits us hard,<br/>And we feel completely used<br/>We compare ourselves to others...<br/>And the standards slowly move...</p><h3>Chorus</h3><p>Before assuming something's broken...<br/>Before changing every part...<br/>Maybe all that's really needed<br/>Is calibration of the heart.</p><h3>Verse 3</h3><p>You know the feeling of being out of wack<br/>Things still work… just not reading right<br/>It might be time to take a look back<br/>To the Source of truth and light.</p><h3>Chorus</h3><p>Before assuming something's broken...<br/>Before changing every part...<br/>Maybe all that's really needed<br/>Is calibration of the heart.</p><h3>Bridge</h3><p>We came with our factory defaults.<br/>As long as we keep ourselves aligned<br/>With the true Source and perfect Guide<br/>We’ll live our lives as we’re designed.</p><h3>Chorus</h3><p>Before assuming something's broken...<br/>Before changing every part...<br/>Maybe all that's really needed<br/>Is calibration of the heart.</p><h3>Final Chorus</h3><p>Before assuming something's broken...<br/>Before changing every part...<br/>Maybe all that's really needed<br/>Is calibration of the heart.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
 <nav aria-label="When Things Go Right sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
@@ -64,5 +66,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>
