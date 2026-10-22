@@ -41,7 +41,9 @@
 <img alt="Reflections cover artwork" class="cover" src="assets/reflections-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Reflections sections" class="section-bar"><a href="#listen">Listen</a><span>&middot;</span><a href="#lyrics">Lyrics</a><span>&middot;</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>&middot;</span><a href="#extra">Extra Info</a><span>&middot;</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls id="listen" preload="none" src="assets/reflections.mp3"></audio>
+<audio controls id="listen" preload="none" src="assets/reflections.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div class="share-box" aria-label="Song actions"><div class="share-actions"><button class="favorite-btn" id="favorite-btn" type="button" aria-pressed="false">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a id="share-email" href="#">Email</a><a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a><span class="new-feature-mark" data-new-until="2026-10-19" aria-label="New share and favorites features">*</span></div><div class="share-status" id="share-status" aria-live="polite"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">&larr; Back to songs</a></p><h3>Intro</h3><p>Every mirror tells a story,</p><p>But it never tells it all.</p><p>It reflects what light can reach there...</p><p>Not the one behind the wall.</p><h3>Verse 1</h3><p>Looking in a polished mirror</p><p>Wondering who I've become</p><p>Seeing all the little changes</p><p>Since the day my life began.</p><p></p><p>But the face before me isn't</p><p>All there ever was to see...</p><p>Just a silent invitation</p><p>To look more honestly.</p><h3>Chorus</h3><p>Every mirror tells a story,</p><p>But it never tells it all.</p><p>It reflects what light can reach there...</p><p>Not the one behind the wall.</p><h3>Verse 2</h3><p>I have gathered many pictures</p><p>Of words said throughout the years.</p><p>Some were painted using kindness,</p><p>Others borrowed from my fears.</p><p></p><p>Piece by piece they formed a likeness</p><p>Of the me I think I show...</p><p>Yet I wonder if that portrait</p><p>Comes close to the one He knows.</p><h3>Chorus</h3><p>Every mirror tells a story,</p><p>But it never tells it all.</p><p>It reflects what light can reach there...</p><p>Not the one behind the wall.</p><h3>Bridge</h3><p>There's a place no mirror reaches,</p><p>Hidden far from human eyes.</p><p>Yet the One who knows me deepest</p><p>Never needed my disguise.</p><p></p><p>Patient through my misperceptions,</p><p>Every mask I've tried to wear...</p><p>Seeing past each dim reflection</p><p>To the soul He's fashioned there.</p><h3>Chorus</h3><p>Every mirror tells a story,</p><p>But it never tells it all.</p><p>It reflects what light can reach there...</p><p>Not the one behind the wall.</p><h3>Outro</h3><p>The mirror only tells a story</p><p>But the One who knows us all</p><p>Goes deeper than reflections</p><p>To the soul behind the wall.</p><div class="back-top"><a href="#top-player">&uarr; Back to top</a></div></section><nav aria-label="Reflections sections" class="section-bar"><a href="#listen">Listen</a><span>&middot;</span><a href="#lyrics">Lyrics</a><span>&middot;</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>&middot;</span><a href="#extra">Extra Info</a><span>&middot;</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav><section class="devotional-body" id="devotional"><h2>Devotional</h2><h3>Reflections</h3>
 <p>A mirror has a perfectly reasonable job. We stand before it because we want to see what other people will see. Is my hair in place? Does this shirt look right? Is there something on my face? A mirror allows us to step outside ourselves for a moment and see our appearance from another perspective. But somewhere along the way, we can begin asking the mirror questions it was never designed to answer. Am I beautiful? Am I acceptable? Am I enough? Am I useful? Who am I? And the mirror cannot possibly know.</p>
@@ -101,11 +103,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-
-
-
-
-
-
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>

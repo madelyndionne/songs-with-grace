@@ -28,7 +28,9 @@
 <img alt="Shimmer In The Mirror cover artwork" class="cover" src="assets/shimmer-in-the-mirror-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Shimmer In The Mirror sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/shimmer-in-the-mirror.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/shimmer-in-the-mirror.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>The shimmer, the shadow, so familiar in the glass,<br/>Though I know it is near me, there’s a wall I can't surpass.<br/>And so I stand with nothing left, no place for me to go,<br/>Unless this wall gives way, and changes how I go.</p><h3>Chorus</h3><p>There is another, waiting unseen,<br/>Closer than silence, alive in the dream.<br/>Beyond every question, whose answers are dim,<br/>A Presence is waiting — inviting me to Him.</p><h3>Verse 2</h3><p>The Shimmer in the mirror, lingers, drawing near.<br/>He whispers in the silence, but nothing I can hear.<br/>He stops me at the edge, I look but cannot see,<br/>He leads me to the pathway — He wants to set me free.</p><h3>Chorus</h3><p>There is another, waiting unseen,<br/>Closer than silence, alive in the dream.<br/>Beyond every question, whose answers are dim,<br/>A Presence is waiting—inviting me to Him.</p><h3>Bridge</h3><p>I pray for forgiveness, and something starts to break,<br/>The wall that held me back now trembles in His wake.<br/>His Word becomes lightning—and cracks that wall in two,<br/>The veil that hid His mercy now lets His Light shine through—<br/><br/>I fall to my knees unworthy, and still He draws me near,<br/>The light reveals my failures, but it burns away my fear.<br/>His Spirit brings the thunder, the clouds release their rain,<br/>I am washed in holy waters, He calls me now by name —</p><h3>Chorus</h3><p>There is another, waiting unseen,<br/>Closer than silence, alive in the dream.<br/>Beyond every question, whose answers are dim,<br/>A Presence is waiting — inviting me to Him.</p><h3>Coda</h3><p>This thought keeps repeating — deep, within my soul.<br/>I know I’m not the only one — I know I’m not alone.<br/>The Spirit has been calling — to the many, and unknown,<br/>Past, present, and future — waiting for all to come —</p><p>— — — — — [pause]</p><h3>Outro</h3><p>He speaks in a still, small voice, deep within your soul<br/>The One who waits for everyone... is waiting for you... alone.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
 <nav aria-label="Shimmer In The Mirror sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
@@ -64,5 +66,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>
