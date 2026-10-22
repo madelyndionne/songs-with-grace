@@ -99,4 +99,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>
