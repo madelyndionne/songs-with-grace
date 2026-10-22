@@ -15,6 +15,21 @@
   const clear=document.getElementById('playlistClear');
   if(!grid||!launch||!panel||!list||!audio) return;
 
+  // Larger playlist reorder controls, with comfortable mouse/touch targets.
+  const reorderStyle=document.createElement('style');
+  reorderStyle.textContent=`
+    .playlist-item-actions button.swg-reorder-btn {
+      display:inline-flex;align-items:center;justify-content:center;
+      width:42px;min-width:42px;height:42px;min-height:42px;padding:4px;
+      font-size:26px!important;font-weight:700;line-height:1;
+      cursor:pointer;
+    }
+    .playlist-item-actions button.swg-reorder-btn:focus-visible {
+      outline:2px solid #65407a;outline-offset:2px;
+    }
+  `;
+  document.head.appendChild(reorderStyle);
+
   let current=-1;
   function get(){try{const x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
   function put(items){localStorage.setItem(KEY,JSON.stringify(items));render();}
@@ -56,6 +71,7 @@
       const title=document.createElement('button'); title.type='button'; title.textContent=s.title; title.title='Play '+s.title; title.addEventListener('click',()=>playIndex(i,true));
       const acts=document.createElement('span'); acts.className='playlist-item-actions';
       const up=small('↑','Move up',()=>move(i,-1)); const down=small('↓','Move down',()=>move(i,1)); const rm=small('×','Remove',()=>remove(i));
+      up.classList.add('swg-reorder-btn'); down.classList.add('swg-reorder-btn');
       acts.append(up,down,rm); li.append(title,acts); list.appendChild(li);
     });
     if(current>=items.length) current=-1;
