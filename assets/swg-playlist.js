@@ -39,6 +39,22 @@
     return {page:page,title:card.dataset.title||slug,audio:'assets/'+slug+'.mp3'};
   }
   function fire(name,props){if(typeof window.plausible==='function') window.plausible(name,{props:props||{}});}
+  // Keep the event names aligned with swg-analytics.js and Plausible goals.
+  const individuallyTrackedSongs = new Set([
+    'After The Shimmer', 'As Jesus Would', 'As the Worm Turns',
+    'At His Feet', 'Becoming', 'Before Tomorrow Shows Me Now',
+    'Be Still and Know', 'Calibration of the Heart', 'Candlelight',
+    'Commit to the Changes', "Mary's Song"
+  ]);
+  function trackPlaylistStart(song, position, size, userStarted){
+    const props={song:song.title,position:String(position),size:String(size),
+      source:'playlist',start:userStarted?'manual':'automatic'};
+    fire('Playlist Play',props);
+    fire('Song Play',{song:song.title,source:'playlist'});
+    if(individuallyTrackedSongs.has(song.title)){
+      fire('Play: '+song.title,{song:song.title,source:'playlist'});
+    }
+  }
   function addButtons(){
     grid.querySelectorAll('.card').forEach(card=>{
       const actions=card.querySelector('.actions'); if(!actions) return;
@@ -84,8 +100,13 @@
     const items=get(); if(!items.length)return; if(i<0)i=items.length-1;if(i>=items.length)i=0;current=i;const s=items[i];
     if(audio.getAttribute('src')!==s.audio){audio.src=s.audio;audio.load();}
     now.textContent=(i+1)+' of '+items.length+' — '+s.title;render();
-    const p=audio.play(); if(p&&p.catch)p.catch(()=>{});
-    if(userStarted)fire('Playlist Play',{song:s.title,position:String(i+1),size:String(items.length)});
+    // Count only successful starts, including songs advanced automatically.
+    const p=audio.play();
+    if(p && typeof p.then==='function'){
+      p.then(()=>trackPlaylistStart(s,i+1,items.length,userStarted)).catch(()=>{});
+    }else if(!audio.paused){
+      trackPlaylistStart(s,i+1,items.length,userStarted);
+    }
   }
   function openPanel(){panel.classList.add('is-open');panel.setAttribute('aria-hidden','false');launch.setAttribute('aria-expanded','true');render();}
   function closePanel(){panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');launch.setAttribute('aria-expanded','false');}
