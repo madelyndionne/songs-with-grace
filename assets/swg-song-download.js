@@ -30,18 +30,21 @@
   open.type = 'button'; open.className = 'swg-song-download-link';
   open.textContent = '↓ Download Song';
   wrap.appendChild(open);
-  // Remove older, page-level download controls so only this licensed control remains.
-  // Limit removal to the song player area, never the site's Free Use navigation.
-  let sibling = audio.nextElementSibling;
-  while (sibling && !sibling.matches('.share-box, section, nav')) {
-    const next = sibling.nextElementSibling;
-    if (sibling.matches('.swg-song-download-wrap') ||
-        (sibling.querySelector('a[href="license.html"]') && /download song/i.test(sibling.textContent)) ||
-        (sibling.matches('a, button') && /download song/i.test(sibling.textContent))) {
-      sibling.remove();
-    }
-    sibling = next;
-  }
+  // Remove legacy song-download controls, including links nested in wrappers.
+  // Keep the site's ordinary Free Use navigation and the licensed dialog.
+  const oldControls = Array.from(document.querySelectorAll('a, button')).filter(el => {
+    if (el.closest('nav, header, footer, .swg-song-download-dialog')) return false;
+    if (!/^\s*[↓⬇]?\s*download\s+song\s*$/i.test(el.textContent.trim())) return false;
+    return el !== open;
+  });
+  oldControls.forEach(el => {
+    const parent = el.parentElement;
+    el.remove();
+    // Remove now-empty legacy wrappers without touching other content.
+    if (parent && parent !== document.body && !parent.children.length && !parent.textContent.trim() &&
+        !parent.matches('section, article, main, nav, header, footer')) parent.remove();
+  });
+  document.querySelectorAll('.swg-song-download-wrap').forEach(el => el.remove());
   audio.insertAdjacentElement('afterend', wrap);
   const dialog = document.createElement('div');
   dialog.className = 'swg-song-download-dialog'; dialog.hidden = true;
