@@ -39,21 +39,13 @@
     return {page:page,title:card.dataset.title||slug,audio:'assets/'+slug+'.mp3'};
   }
   function fire(name,props){if(typeof window.plausible==='function') window.plausible(name,{props:props||{}});}
-  // Keep the event names aligned with swg-analytics.js and Plausible goals.
-  const individuallyTrackedSongs = new Set([
-    'After The Shimmer', 'As Jesus Would', 'As the Worm Turns',
-    'At His Feet', 'Becoming', 'Before Tomorrow Shows Me Now',
-    'Be Still and Know', 'Calibration of the Heart', 'Candlelight',
-    'Commit to the Changes', "Mary's Song"
-  ]);
+  // Every playlist song sends a named play event.
   function trackPlaylistStart(song, position, size, userStarted){
     const props={song:song.title,position:String(position),size:String(size),
       source:'playlist',start:userStarted?'manual':'automatic'};
     fire('Playlist Play',props);
     fire('Song Play',{song:song.title,source:'playlist'});
-    if(individuallyTrackedSongs.has(song.title)){
-      fire('Play: '+song.title,{song:song.title,source:'playlist'});
-    }
+    fire('Play: '+(song.title==='Be Still And Know'?'Be Still and Know':song.title),{song:song.title,source:'playlist'});
   }
   function addButtons(){
     grid.querySelectorAll('.card').forEach(card=>{

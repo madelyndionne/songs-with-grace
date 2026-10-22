@@ -1,21 +1,3 @@
-/* Load Plausible on song pages, which do not include its tracking snippet.
-   The main index already loads Plausible; avoid loading it twice. */
-(function(){
-  var scriptUrl = 'https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js';
-  if(document.querySelector('script[src*="plausible.io/js/"]')) return;
-  window.plausible = window.plausible || function(){
-    (window.plausible.q = window.plausible.q || []).push(arguments);
-  };
-  window.plausible.init = window.plausible.init || function(options){
-    window.plausible.o = options || {};
-  };
-  window.plausible.init();
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = scriptUrl;
-  document.head.appendChild(script);
-})();
-
 (function(){
   window.plausible = window.plausible || function(){ (window.plausible.q = window.plausible.q || []).push(arguments); };
   function send(name, props){ window.plausible(name, {props: props || {}}); }
@@ -23,55 +5,21 @@
   document.addEventListener('DOMContentLoaded', function(){
     var song=songName();
     if(song) send('Song Open',{song:song});
-    // Individual play goals for the ten-song Plausible Starter-plan trial.
-    // Names must match the custom event goals created in Plausible exactly.
-    var trialSongs = [
-      'After The Shimmer',
-      'As Jesus Would',
-      'As the Worm Turns',
-      'At His Feet',
-      'Becoming',
-      'Before Tomorrow Shows Me Now',
-      'Be Still and Know',
-      'Calibration of the Heart',
-      'Candlelight',
-      'Commit to the Changes'
-    ];
-    var maryPlaySent=false;
+    // Every song sends its own named play event, once per page load.
     var individualPlaySent=false;
     document.querySelectorAll('audio').forEach(function(a){
       var sent=false;
       a.addEventListener('play',function(){
         if(!sent){ sent=true; send('Song Play',{song:song}); }
-        if(song && !individualPlaySent && trialSongs.indexOf(song) !== -1){
+        if(song && !individualPlaySent){
           individualPlaySent=true;
-          send('Play: ' + song,{song:song});
+          send('Play: ' + (song==='Be Still And Know'?'Be Still and Know':song),{song:song});
         }
-        if(song === "Mary's Song" && !maryPlaySent){
-          maryPlaySent=true;
-          send("Play: Mary's Song",{song:song});
-        }
+
       });
     });
-    // Offer a download link on individual song pages, and track download clicks.
-    // This measures requests to download, not confirmed completed transfers.
-    if(song){
-      document.querySelectorAll('audio[src]').forEach(function(a){
-        var src=a.getAttribute('src');
-        if(!src || !/\.(mp3|wav|m4a|ogg|flac)(?:[?#]|$)/i.test(src)) return;
-        if(a.nextElementSibling && a.nextElementSibling.classList.contains('swg-download-link')) return;
-        var link=document.createElement('a');
-        link.className='swg-download-link';
-        link.href=src;
-        link.download=src.split('/').pop().split('?')[0];
-        link.textContent='\u2193 Download Song';
-        link.setAttribute('data-swg-event','song-download');
-        link.setAttribute('data-swg-song',song);
-        link.style.cssText='display:block;width:max-content;max-width:100%;margin:-12px auto 24px;color:#65407a;font-weight:700;text-decoration:underline;text-underline-offset:3px;';
-        a.insertAdjacentElement('afterend',link);
-      });
-    }
-    // Also tracks any explicitly marked download links elsewhere on the site.
+    // Song downloads remain available only through the approved Free Use flow.
+    // Track explicitly marked download links without creating any new links.
     document.addEventListener('click',function(e){
       var el=e.target.closest('[data-swg-event="song-download"]');
       if(!el) return;
