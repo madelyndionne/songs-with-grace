@@ -28,7 +28,9 @@
 <img alt="Jagged Edges cover artwork" class="cover" src="assets/jagged-edges-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Jagged Edges sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/jagged-edges.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/jagged-edges.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>My life was crumbling</p><p>Under the weight of sin</p><p>I had spent my life stumbling</p><p>Looking for some way in</p><h3>Chorus</h3><p>The jagged pieces,</p><p>Each but a clue,</p><p>Left asunder until</p><p>Jesus came into view.</p><h3>Verse 2</h3><p>Nothing helped the pieces fit</p><p>Nothing held them in place</p><p>They seemed to be forever split</p><p>Until I met God's saving grace</p><h3>Chorus</h3><p>The jagged pieces,</p><p>Each but a clue,</p><p>Waiting to be put together</p><p>To make my heart brand new</p><h3>Bridge</h3><p>I brought Him all my pieces</p><p>The parts I could never hope to mend</p><p>Until from sin He releases</p><p>The life He gave me now has no end</p><h3>Final Chorus</h3><p>The jagged pieces,</p><p>Each part a clue,</p><p>He stitched together until</p><p>My heart became new</p><h3>Final Chorus (repeat)</h3><p>The jagged pieces,</p><p>Each part a clue,</p><p>He stitched together until</p><p>My heart became new</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
 <nav aria-label="When Things Go Right sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
@@ -64,5 +66,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>

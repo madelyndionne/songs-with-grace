@@ -41,7 +41,9 @@
 <img alt="Inspiration cover artwork" class="cover" src="assets/inspiration-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Inspiration sections" class="section-bar"><a href="#listen">Listen</a><span>&middot;</span><a href="#lyrics">Lyrics</a><span>&middot;</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>&middot;</span><a href="#extra">Extra Info</a><span>&middot;</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/inspiration.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/inspiration.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div class="share-box" aria-label="Song actions"><div class="share-actions"><button class="favorite-btn" id="favorite-btn" type="button" aria-pressed="false">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a id="share-email" href="#">Email</a><a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer">Facebook</a><span class="new-feature-mark" data-new-until="2026-10-19" aria-label="New share and favorites features">*</span></div><div class="share-status" id="share-status" aria-live="polite"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">&larr; Back to songs</a></p><h3>Verse 1</h3><p>Closing my eyes and open-ing my mind</p><p>Some thoughts float in unannounced</p><p>Looking for some new meaning to find.</p><p>Or some old habits to denounce.</p><p></p><p>When writing lines, they come in parts</p><p>Words before the rhymes and after</p><p>Thoughts with lots of stops and starts</p><p>Barely controlled by the crafter.</p><h3>Chorus</h3><p>Quiet now... let the silence speak</p><p>There are treasures silence keeps</p><p>If I loosen my own control</p><p>Something deeper fills my soul</p><h3>Verse 2</h3><p>Right now I need to stay quiet and free</p><p>No extra words, ideas, conversation</p><p>No stray thoughts, or other debris</p><p>Just resting my mind in isolation.</p><p></p><p>Even this can be hard to attain</p><p>When what you want tends to run away</p><p>What you wish to avoid makes a stain</p><p>The crafter seems to have less say.</p><h3>Chorus</h3><p>Quiet now... let the silence speak</p><p>There are treasures silence keeps</p><p>If I loosen my own control</p><p>Something deeper fills my soul</p><h3>Verse 3</h3><p>But there is power in letting go.</p><p>Examining and discarding</p><p>Waiting for something to grow</p><p>Then listening and disarming.</p><p></p><p>The closer to the Spirit</p><p>I direct myself to go</p><p>Awaiting the warmth of His visit,</p><p>Inviting the words that glow</p><h3>Chorus</h3><p>Quiet now... let the silence speak</p><p>There are treasures silence keeps</p><p>If I loosen my own control</p><p>Something deeper fills my soul</p><h3>Final Chorus</h3><p>Quiet now... let the Spirit speak</p><p>There are treasures His Spirit keeps</p><p>If I loosen my own control</p><p>Some One deeper fills my soul</p><div class="back-top"><a href="#top-player">&uarr; Back to top</a></div></section>
 <nav aria-label="Inspiration sections" class="section-bar"><a href="#listen">Listen</a><span>&middot;</span><a href="#lyrics">Lyrics</a><span>&middot;</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>&middot;</span><a href="#extra">Extra Info</a><span>&middot;</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
@@ -96,11 +98,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-
-
-
-
-
-
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>
