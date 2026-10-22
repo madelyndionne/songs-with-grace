@@ -47,7 +47,9 @@
 <img alt="The Motions cover artwork" class="cover" src="assets/the-motions-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="The Motions sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/the-motions.mp3"></audio><p style="text-align:center"></p>
+<audio controls="" id="listen" preload="none" src="assets/the-motions.mp3" controlsList="nodownload"></audio><p style="text-align:center"></p>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>She stood in the kitchen, washing away<br/>Dish after dish with nothing to say.<br/>Her eyes glossed and glazed anyway<br/>There's so much work to do today.</p><h3>Chorus</h3><p>Am I just going through the motions?<br/>Have I lost sight of my devotion?<br/>At this time, I'm sorry, I have no clue.<br/>Have I lost the joy of serving You?</p><h3>Verse 2</h3><p>Am I numb to the reason I do?<br/>Is that why I feel like I withdrew?<br/>There's a numbness that follows the years<br/>Where's the joy helping me persevere?</p><h3>Chorus</h3><p>Am I just going through the motions?<br/>Have I lost sight of my devotion?<br/>At this time, I'm sorry, I have no clue.<br/>Have I lost the joy of serving You?</p><h3>Verse 3</h3><p>But there's that little rumbling I feel<br/>It's easy to forget to sometimes kneel<br/>Forgetting that lack of joy reveals...<br/>I need to wake up to what's real.</p><h3>Bridge</h3><p>Lord help me be energized again<br/>Let me pray for joy and say, Amen!!<br/>Let me be present in all that I do<br/>Renew my heart. Let me do it for You</p><h3>Chorus</h3><p>I'm not going through the motions<br/>I haven't lost sight of my devotion<br/>For You I do the things that I do,<br/>Father, let me feel joy in serving You.</p><h3>Outro</h3><p>Let my hands continue serving<br/>Let my heart remember why<br/>May I experience the yearning<br/>For Your Love that won't pass me by.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
 <nav aria-label="The Motions sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
@@ -89,7 +91,22 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body>
 </html>

@@ -28,7 +28,9 @@
 <img alt="Stranger Going Home cover artwork" class="cover" src="assets/stranger-going-home-cover.webp"/>
 <div id="top-player"></div>
 <nav aria-label="Stranger Going Home sections" class="section-bar"><a href="#listen">Listen</a><span>·</span><a href="#lyrics">Lyrics</a><span>·</span><a data-swg-event="devotional-open" href="#devotional">Devotional</a><span>·</span><a href="#extra">Extra Info</a><span>·</span><button class="print-btn" data-swg-event="print-devotional" onclick="window.print()" type="button">Print Devotional</button></nav>
-<audio controls="" id="listen" preload="none" src="assets/stranger-going-home.mp3"></audio>
+<audio controls="" id="listen" preload="none" src="assets/stranger-going-home.mp3" controlsList="nodownload"></audio>
+
+<p class="swg-playlist-download-help" style="text-align:center;color:#65407a;font-size:.98rem;line-height:1.45;margin:0 auto 20px;max-width:680px"><strong>Want to download this song?</strong> Return to the <a href="index.html#songs">Songs page</a>, add this song to your playlist, then open <strong>My Playlist</strong>. Select the song and choose <strong>Download Song</strong> to review the <a href="license.html">Free Use agreement</a>.</p>
 <section class="song-introduction" aria-label="About this song" style="margin:8px 0 28px;padding:18px 22px;background:#f3edf6;border-radius:12px;line-height:1.6"><h2 style="color:#65407a;font-size:1.35rem;margin:0 0 10px">About This Song</h2><p style="margin:0 0 10px">I wrote <em>Stranger Going Home</em> in June 2026, following a severe illness that caused my kidneys to shut down. Coming so close to death gave me a different perspective on both the life I&#x27;ve been given and the home that awaits me.</p><p style="margin:0 0 10px">This song isn&#x27;t about wanting to leave this world before my time. There is still much here to love, to do, and to be grateful for. But the experience brought a quiet realization: while I cherish this life, I no longer feel quite so much like I belong here.</p><p style="margin:0 0 10px">I&#x27;m not in a hurry to go. I&#x27;m simply looking forward to Home.</p></section>
 <div aria-label="Song actions" class="share-box"><div class="share-actions"><button aria-pressed="false" class="favorite-btn" id="favorite-btn" type="button">♡ Favorite</button><button id="share-native" type="button">Share</button><button id="share-copy" type="button">Copy Link</button><a href="#" id="share-email">Email</a><a href="#" id="share-facebook" rel="noopener noreferrer" target="_blank">Facebook</a><span aria-label="New share and favorites features" class="new-feature-mark" data-new-until="2026-10-19">*</span></div><div aria-live="polite" class="share-status" id="share-status"></div></div>
 <section id="lyrics"><h2>Lyrics</h2><p><a class="back-songs" href="index.html">← Back to songs</a></p><h3>Verse 1</h3><p>I've walked this road a long, long while,</p><p>And found reasons here to stay.</p><p>Held little hands and weathered storms,</p><p>And gave my heart away.</p><p>There's beauty in the morning light,</p><p>And goodness I have known.</p><p>But some days I can feel it more:</p><p>This world is not my home.</p><h3>Chorus</h3><p>I'm not going to hurry time.</p><p>I don't want to close the door.</p><p>But I feel a distant welcome now,</p><p>Like I felt it once before.</p><p>No anger, fear, or bitterness,</p><p>No pain like I have known.</p><p>Just a stranger in a strange land,</p><p>Looking forward to going home.</p><h3>Verse 2</h3><p>No sickness waiting in the wings,</p><p>No words that cut or bend.</p><p>No watching people disappear,</p><p>No wondering where things end.</p><p>And everyone I've ever loved</p><p>Will finally be well known.</p><p>No introduction needed there,</p><p>Just come home.</p><p>Welcome home.</p><h3>Bridge</h3><p>So I will stay while I am here,</p><p>And love what's placed in reach.</p><p>I'll laugh and cry and make my songs,</p><p>And live the things I teach.</p><p>But somewhere deeper than my bones,</p><p>A quiet truth has grown.</p><p>I'm grateful for the life I've had.</p><p>I'm looking forward to home.</p><h3>Final Chorus</h3><p>I'm not going to hurry time.</p><p>There are hands I still will hold.</p><p>But the older that this traveler gets,</p><p>The more familiar grows</p><p>That place with no more ache to bear,</p><p>No pain like I have known.</p><p>Just a stranger in a strange land,</p><p>Looking forward to going home.</p><div class="back-top"><a href="#top-player">↑ Back to top</a></div></section>
@@ -65,5 +67,21 @@
 })();
 </script>
 <script>(function(){const today=new Date();today.setHours(0,0,0,0);document.querySelectorAll('.new-feature-mark[data-new-until]').forEach(m=>{const end=new Date(m.dataset.newUntil+'T00:00:00');if(today>=end)m.hidden=true;});})();</script>
-<script src="assets/swg-song-download.js"></script>
+<script>
+/* Remove obsolete song-page download links; playlist is the download gateway. */
+(function(){
+  function clean(){
+    var player=document.querySelector('audio#listen');
+    if(!player)return;
+    document.querySelectorAll('a,button,.swg-song-download-wrap').forEach(function(el){
+      if(el.closest('.swg-playlist-download-help,nav,.site-footer'))return;
+      if(el.matches('.swg-song-download-wrap') || (/^\s*[↓⬇]?\s*Download Song\s*$/i.test(el.textContent||'') && !el.closest('#playlistPanel'))){
+        el.remove();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+  window.addEventListener('load',clean);
+})();
+</script>
 </body></html>
