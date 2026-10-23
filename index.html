@@ -58,7 +58,18 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
-</head>
+<style>
+/* Two-step download dialog */
+#swgDownloadIntro[hidden],#swgDownloadLicense[hidden]{display:none!important}
+#swgDownloadLicense{min-height:0;display:flex;flex-direction:column}
+#swgDownloadLicense .swg-license-scroll{display:block;max-height:min(55vh,520px);overflow-y:auto;padding:14px 18px;background:#fff}
+#swgDownloadLicense .swg-license-scroll h1{font-size:1.55rem;margin:0 0 .5em;color:#65407a}
+#swgDownloadLicense .swg-license-scroll h2{font-size:1.25rem;margin:1em 0 .4em;color:#65407a}
+#swgDownloadLicense .swg-license-scroll p{line-height:1.5;margin:.65em 0}
+#swgDownloadLicense .swg-license-scroll li{margin:.35em 0}
+#swgDownloadLicense .swg-license-scroll a{color:#65407a}
+#swgLicenseHeading{margin:0 32px 8px 0}
+</style></head>
 <body id="browse-top">
 <nav aria-label="Site menu" class="site-menu"><a href="#browse-top">Home</a><a href="#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="how-to-use.html">How to Use This Site</a><a href="about.html">About Us</a><a href="#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
 <section class="hero">
@@ -272,47 +283,64 @@ updateNewSongMarkers();
 <section id="swgDownloadDialog" class="swg-download-dialog" role="dialog" aria-modal="true" aria-labelledby="swgDownloadTitle" hidden>
 <div class="swg-download-box">
 <button type="button" class="swg-download-close" id="swgDownloadClose" aria-label="Close download dialog">×</button>
+<div id="swgDownloadIntro">
 <h2 id="swgDownloadTitle">Download a Song</h2>
 <p id="swgDownloadSong"></p>
-<button type="button" class="swg-license-toggle" id="swgLicenseToggle" aria-controls="swgLicenseText" aria-expanded="false">Read the Free Use License ▾</button>
-<div class="swg-license-scroll" id="swgLicenseText" tabindex="0" hidden>
-<p>Please read the <a href="license.html" target="_blank" rel="noopener">complete Free Use License</a> in a new tab, then return here to accept its terms.</p>
+<p>Please review the license before downloading.</p>
+<div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button type="button" class="swg-download-confirm" id="swgLicenseReview">Read the Free Use License →</button></div>
 </div>
-<p class="swg-download-help" id="swgDownloadHint" aria-live="polite">Open the license link and review its terms before accepting.</p>
-<label class="swg-download-accept"><input id="swgDownloadAccept" type="checkbox" disabled> <span>I have read and agree to the <a href="license.html" target="_blank" rel="noopener">Free Use License</a>.</span></label>
-<div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button type="button" class="swg-download-confirm" id="swgDownloadConfirm" disabled>Download</button></div>
+<div id="swgDownloadLicense" hidden>
+<h2 id="swgLicenseHeading" tabindex="-1">Free Use License</h2>
+<div class="swg-license-scroll" id="swgLicenseText" tabindex="0">
+
+<p class="intro">These songs and devotionals are here to be heard, read, and shared freely.</p>
+<h2>What you may do</h2>
+<p>Madelyn Dionne grants permission, without a fee, to use the original lyrics, sound recordings, and devotionals on <em>Songs With Grace</em> for personal, church, ministry, and educational purposes that are not commercial. You may:</p>
+<ul>
+<li>Listen, download, and share unaltered copies with others.</li>
+<li>Print and distribute lyrics or devotionals without charge.</li>
+<li>Perform the songs in worship services, church gatherings, or other free, noncommercial events.</li>
+<li>Include the songs in free church livestreams or recordings of those gatherings.</li>
+</ul>
+<p>When sharing a recording, lyrics, or devotional online or in print, please credit <strong>Madelyn Dionne</strong> and link to <em>Songs With Grace</em> when practical. No public announcement or on-screen credit is required during a worship service.</p>
+<h2>What requires permission</h2>
+<p>Please obtain written permission before selling the material, charging for access, including it in anything offered for sale, using it in advertising or promotion of a business, or making any other commercial use. Please also ask before changing, remixing, or releasing a new recording or adaptation of a song or devotional.</p>
+<h2>Questions or permission requests</h2>
+<p>Email <a href="mailto:MadelynDionneWrites@gmail.com">MadelynDionneWrites@gmail.com</a>. If you are unsure whether your use is covered, please ask.</p>
+<p>This permission applies only to material for which Madelyn Dionne holds the necessary rights. Scripture and any separately identified third-party material are not licensed by this notice. All rights not expressly granted are reserved.</p>
+</div>
+<p class="swg-download-help" id="swgDownloadHint" aria-live="polite">Choose “Accept &amp; Download” to agree to these terms and download your song.</p>
+<div class="swg-download-actions"><button type="button" id="swgLicenseDecline">Decline</button><button type="button" class="swg-download-confirm" id="swgDownloadConfirm">Accept &amp; Download</button></div>
+</div>
 </div></section>
 <script>
-/* SWG playlist audio download funnel: uses the audio source already selected by the playlist. */
+/* SWG index-only two-step license and audio download; preserves existing MP3 fetch/save behavior. */
 (function(){
  const byId=id=>document.getElementById(id);
- const dialog=byId('swgDownloadDialog'), open=byId('swgDownloadOpen'), close=byId('swgDownloadClose'), cancel=byId('swgDownloadCancel');
- const toggle=byId('swgLicenseToggle'), terms=byId('swgLicenseText'), accept=byId('swgDownloadAccept');
+ const dialog=byId('swgDownloadDialog'), open=byId('swgDownloadOpen'), close=byId('swgDownloadClose');
+ const intro=byId('swgDownloadIntro'), license=byId('swgDownloadLicense'), review=byId('swgLicenseReview');
+ const cancel=byId('swgDownloadCancel'), decline=byId('swgLicenseDecline');
  const confirm=byId('swgDownloadConfirm'), hint=byId('swgDownloadHint'), label=byId('swgDownloadSong');
  const player=byId('playlistAudio'), now=byId('playlistNow');
- let source='', title='';
- function shut(){dialog.hidden=true;document.body.style.overflow='';open.focus();}
+ let source='', title='', busy=false;
+ function shut(){if(busy)return;dialog.hidden=true;document.body.style.overflow='';open.focus();}
  function selected(){return player.currentSrc||player.getAttribute('src')||player.querySelector('source')?.src||'';}
  open.addEventListener('click',()=>{
    source=selected();
    if(!source){alert('Choose a song from your playlist first.');return;}
    title=(now?.textContent||'Selected song').replace(/^Now playing:\s*/i,'').trim()||'Selected song';
    label.textContent='Selected song: '+title;
-   terms.hidden=true;toggle.setAttribute('aria-expanded','false');accept.checked=false;accept.disabled=true;confirm.disabled=true;
-   hint.textContent='Open the Free Use License and review its terms before accepting.';
-   dialog.hidden=false;document.body.style.overflow='hidden';toggle.focus();
+   intro.hidden=false;license.hidden=true;dialog.setAttribute('aria-labelledby','swgDownloadTitle');confirm.disabled=false;busy=false;
+   hint.textContent='Choose “Accept & Download” to agree to these terms and download your song.';
+   dialog.hidden=false;document.body.style.overflow='hidden';review.focus();
  });
- toggle.addEventListener('click',()=>{
-   terms.hidden=!terms.hidden;toggle.setAttribute('aria-expanded',String(!terms.hidden));
-   if(!terms.hidden){accept.disabled=false;hint.textContent='Read the complete license using the link, then check the box to accept.';}
- });
- accept.addEventListener('change',()=>{confirm.disabled=!accept.checked;});
- close.addEventListener('click',shut);cancel.addEventListener('click',shut);
+ review.addEventListener('click',()=>{intro.hidden=true;license.hidden=false;dialog.setAttribute('aria-labelledby','swgLicenseHeading');byId('swgLicenseText').scrollTop=0;byId('swgLicenseHeading').focus();});
+ close.addEventListener('click',shut);cancel.addEventListener('click',shut);decline.addEventListener('click',shut);
  dialog.addEventListener('click',e=>{if(e.target===dialog)shut();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.hidden)shut();});
  confirm.addEventListener('click',async()=>{
-   if(!accept.checked||!source)return;
-   confirm.disabled=true;hint.textContent='Preparing your download…';
+   if(busy||!source||license.hidden)return;
+   busy=true;confirm.disabled=true;hint.textContent='Preparing your download…';
    try{
      const response=await fetch(source);
      if(!response.ok)throw new Error('HTTP '+response.status);
@@ -322,11 +350,11 @@ updateNewSongMarkers();
      const filename=title.replace(/[\\/:*?"<>|]/g,'').trim()||'song';
      const a=document.createElement('a');a.href=url;a.download=filename+'.'+ext;document.body.appendChild(a);a.click();a.remove();
      setTimeout(()=>URL.revokeObjectURL(url),60000);
-     shut();
+     busy=false;shut();
    }catch(error){
      hint.textContent='Automatic download was blocked. Try opening the recording directly.';
      const a=document.createElement('a');a.href=source;a.target='_blank';a.rel='noopener';a.textContent='Open selected recording';
-     hint.append(' ',a);confirm.disabled=false;
+     hint.append(' ',a);busy=false;confirm.disabled=false;
    }
  });
 })();
