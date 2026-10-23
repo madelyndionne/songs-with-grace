@@ -206,7 +206,7 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 <button class="secondary" id="playlistPrev" type="button">◀ Previous</button>
 <button class="secondary" id="playlistNext" type="button">Next ▶</button>
 <button class="secondary" id="playlistClear" type="button">Clear</button>
-<a class="secondary swg-download-button" href="license.html" style="display:inline-flex;align-items:center;text-decoration:none;border-radius:8px;padding:8px 11px;font-weight:700">↓ Download Song</a>
+<button class="secondary swg-download-button" id="swgDownloadOpen" type="button">↓ Download Song</button>
 </div>
 </div>
 </aside><footer class="site-footer"><p>© 2026 Madelyn Dionne. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p><p style="margin-top:8px;font-size:.85rem"><a href="ministry-access.html" style="color:inherit;opacity:.7;text-decoration:none">Ministry</a></p></footer>
@@ -267,6 +267,68 @@ updateNewSongMarkers();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
   window.addEventListener('load',clean);
+})();
+</script>
+<section id="swgDownloadDialog" class="swg-download-dialog" role="dialog" aria-modal="true" aria-labelledby="swgDownloadTitle" hidden>
+<div class="swg-download-box">
+<button type="button" class="swg-download-close" id="swgDownloadClose" aria-label="Close download dialog">×</button>
+<h2 id="swgDownloadTitle">Download a Song</h2>
+<p id="swgDownloadSong"></p>
+<button type="button" class="swg-license-toggle" id="swgLicenseToggle" aria-controls="swgLicenseText" aria-expanded="false">Read the Free Use License ▾</button>
+<div class="swg-license-scroll" id="swgLicenseText" tabindex="0" hidden>
+<p>Please read the <a href="license.html" target="_blank" rel="noopener">complete Free Use License</a> in a new tab, then return here to accept its terms.</p>
+</div>
+<p class="swg-download-help" id="swgDownloadHint" aria-live="polite">Open the license link and review its terms before accepting.</p>
+<label class="swg-download-accept"><input id="swgDownloadAccept" type="checkbox" disabled> <span>I have read and agree to the <a href="license.html" target="_blank" rel="noopener">Free Use License</a>.</span></label>
+<div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button type="button" class="swg-download-confirm" id="swgDownloadConfirm" disabled>Download</button></div>
+</div></section>
+<script>
+/* SWG playlist audio download funnel: uses the audio source already selected by the playlist. */
+(function(){
+ const byId=id=>document.getElementById(id);
+ const dialog=byId('swgDownloadDialog'), open=byId('swgDownloadOpen'), close=byId('swgDownloadClose'), cancel=byId('swgDownloadCancel');
+ const toggle=byId('swgLicenseToggle'), terms=byId('swgLicenseText'), accept=byId('swgDownloadAccept');
+ const confirm=byId('swgDownloadConfirm'), hint=byId('swgDownloadHint'), label=byId('swgDownloadSong');
+ const player=byId('playlistAudio'), now=byId('playlistNow');
+ let source='', title='';
+ function shut(){dialog.hidden=true;document.body.style.overflow='';open.focus();}
+ function selected(){return player.currentSrc||player.getAttribute('src')||player.querySelector('source')?.src||'';}
+ open.addEventListener('click',()=>{
+   source=selected();
+   if(!source){alert('Choose a song from your playlist first.');return;}
+   title=(now?.textContent||'Selected song').replace(/^Now playing:\s*/i,'').trim()||'Selected song';
+   label.textContent='Selected song: '+title;
+   terms.hidden=true;toggle.setAttribute('aria-expanded','false');accept.checked=false;accept.disabled=true;confirm.disabled=true;
+   hint.textContent='Open the Free Use License and review its terms before accepting.';
+   dialog.hidden=false;document.body.style.overflow='hidden';toggle.focus();
+ });
+ toggle.addEventListener('click',()=>{
+   terms.hidden=!terms.hidden;toggle.setAttribute('aria-expanded',String(!terms.hidden));
+   if(!terms.hidden){accept.disabled=false;hint.textContent='Read the complete license using the link, then check the box to accept.';}
+ });
+ accept.addEventListener('change',()=>{confirm.disabled=!accept.checked;});
+ close.addEventListener('click',shut);cancel.addEventListener('click',shut);
+ dialog.addEventListener('click',e=>{if(e.target===dialog)shut();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.hidden)shut();});
+ confirm.addEventListener('click',async()=>{
+   if(!accept.checked||!source)return;
+   confirm.disabled=true;hint.textContent='Preparing your download…';
+   try{
+     const response=await fetch(source);
+     if(!response.ok)throw new Error('HTTP '+response.status);
+     const blob=await response.blob();
+     const url=URL.createObjectURL(blob);
+     const ext=(new URL(source,location.href).pathname.match(/\.(mp3|wav|m4a|ogg|flac)$/i)||[])[1]||'mp3';
+     const filename=title.replace(/[\\/:*?"<>|]/g,'').trim()||'song';
+     const a=document.createElement('a');a.href=url;a.download=filename+'.'+ext;document.body.appendChild(a);a.click();a.remove();
+     setTimeout(()=>URL.revokeObjectURL(url),60000);
+     shut();
+   }catch(error){
+     hint.textContent='Automatic download was blocked. Try opening the recording directly.';
+     const a=document.createElement('a');a.href=source;a.target='_blank';a.rel='noopener';a.textContent='Open selected recording';
+     hint.append(' ',a);confirm.disabled=false;
+   }
+ });
 })();
 </script>
 </body></html>
