@@ -286,14 +286,13 @@ updateNewSongMarkers();
 <div id="swgDownloadIntro">
 <h2 id="swgDownloadTitle">Download a Song</h2>
 <p id="swgDownloadSong"></p>
-<p>Before downloading, please review the Free Use License. You can accept it and download your selected song on the next screen.</p>
-<div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button type="button" class="swg-download-confirm" id="swgLicenseReview">Review Free Use License →</button></div>
+<p>Please review the license before downloading.</p>
+<div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button type="button" class="swg-download-confirm" id="swgLicenseReview">Read the Free Use License →</button></div>
 </div>
 <div id="swgDownloadLicense" hidden>
 <h2 id="swgLicenseHeading" tabindex="-1">Free Use License</h2>
 <div class="swg-license-scroll" id="swgLicenseText" tabindex="0">
 
-<h1>Free Use License</h1>
 <p class="intro">These songs and devotionals are here to be heard, read, and shared freely.</p>
 <h2>What you may do</h2>
 <p>Madelyn Dionne grants permission, without a fee, to use the original lyrics, sound recordings, and devotionals on <em>Songs With Grace</em> for personal, church, ministry, and educational purposes that are not commercial. You may:</p>
@@ -310,7 +309,7 @@ updateNewSongMarkers();
 <p>Email <a href="mailto:MadelynDionneWrites@gmail.com">MadelynDionneWrites@gmail.com</a>. If you are unsure whether your use is covered, please ask.</p>
 <p>This permission applies only to material for which Madelyn Dionne holds the necessary rights. Scripture and any separately identified third-party material are not licensed by this notice. All rights not expressly granted are reserved.</p>
 </div>
-<p class="swg-download-help" id="swgDownloadHint" aria-live="polite">By choosing “Accept &amp; Download,” you agree to the Free Use License above.</p>
+<p class="swg-download-help" id="swgDownloadHint" aria-live="polite">Choose “Accept &amp; Download” to agree to these terms and download your song.</p>
 <div class="swg-download-actions"><button type="button" id="swgLicenseDecline">Decline</button><button type="button" class="swg-download-confirm" id="swgDownloadConfirm">Accept &amp; Download</button></div>
 </div>
 </div></section>
@@ -331,11 +330,11 @@ updateNewSongMarkers();
    if(!source){alert('Choose a song from your playlist first.');return;}
    title=(now?.textContent||'Selected song').replace(/^Now playing:\s*/i,'').trim()||'Selected song';
    label.textContent='Selected song: '+title;
-   intro.hidden=false;license.hidden=true;confirm.disabled=false;busy=false;
-   hint.textContent='By choosing “Accept & Download,” you agree to the Free Use License above.';
+   intro.hidden=false;license.hidden=true;dialog.setAttribute('aria-labelledby','swgDownloadTitle');confirm.disabled=false;busy=false;
+   hint.textContent='Choose “Accept & Download” to agree to these terms and download your song.';
    dialog.hidden=false;document.body.style.overflow='hidden';review.focus();
  });
- review.addEventListener('click',()=>{intro.hidden=true;license.hidden=false;byId('swgLicenseText').scrollTop=0;byId('swgLicenseHeading').focus();});
+ review.addEventListener('click',()=>{intro.hidden=true;license.hidden=false;dialog.setAttribute('aria-labelledby','swgLicenseHeading');byId('swgLicenseText').scrollTop=0;byId('swgLicenseHeading').focus();});
  close.addEventListener('click',shut);cancel.addEventListener('click',shut);decline.addEventListener('click',shut);
  dialog.addEventListener('click',e=>{if(e.target===dialog)shut();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.hidden)shut();});
