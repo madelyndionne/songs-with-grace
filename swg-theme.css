@@ -1,0 +1,33 @@
+/* Songs With Grace shared optional night palette */
+html[data-swg-theme="dark"]{color-scheme:dark;--purple:#d9b9ed;--deep:#f0dff5;--paper:#19151f;--ink:#f1eaf0;--soft:#382a43}
+html[data-swg-theme="dark"] .site-menu,html[data-swg-theme="dark"] .site-info section{background:#28212f;border-color:#51415b;color:var(--ink)}
+html[data-swg-theme="dark"] .site-menu a,html[data-swg-theme="dark"] .site-footer a{color:#e4c9f2}
+html[data-swg-theme="dark"] .site-footer{border-color:#51415b;color:#c8b9cd}
+html[data-swg-theme="dark"] .hero{background-image:linear-gradient(rgba(18,12,24,.56),rgba(18,12,24,.68)),url('assets/main-page-hero.webp')}
+html[data-swg-theme="dark"] .hero-box{background:rgba(31,24,39,.91);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+html[data-swg-theme="dark"] .growing,html[data-swg-theme="dark"] .tagline{color:#e2d5e5}
+html[data-swg-theme="dark"] .card,html[data-swg-theme="dark"] .no-results,html[data-swg-theme="dark"] .swg-message-form,html[data-swg-theme="dark"] .swg-message{background:#28212f;border-color:#51415b}
+html[data-swg-theme="dark"] .resource-type-card,html[data-swg-theme="dark"] .resource-type,html[data-swg-theme="dark"] .meta,html[data-swg-theme="dark"] .favorites-note,html[data-swg-theme="dark"] .swg-message-note,html[data-swg-theme="dark"] .share-status,html[data-swg-theme="dark"] .swg-print-guidance{color:#c8b9cd!important}
+html[data-swg-theme="dark"] input,html[data-swg-theme="dark"] select,html[data-swg-theme="dark"] textarea,html[data-swg-theme="dark"] .swg-message-form input:not([type=hidden]){background:#302739;color:#f1eaf0;border-color:#685774}
+html[data-swg-theme="dark"] input::placeholder,html[data-swg-theme="dark"] textarea::placeholder{color:#c8b9cd}
+html[data-swg-theme="dark"] .favorites-toggle,html[data-swg-theme="dark"] .playlist-launch,html[data-swg-theme="dark"] .playlist-add{background:#302739;color:#e4c9f2;border-color:#685774}
+html[data-swg-theme="dark"] .favorites-toggle.active,html[data-swg-theme="dark"] .playlist-add.is-added{background:#493553}
+html[data-swg-theme="dark"] .actions a{background:#45324f;color:#f1dcfc}
+html[data-swg-theme="dark"] .actions a.listen,html[data-swg-theme="dark"] .swg-message-form button{background:#75508d;color:#fff}
+html[data-swg-theme="dark"] .playlist-panel,html[data-swg-theme="dark"] .swg-download-box{background:#28212f;color:#f1eaf0;border-color:#685774}
+html[data-swg-theme="dark"] .playlist-head,html[data-swg-theme="dark"] .playlist-player{border-color:#51415b}
+html[data-swg-theme="dark"] .playlist-player,html[data-swg-theme="dark"] .swg-license-scroll{background:#302739;color:#f1eaf0;border-color:#685774}
+html[data-swg-theme="dark"] .playlist-item{border-color:#51415b}
+html[data-swg-theme="dark"] .playlist-now,html[data-swg-theme="dark"] .playlist-empty,html[data-swg-theme="dark"] .swg-download-help{color:#c8b9cd}
+html[data-swg-theme="dark"] .playlist-controls button.secondary,html[data-swg-theme="dark"] .playlist-controls .swg-download-button,html[data-swg-theme="dark"] .swg-license-toggle{background:#493553;color:#f1dcfc;border-color:#685774}
+html[data-swg-theme="dark"] .swg-playlist-download-help{color:#e4c9f2!important}
+html[data-swg-theme="dark"] .section-bar,html[data-swg-theme="dark"] .song-introduction{background:#382a43!important;color:#f1eaf0}
+html[data-swg-theme="dark"] .song-introduction h2{color:#d9b9ed!important}
+html[data-swg-theme="dark"] section h2{border-color:#51415b}
+html[data-swg-theme="dark"] .section-bar span{color:#b9a4c4}
+html[data-swg-theme="dark"] .swg-message-form label{color:#f0dff5}
+html[data-swg-theme="dark"] .share-actions button,html[data-swg-theme="dark"] .share-actions a{color:#d9b9ed}
+.swg-theme-toggle{font:700 .92rem Caladea,serif;border:1px solid #d8cce0;border-radius:999px;background:rgba(255,255,255,.94);color:#382742;padding:9px 15px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);margin-left:auto;white-space:nowrap}
+html[data-swg-theme="dark"] .swg-theme-toggle{background:#302739;color:#f1dcfc;border-color:#8c739d}
+.swg-theme-toggle:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media print{html[data-swg-theme="dark"]{color-scheme:light;--purple:#65407a;--deep:#382742;--paper:#fff;--ink:#000;--soft:#eee7f2}html[data-swg-theme="dark"] #devotional,html[data-swg-theme="dark"] #devotional *{color:#000!important;background:#fff!important}.swg-theme-toggle{display:none!important}}
