@@ -56,3 +56,17 @@ html[data-swg-theme="dark"] #devotional button:not(.print-btn) *,
 html[data-swg-theme="dark"] #devotional a[class*="scripture"] *{color:#382742!important}
 @media(max-width:640px){.resource .swg-message{padding:18px}.resource .swg-message-form{max-width:100%}}
 @media print{.resource .swg-message{display:none!important}}
+
+/* Theme control for pages with custom navigation (ministry workspaces, special pages). */
+.swg-theme-floating{position:fixed;right:18px;top:14px;z-index:9999;margin-left:0}
+/* Shared night-mode refinements for special layouts and Scripture modal. */
+html[data-swg-theme="dark"] .scripture-card{background:#28212f;color:#f1eaf0}
+html[data-swg-theme="dark"] .scripture-picks button{background:#382a43;color:#f1eaf0;border-color:#685774}
+html[data-swg-theme="dark"] .scripture-picks button.active{background:#75508d;color:#fff}
+html[data-swg-theme="dark"] .scripture-copy,html[data-swg-theme="dark"] .scripture-error-detail{color:#c8b9cd;border-color:#51415b}
+html[data-swg-theme="dark"] .swg-song-download-panel{background:#28212f;color:#f1eaf0}
+html[data-swg-theme="dark"] .swg-song-download-panel h2,html[data-swg-theme="dark"] .swg-song-download-panel a{color:#d9b9ed}
+html[data-swg-theme="dark"] header:not(.hero){background:#28212f;color:#f1eaf0}
+html[data-swg-theme="dark"] main,html[data-swg-theme="dark"] article{color:var(--ink,#f1eaf0)}
+@media(max-width:640px){.swg-theme-floating{right:8px;top:8px;padding:7px 10px}}
+@media print{.swg-theme-floating{display:none!important}}
