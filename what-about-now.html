@@ -33,13 +33,19 @@
 </style>
 <style>#devotional{max-width:800px;margin:auto}#devotional h1{font-size:2.3rem}#devotional h2{font-size:1.85rem}#devotional h3{font-size:1.35rem;color:#382742;margin-top:1.6rem}#devotional p{line-height:1.68}#devotional blockquote{border-left:3px solid #b8a5c4;padding:3px 16px;margin:14px 0;background:#f8f5fa}#devotional a[href$=".pdf"]{display:inline-block;background:#65407a;color:white;padding:11px 17px;border-radius:8px;text-decoration:none;font-weight:700}@media print{#devotional a[href$=".pdf"]{display:none}}</style><link rel="stylesheet" href="swg-theme.css?v=20261102"/>
 <style>
-/* Dark-mode contrast for case-study quotations; preserve light-mode styling. */
-html[data-theme="dark"] #devotional blockquote,
-body.dark-mode #devotional blockquote,
-body[data-theme="dark"] #devotional blockquote {
-  background:#30243b !important;
-  color:#f6edf8 !important;
-  border-left:3px solid #c6a1da !important;
+/* Case-study dark theme: match the actual site toggle attribute. */
+html[data-swg-theme="dark"] #devotional blockquote {
+  background: #30243b !important;
+  color: #f6edf8 !important;
+  border-left: 3px solid #c6a1da !important;
+}
+html[data-swg-theme="dark"] #devotional blockquote p { color: #f6edf8 !important; }
+html[data-swg-theme="dark"] #devotional h1,
+html[data-swg-theme="dark"] #devotional h2,
+html[data-swg-theme="dark"] #devotional h3 { color: #dcb8ed !important; }
+@media print {
+  #devotional blockquote, #devotional blockquote p { background: #fff !important; color: #000 !important; }
+  #devotional h1, #devotional h2, #devotional h3 { color: #000 !important; }
 }
 </style>
 <script defer src="swg-theme.js?v=20261102"></script>
