@@ -31,3 +31,28 @@ html[data-swg-theme="dark"] .share-actions button,html[data-swg-theme="dark"] .s
 html[data-swg-theme="dark"] .swg-theme-toggle{background:#302739;color:#f1dcfc;border-color:#8c739d}
 .swg-theme-toggle:focus-visible{outline:2px solid currentColor;outline-offset:3px}
 @media print{html[data-swg-theme="dark"]{color-scheme:light;--purple:#65407a;--deep:#382742;--paper:#fff;--ink:#000;--soft:#eee7f2}html[data-swg-theme="dark"] #devotional,html[data-swg-theme="dark"] #devotional *{color:#000!important;background:#fff!important}.swg-theme-toggle{display:none!important}}
+
+/* Song-page private-message form: layout in BOTH themes. */
+.resource .swg-message{margin:34px 0 12px;padding:24px;border:1px solid #d8cce0;border-radius:14px;background:#f8f4fa}
+.resource .swg-message-form{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;max-width:620px;margin-top:16px;background:transparent}
+.resource .swg-message-form label{display:block;font-weight:700;line-height:1.5}
+.resource .swg-message-form input:not([type=hidden]),
+.resource .swg-message-form textarea{display:block;width:100%;min-width:0;box-sizing:border-box;margin:6px 0 0;padding:12px;border:1px solid #d1c4d9;border-radius:9px;background:#fff;color:#29262b;font:inherit}
+.resource .swg-message-form textarea{min-height:140px;resize:vertical}
+.resource .swg-message-form button{justify-self:start;width:auto;padding:12px 22px;border:0;border-radius:9px;background:#65407a;color:#fff;font:700 1rem Caladea,serif;cursor:pointer}
+.resource .swg-message-form button:hover{background:#382742}
+.resource .swg-message-note{line-height:1.55}
+html[data-swg-theme="dark"] .resource .swg-message{background:#28212f;border-color:#51415b}
+html[data-swg-theme="dark"] .resource .swg-message-form{background:transparent}
+html[data-swg-theme="dark"] .resource .swg-message-form input:not([type=hidden]),
+html[data-swg-theme="dark"] .resource .swg-message-form textarea{background:#302739;color:#f1eaf0;border-color:#685774}
+html[data-swg-theme="dark"] .resource .swg-message-form button{background:#75508d;color:#fff}
+html[data-swg-theme="dark"] .resource .swg-message-form button:hover{background:#8961a2}
+/* Injected devotional Scripture reader: keep label legible on its light button. */
+html[data-swg-theme="dark"] #devotional button:not(.print-btn),
+html[data-swg-theme="dark"] #devotional a[class*="scripture"],
+html[data-swg-theme="dark"] #devotional button[class*="scripture"]{background:#e9d9f1!important;color:#382742!important;border-color:#b79ac9!important}
+html[data-swg-theme="dark"] #devotional button:not(.print-btn) *,
+html[data-swg-theme="dark"] #devotional a[class*="scripture"] *{color:#382742!important}
+@media(max-width:640px){.resource .swg-message{padding:18px}.resource .swg-message-form{max-width:100%}}
+@media print{.resource .swg-message{display:none!important}}
