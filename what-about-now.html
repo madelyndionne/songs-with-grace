@@ -32,6 +32,16 @@
 .swg-message-note{font-size:.9rem;color:#6d6073}
 </style>
 <style>#devotional{max-width:800px;margin:auto}#devotional h1{font-size:2.3rem}#devotional h2{font-size:1.85rem}#devotional h3{font-size:1.35rem;color:#382742;margin-top:1.6rem}#devotional p{line-height:1.68}#devotional blockquote{border-left:3px solid #b8a5c4;padding:3px 16px;margin:14px 0;background:#f8f5fa}#devotional a[href$=".pdf"]{display:inline-block;background:#65407a;color:white;padding:11px 17px;border-radius:8px;text-decoration:none;font-weight:700}@media print{#devotional a[href$=".pdf"]{display:none}}</style><link rel="stylesheet" href="swg-theme.css?v=20261102"/>
+<style>
+/* Dark-mode contrast for case-study quotations; preserve light-mode styling. */
+html[data-theme="dark"] #devotional blockquote,
+body.dark-mode #devotional blockquote,
+body[data-theme="dark"] #devotional blockquote {
+  background:#30243b !important;
+  color:#f6edf8 !important;
+  border-left:3px solid #c6a1da !important;
+}
+</style>
 <script defer src="swg-theme.js?v=20261102"></script>
 </head><body>
 <nav aria-label="Site menu" class="site-menu"><a href="index.html">Home</a><a href="index.html#songs">Songs</a><a href="whats-new.html">What’s New at SWG<span aria-label="New" class="new-feature-mark" data-new-until="2026-10-19">*</span></a><a href="index.html#how-to-use">How to Use This Site</a><a href="index.html#about-us">About Us</a><a href="index.html#contact-us">Contact Us</a><a href="license.html">Free Use</a></nav>
