@@ -14,6 +14,14 @@ header{padding:48px 20px 38px;text-align:center;background:linear-gradient(180de
 .partner-form button{font:inherit;padding:10px 20px;border:0;border-radius:8px;background:var(--purple);color:#fff;cursor:pointer}
 .partner-form button:disabled{opacity:.6;cursor:wait}.partner-status{min-height:1.5em;margin-top:12px}.partner-form input{background:white}.partner-form label{display:block;flex:1 1 220px}.partner-form label input{width:100%}
 .session-panel{margin-top:16px;padding:16px;border:1px solid #e2d9e6;border-radius:10px;background:#fdfbfe}.session-panel[hidden],#partner-login[hidden]{display:none}.session-panel button{font:inherit;padding:9px 18px;border:0;border-radius:8px;background:var(--purple);color:white;cursor:pointer}
+/* Password management */
+.password-panel[hidden]{display:none}
+.password-panel{margin-top:16px;padding:16px;border:1px solid #846895;border-radius:10px;background:#fdfbfe;color:var(--ink)}
+.password-panel label{display:block;margin:10px 0}
+.password-panel input{font:inherit;display:block;width:100%;max-width:420px;padding:9px 12px;border:1px solid #cdbdd5;border-radius:8px}
+.password-panel button{font:inherit;border:0;border-radius:8px;padding:9px 16px;background:var(--purple);color:#fff;cursor:pointer}
+.password-panel button:disabled{opacity:.6;cursor:wait}
+.password-panel .secondary{background:#e9e0ed;color:var(--deep)}
 /* Authenticated project browser */
 .session-panel{background:#34283e;color:#fff;border-color:#67536f}
 .session-panel #session-identity{color:#fff;font-weight:bold}
@@ -44,7 +52,7 @@ header{padding:48px 20px 38px;text-align:center;background:linear-gradient(180de
 .viewer-download{align-self:flex-start}
 </style><link rel="stylesheet" href="swg-theme.css?v=20261102"/>
 <script defer src="swg-theme.js?v=20261102"></script>
-</head><body><header><p class="brand">Songs With Grace</p><h1>Ministry Access</h1></header><main><p class="lead">A quiet place for churches and ministry partners to prepare music for sharing.</p><section class="card" aria-labelledby="access-heading"><h2 id="access-heading">Ministry Access &amp; Scheduling</h2><p>Explore availability for ministry projects and events using the calendar below. For ministry collaboration or scheduling inquiries, please contact Madelyn Dionne through Songs With Grace.</p><h2 id="schedule-heading" style="margin-top:24px">Ministry Schedule</h2><p>View upcoming availability and ministry commitments.</p><iframe class="calendar-frame" title="SWG Ministry Schedule calendar" src="https://calendar.google.com/calendar/embed?src=16acb75fefb86ecf2a76a2140f672dc8ccc8f9179910093872552bd4d0f77d8f%40group.calendar.google.com&ctz=America%2FChicago&mode=MONTH&showTitle=0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="calendar-note">Calendar entries are maintained through Google Calendar. <a href="https://calendar.google.com/calendar/u/0/r?cid=16acb75fefb86ecf2a76a2140f672dc8ccc8f9179910093872552bd4d0f77d8f%40group.calendar.google.com">Open calendar in Google Calendar</a>.</p></section><section class="card" aria-labelledby="partner-heading"><span class="pill">Ministry partners</span><h2 id="partner-heading" style="margin-top:12px">Ministry Partner Access</h2><p>Authorized ministry partners may sign in to access their workspace.</p><form class="partner-form" id="partner-login"><label>Email address<input type="email" id="partner-email" placeholder="Email address" autocomplete="username" required></label><label>Password<input type="password" id="partner-password" placeholder="Password" autocomplete="current-password" required></label><button type="submit" id="partner-submit">Sign in</button></form><div class="session-panel" id="partner-session" hidden><p id="session-identity"></p><p class="muted small" id="session-details"></p><button type="button" id="partner-signout">Sign out</button></div><section class="projects" id="partner-projects" hidden aria-label="Your ministry projects"><h2 id="projects-heading">Ministry Projects</h2><p class="small" id="projects-context"></p><div id="project-content"></div></section><p class="partner-status small" id="partner-status" role="status" aria-live="polite"></p><p class="muted small">Access is limited to approved ministry partners. Contact Madelyn Dionne if you need assistance.</p></section><p class="muted small">Partner materials are added as they are approved for sharing.</p></main><div id="private-viewer" class="viewer" hidden role="presentation"><section class="viewer-dialog" role="dialog" aria-modal="true" aria-labelledby="viewer-title"><div class="viewer-top"><strong id="viewer-title">Private file</strong><button type="button" class="viewer-close" id="viewer-close">Close</button></div><div class="viewer-content" id="viewer-content"></div><a class="button viewer-download" id="viewer-download" href="#" download>Download file</a></section></div><footer><a href="index.html">Return to Songs With Grace</a><p>© 2026 Madelyn Dionne</p></footer><script type="module">
+</head><body><header><p class="brand">Songs With Grace</p><h1>Ministry Access</h1></header><main><p class="lead">A quiet place for churches and ministry partners to prepare music for sharing.</p><section class="card" aria-labelledby="access-heading"><h2 id="access-heading">Ministry Access &amp; Scheduling</h2><p>Explore availability for ministry projects and events using the calendar below. For ministry collaboration or scheduling inquiries, please contact Madelyn Dionne through Songs With Grace.</p><h2 id="schedule-heading" style="margin-top:24px">Ministry Schedule</h2><p>View upcoming availability and ministry commitments.</p><iframe class="calendar-frame" title="SWG Ministry Schedule calendar" src="https://calendar.google.com/calendar/embed?src=16acb75fefb86ecf2a76a2140f672dc8ccc8f9179910093872552bd4d0f77d8f%40group.calendar.google.com&ctz=America%2FChicago&mode=MONTH&showTitle=0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="calendar-note">Calendar entries are maintained through Google Calendar. <a href="https://calendar.google.com/calendar/u/0/r?cid=16acb75fefb86ecf2a76a2140f672dc8ccc8f9179910093872552bd4d0f77d8f%40group.calendar.google.com">Open calendar in Google Calendar</a>.</p></section><section class="card" aria-labelledby="partner-heading"><span class="pill">Ministry partners</span><h2 id="partner-heading" style="margin-top:12px">Ministry Partner Access</h2><p>Authorized ministry partners may sign in to access their workspace.</p><form class="partner-form" id="partner-login"><label>Email address<input type="email" id="partner-email" placeholder="Email address" autocomplete="username" required></label><label>Password<input type="password" id="partner-password" placeholder="Password" autocomplete="current-password" required></label><button type="submit" id="partner-submit">Sign in</button></form><div class="session-panel" id="partner-session" hidden><p id="session-identity"></p><p class="muted small" id="session-details"></p><div class="actions"><button type="button" id="password-toggle">Change password</button><button type="button" id="partner-signout">Sign out</button></div><form class="password-panel" id="password-change" hidden><h2>Change your password</h2><p class="small">Enter your current password and choose a new one (at least 12 characters).</p><label>Current password<input type="password" id="current-password" autocomplete="current-password" required></label><label>New password<input type="password" id="new-password" autocomplete="new-password" minlength="12" required></label><label>Confirm new password<input type="password" id="confirm-password" autocomplete="new-password" minlength="12" required></label><div class="actions"><button type="submit" id="password-save">Save new password</button><button type="button" class="secondary" id="password-cancel">Cancel</button></div><p id="password-status" class="small" role="status" aria-live="polite"></p></form></div><section class="projects" id="partner-projects" hidden aria-label="Your ministry projects"><h2 id="projects-heading">Ministry Projects</h2><p class="small" id="projects-context"></p><div id="project-content"></div></section><p class="partner-status small" id="partner-status" role="status" aria-live="polite"></p><p class="muted small">Access is limited to approved ministry partners. Contact Madelyn Dionne if you need assistance.</p></section><p class="muted small">Partner materials are added as they are approved for sharing.</p></main><div id="private-viewer" class="viewer" hidden role="presentation"><section class="viewer-dialog" role="dialog" aria-modal="true" aria-labelledby="viewer-title"><div class="viewer-top"><strong id="viewer-title">Private file</strong><button type="button" class="viewer-close" id="viewer-close">Close</button></div><div class="viewer-content" id="viewer-content"></div><a class="button viewer-download" id="viewer-download" href="#" download>Download file</a></section></div><footer><a href="index.html">Return to Songs With Grace</a><p>© 2026 Madelyn Dionne</p></footer><script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const supabase = createClient('https://nfsfoxdklaifvdyaaojp.supabase.co', 'sb_publishable_yGWGY-pkJqSutE-xocFNCg_woQ321hv');
 const form = document.getElementById('partner-login');
@@ -54,6 +62,36 @@ const sessionPanel = document.getElementById('partner-session');
 const sessionIdentity = document.getElementById('session-identity');
 const sessionDetails = document.getElementById('session-details');
 const signout = document.getElementById('partner-signout');
+const passwordToggle = document.getElementById('password-toggle');
+const passwordForm = document.getElementById('password-change');
+const passwordCancel = document.getElementById('password-cancel');
+const passwordSave = document.getElementById('password-save');
+const passwordStatus = document.getElementById('password-status');
+const currentPassword = document.getElementById('current-password');
+const newPassword = document.getElementById('new-password');
+const confirmPassword = document.getElementById('confirm-password');
+function hidePasswordForm(){passwordForm.reset();passwordForm.hidden=true;passwordStatus.textContent='';}
+passwordToggle.addEventListener('click',()=>{passwordForm.hidden=!passwordForm.hidden;if(!passwordForm.hidden)currentPassword.focus();else hidePasswordForm();});
+passwordCancel.addEventListener('click',()=>{hidePasswordForm();passwordToggle.focus();});
+passwordForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(newPassword.value.length<12){passwordStatus.textContent='Use at least 12 characters.';return;}
+  if(newPassword.value!==confirmPassword.value){passwordStatus.textContent='New passwords do not match.';return;}
+  if(currentPassword.value===newPassword.value){passwordStatus.textContent='Choose a different password.';return;}
+  passwordSave.disabled=true;
+  passwordStatus.textContent='Checking your current password…';
+  try{
+    const {data:{user},error:userError}=await supabase.auth.getUser();
+    if(userError||!user?.email)throw new Error('Session expired. Please sign in again.');
+    const {error:verifyError}=await supabase.auth.signInWithPassword({email:user.email,password:currentPassword.value});
+    if(verifyError)throw new Error('Current password is incorrect.');
+    const {error:updateError}=await supabase.auth.updateUser({password:newPassword.value});
+    if(updateError)throw new Error('Unable to update password. Please try again.');
+    passwordForm.reset();
+    passwordStatus.textContent='Password changed successfully. Use your new password next time you sign in.';
+  }catch(error){passwordStatus.textContent=error.message||'Unable to change password. Please try again.';}
+  finally{passwordSave.disabled=false;}
+});
 const projects = document.getElementById('partner-projects');
 const projectContent = document.getElementById('project-content');
 const projectsContext = document.getElementById('projects-context');
@@ -246,7 +284,7 @@ function renderUser(user) {
   const signedIn = Boolean(user);
   form.hidden = signedIn;
   sessionPanel.hidden = !signedIn;
-  if (!signedIn) { if(!viewer.hidden) closeViewer(); displayedUserId=null; displayedRole=null; sessionIdentity.textContent = ''; sessionDetails.textContent = ''; showProjectsFor(null); return; }
+  if (!signedIn) { hidePasswordForm(); if(!viewer.hidden) closeViewer(); displayedUserId=null; displayedRole=null; sessionIdentity.textContent = ''; sessionDetails.textContent = ''; showProjectsFor(null); return; }
   const role = user.app_metadata?.ministry_role === 'admin' ? 'Ministry administrator' : 'Ministry partner';
   sessionIdentity.textContent = `Signed in as ${user.email || 'authorized user'} — ${role}`;
   sessionDetails.textContent = 'Private project files are available only when your account has permission to access them.';
@@ -285,6 +323,7 @@ signout.addEventListener('click', async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
     forgetLocation();
+    hidePasswordForm();
     renderUser(null);
     status.textContent = 'You have signed out.';
   } catch { status.textContent = 'Sign-out failed. Please try again.'; }
