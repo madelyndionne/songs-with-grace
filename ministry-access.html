@@ -45,6 +45,24 @@ const projectsContext = document.getElementById('projects-context');
 const MARCUS_ID = '0bff8d40-8055-4f5a-b3e9-90e2c7c624e2';
 const BUCKET = 'ministry-private';
 let browserVersion = 0;
+let displayedUserId = null;
+let displayedRole = null;
+const LOCATION_KEY = 'swg-ministry-last-folder-v1';
+function savedLocation(userId) {
+  try {
+    const record = JSON.parse(localStorage.getItem(LOCATION_KEY) || '{}');
+    if(record.userId !== userId || !Array.isArray(record.segments) ||
+       !record.segments.every(x => typeof x === 'string' && x.length > 0 && !x.includes('/')) ||
+       record.segments.length > 12) return null;
+    return record;
+  } catch { return null; }
+}
+function rememberLocation(userId, ownerId, segments) {
+  try { localStorage.setItem(LOCATION_KEY,JSON.stringify({userId,ownerId,segments})); } catch {}
+}
+function forgetLocation() {
+  try { localStorage.removeItem(LOCATION_KEY); } catch {}
+}
 function el(tag, text, className) {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -61,7 +79,7 @@ async function listFolder(path) {
   return data || [];
 }
 function folderEntry(item) { return item.id === null || !item.metadata; }
-async function showFolder(ownerId, segments=[], version=browserVersion) {
+async function showFolder(ownerId, segments=[], version=browserVersion, userId=displayedUserId) {
   if(version !== browserVersion) return;
   projects.hidden = false;
   projectContent.replaceChildren(el('p','Loading private projects…'));
@@ -69,11 +87,12 @@ async function showFolder(ownerId, segments=[], version=browserVersion) {
   try {
     const entries = await listFolder(path);
     if(version !== browserVersion) return;
+    rememberLocation(userId,ownerId,segments);
     projectContent.replaceChildren();
     if(segments.length) {
       const back = el('button','← Back','project-back');
       back.type='button';
-      back.addEventListener('click',()=>showFolder(ownerId,segments.slice(0,-1),version));
+      back.addEventListener('click',()=>showFolder(ownerId,segments.slice(0,-1),version,userId));
       projectContent.append(back);
     }
     const heading = el('h2',segments.length ? prettyName(segments[segments.length-1]) : 'Available projects');
@@ -86,7 +105,7 @@ async function showFolder(ownerId, segments=[], version=browserVersion) {
       for(const item of folders) {
         const tile=el('button',undefined,'project-tile');tile.type='button';
         tile.append(el('strong',prettyName(item.name)),el('span',segments.length ? 'Open song materials' : 'Open project'));
-        tile.addEventListener('click',()=>showFolder(ownerId,[...segments,item.name],version));
+        tile.addEventListener('click',()=>showFolder(ownerId,[...segments,item.name],version,userId));
         grid.append(tile);
       }
       projectContent.append(grid);
@@ -116,6 +135,7 @@ function showProjectsFor(user) {
   projects.hidden=true;
   projectContent.replaceChildren();
   if(!user) return;
+  const previous = savedLocation(user.id);
   const admin=user.app_metadata?.ministry_role==='admin';
   if(admin) {
     projects.hidden=false;
@@ -125,9 +145,13 @@ function showProjectsFor(user) {
     tile.addEventListener('click',()=>{projectsContext.textContent='Pastor Marcus — Good News Church';showFolder(MARCUS_ID,[],version)});
     const grid=el('div',undefined,'project-grid');grid.append(tile);
     projectContent.append(grid);
+    if(previous?.ownerId === MARCUS_ID) {
+      projectsContext.textContent='Pastor Marcus — Good News Church';
+      showFolder(MARCUS_ID,previous.segments,version,user.id);
+    }
   } else {
     projectsContext.textContent='Projects available to your signed-in account.';
-    showFolder(user.id,[],version);
+    showFolder(user.id,previous?.ownerId === user.id ? previous.segments : [],version,user.id);
   }
 }
 
@@ -135,11 +159,15 @@ function renderUser(user) {
   const signedIn = Boolean(user);
   form.hidden = signedIn;
   sessionPanel.hidden = !signedIn;
-  if (!signedIn) { sessionIdentity.textContent = ''; sessionDetails.textContent = ''; showProjectsFor(null); return; }
+  if (!signedIn) { displayedUserId=null; displayedRole=null; sessionIdentity.textContent = ''; sessionDetails.textContent = ''; showProjectsFor(null); return; }
   const role = user.app_metadata?.ministry_role === 'admin' ? 'Ministry administrator' : 'Ministry partner';
   sessionIdentity.textContent = `Signed in as ${user.email || 'authorized user'} — ${role}`;
   sessionDetails.textContent = 'Private project files are available only when your account has permission to access them.';
-  showProjectsFor(user);
+  if(displayedUserId !== user.id || displayedRole !== role) {
+    displayedUserId = user.id;
+    displayedRole = role;
+    showProjectsFor(user);
+  }
 }
 async function refreshUser() {
   try {
@@ -169,6 +197,7 @@ signout.addEventListener('click', async () => {
   try {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
+    forgetLocation();
     renderUser(null);
     status.textContent = 'You have signed out.';
   } catch { status.textContent = 'Sign-out failed. Please try again.'; }
