@@ -70,3 +70,41 @@ html[data-swg-theme="dark"] header:not(.hero){background:#28212f;color:#f1eaf0}
 html[data-swg-theme="dark"] main,html[data-swg-theme="dark"] article{color:var(--ink,#f1eaf0)}
 @media(max-width:640px){.swg-theme-floating{right:8px;top:8px;padding:7px 10px}}
 @media print{.swg-theme-floating{display:none!important}}
+
+
+/* November 2026: targeted contrast repairs for legacy and ministry layouts. */
+html[data-swg-theme="dark"] .content-card,
+html[data-swg-theme="dark"] .update,
+html[data-swg-theme="dark"] .mission,
+html[data-swg-theme="dark"] .intro,
+html[data-swg-theme="dark"] .day-toc,
+html[data-swg-theme="dark"] .audio-note,
+html[data-swg-theme="dark"] .gift a,
+html[data-swg-theme="dark"] .file,
+html[data-swg-theme="dark"] .pill {background:#302739;color:#f1eaf0;border-color:#685774}
+html[data-swg-theme="dark"] .page-head p,
+html[data-swg-theme="dark"] .lead,
+html[data-swg-theme="dark"] .tech-note,
+html[data-swg-theme="dark"] .update-kicker,
+html[data-swg-theme="dark"] .update h3,
+html[data-swg-theme="dark"] .update em,
+html[data-swg-theme="dark"] .file strong,
+html[data-swg-theme="dark"] .day h3,
+html[data-swg-theme="dark"] .scripture,
+html[data-swg-theme="dark"] .christmas-note {color:#e4c9f2}
+html[data-swg-theme="dark"] .file span,
+html[data-swg-theme="dark"] .preview-note,
+html[data-swg-theme="dark"] .muted {color:#c8b9cd}
+html[data-swg-theme="dark"] .update h2 {border-color:#685774}
+html[data-swg-theme="dark"] .card h3,
+html[data-swg-theme="dark"] #lyrics h3,
+html[data-swg-theme="dark"] #devotional h3,
+html[data-swg-theme="dark"] #letter h3 {color:#f0dff5}
+html[data-swg-theme="dark"] .day-toc a,
+html[data-swg-theme="dark"] .gift a {color:#e4c9f2}
+html[data-swg-theme="dark"] .card:not(.resource .card),
+html[data-swg-theme="dark"] main .card {border-color:#51415b}
+html[data-swg-theme="dark"] .file {border-style:dashed}
+html[data-swg-theme="dark"] .preview-cover {background:#302739;border-color:#685774}
+/* The projection PDF viewer remains white: its embedded PDF is authored independently. */
+@media print {html[data-swg-theme="dark"] .content-card,html[data-swg-theme="dark"] .update,html[data-swg-theme="dark"] .mission,html[data-swg-theme="dark"] .intro {background:white!important;color:black!important}}
