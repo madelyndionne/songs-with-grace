@@ -51,6 +51,14 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 .swg-message-form button{margin-top:16px;background:var(--purple);color:white;border:0;border-radius:9px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer}
 .swg-message-form button:hover,.swg-message-form button:focus-visible{background:var(--deep)}
 .swg-message-note{font-size:.9rem;color:#5e5960;line-height:1.5}
+
+/* The download agreement is always legible, including in dark mode. */
+html body .swg-download-box{background:#eee8f1!important;color:#29262b!important;color-scheme:light}
+html body .swg-download-box p,html body .swg-download-box label,html body .swg-download-box span,html body .swg-download-box li,html body .swg-download-box strong,html body .swg-download-box em{color:#29262b!important}
+html body .swg-download-box h2,html body .swg-download-box a{color:#65407a!important}
+html body .swg-download-box .swg-license-scroll{background:#f7f3f9!important;color:#29262b!important}
+html body .swg-download-box .swg-license-scroll h1,html body .swg-download-box .swg-license-scroll h2{color:#65407a!important}
+html body .swg-download-box .swg-download-confirm{background:#65407a!important;color:white!important}
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async="" src="https://plausible.io/js/pa-Eji1iaQmAeWXni5bLfVGq.js"></script>
@@ -207,10 +215,19 @@ input,select{width:100%;padding:12px;border:1px solid #cfc6d4;border-radius:9px;
 <button class="secondary" id="playlistPrev" type="button">◀ Previous</button>
 <button class="secondary" id="playlistNext" type="button">Next ▶</button>
 <button class="secondary" id="playlistClear" type="button">Clear</button>
-<a class="secondary swg-download-button" href="license.html" style="display:inline-flex;align-items:center;text-decoration:none;border-radius:8px;padding:8px 11px;font-weight:700">↓ Download Song</a>
+<button class="secondary swg-download-button" id="swgDownloadOpen" type="button">↓ Download Song</button>
 </div>
 </div>
-</aside><footer class="site-footer" id="browse-bottom"><p data-swg-copyright="true">© 2026 <em>Madelyn Dionne Ministry</em>. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
+</aside><div class="swg-download-dialog" id="swgDownloadDialog" hidden role="dialog" aria-modal="true" aria-labelledby="swgDownloadTitle">
+ <div class="swg-download-box">
+  <div><button class="swg-download-close" id="swgDownloadClose" type="button" aria-label="Close">×</button><h2 id="swgDownloadTitle">Free Use Agreement</h2></div>
+  <p id="swgDownloadSongName">Please review the Free Use terms before downloading.</p>
+  <div class="swg-license-scroll" id="swgLicenseTerms"></div>
+  <label class="swg-download-accept"><input type="checkbox" id="swgDownloadAgree"><span>I have read and agree to the Free Use License.</span></label>
+  <div class="swg-download-actions"><button type="button" id="swgDownloadCancel">Cancel</button><button class="swg-download-confirm" id="swgDownloadConfirm" type="button" disabled>Agree &amp; Download</button></div>
+ </div>
+</div>
+<footer class="site-footer" id="browse-bottom"><p data-swg-copyright="true">© 2026 <em>Madelyn Dionne Ministry</em>. Free noncommercial use is welcome under the <a href="license.html">Free Use License</a>. Other rights reserved.</p></footer>
 <script>
 const grid=document.getElementById('songGrid');
 const noResults=document.getElementById('noResults');
@@ -268,6 +285,50 @@ updateNewSongMarkers();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
   window.addEventListener('load',clean);
+})();
+</script>
+<script>
+/* Playlist download gate: select a song, review terms, agree, then download. */
+(function(){
+ const open=document.getElementById('swgDownloadOpen'), dialog=document.getElementById('swgDownloadDialog');
+ const terms=document.getElementById('swgLicenseTerms'),agree=document.getElementById('swgDownloadAgree');
+ const confirm=document.getElementById('swgDownloadConfirm'),name=document.getElementById('swgDownloadSongName');
+ const list=document.getElementById('playlistList'),audio=document.getElementById('playlistAudio');
+ if(!open||!dialog)return;
+ let selected=null;
+ function songs(){try{const x=JSON.parse(localStorage.getItem('swgPlaylist')||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
+ function close(){dialog.hidden=true;agree.checked=false;confirm.disabled=true;open.focus()}
+ document.getElementById('swgDownloadClose').addEventListener('click',close);
+ document.getElementById('swgDownloadCancel').addEventListener('click',close);
+ dialog.addEventListener('click',e=>{if(e.target===dialog)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.hidden)close()});
+ agree.addEventListener('change',()=>{confirm.disabled=!agree.checked});
+ open.addEventListener('click',async()=>{
+   const items=songs();
+   const src=audio.getAttribute('src')||'';
+   selected=items.find(s=>s.audio===src)||null;
+   if(!selected){alert('Please select a song in your playlist first, then choose Download Song.');return}
+   name.textContent='Selected song: '+selected.title;
+   agree.checked=false;confirm.disabled=true;
+   terms.textContent='Loading the Free Use License…';
+   dialog.hidden=false;
+   try{
+     const res=await fetch('license.html',{cache:'no-store'});
+     if(!res.ok)throw new Error('License unavailable');
+     const doc=new DOMParser().parseFromString(await res.text(),'text/html');
+     const content=doc.querySelector('.license-card');
+     if(!content)throw new Error('License content unavailable');
+     terms.innerHTML=content.innerHTML;
+   }catch(e){terms.innerHTML='<p>Unable to load the agreement. Please try again.</p>';agree.disabled=true;return}
+   agree.disabled=false;
+ });
+ confirm.addEventListener('click',()=>{
+   if(!agree.checked||!selected)return;
+   const url=selected.audio||('assets/'+selected.page.replace(/\.html$/i,'')+'.mp3');
+   const a=document.createElement('a');a.href=url;a.download=url.split('/').pop();document.body.appendChild(a);a.click();a.remove();
+   if(typeof window.plausible==='function')window.plausible('Song Download',{props:{song:selected.title}});
+   close();
+ });
 })();
 </script>
 <script defer src="swg-footer.js"></script></body></html>
