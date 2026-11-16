@@ -24,6 +24,11 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Caladea,Georg
 .license-card li{margin:.35em 0}
 .license-card a{color:#65407a}
 .license-card .intro{font-size:1.1rem}
+/* Keep every part of the white license panel legible in dark mode. */
+html body .license-card,html body .license-card p,html body .license-card li,html body .license-card ul,html body .license-card strong,html body .license-card em{color:#29262b!important;background-color:transparent!important}
+html body .license-card{background:#fff!important;color-scheme:light}
+html body .license-card h1,html body .license-card h2,html body .license-card a{color:#65407a!important;background-color:transparent!important}
+
 .back-link{display:inline-block;margin-bottom:18px;color:var(--purple);font-weight:bold}
 .site-footer{text-align:center;padding:20px 24px 35px}
 .site-footer a{color:var(--purple)}
