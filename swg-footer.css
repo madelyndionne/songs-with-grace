@@ -1,0 +1,7 @@
+/* Shared footer presentation. */
+footer.site-footer{box-sizing:border-box;width:100%;margin-top:2.5rem;padding:1.25rem 1rem;text-align:center;font-family:Caladea,Georgia,serif;font-size:0.95rem;line-height:1.5;color:var(--text,#382a45);background:var(--surface,#f7f2fa);border-top:1px solid rgba(110,68,133,.25)}
+footer.site-footer p{margin:0 auto;max-width:70rem}footer.site-footer a{color:var(--accent,#693c85);text-decoration:underline;text-underline-offset:2px}
+footer.site-footer a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+html[data-theme="dark"] footer.site-footer,body.dark-mode footer.site-footer,body.dark footer.site-footer{background:#251c30;color:#f5effa;border-top-color:#665477}
+html[data-theme="dark"] footer.site-footer a,body.dark-mode footer.site-footer a,body.dark footer.site-footer a{color:#e5c8ff}
+@media print{footer.site-footer{display:none!important}}

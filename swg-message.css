@@ -1,0 +1,9 @@
+/* Shared song-page messaging layout and conditional fields */
+.swg-message{max-width:900px;margin:2rem auto 0}
+.swg-message-form{display:grid;gap:1rem;max-width:650px}
+.swg-message-form label{display:block;font-weight:700;color:var(--deep,#382742)}
+.swg-message-form input:not([type=hidden]),.swg-message-form select,.swg-message-form textarea{display:block;width:100%;max-width:100%;margin-top:.35rem;padding:.7rem .8rem;border:1px solid #887a90;border-radius:7px;background:#fff;color:#29262b;font:inherit;box-sizing:border-box}
+.swg-message-form textarea{min-height:8rem;resize:vertical}
+.swg-message-form [hidden],#swgOtherSubjectWrap[hidden]{display:none!important}
+.swg-message-form button[type=submit]{justify-self:start;border:0;border-radius:7px;padding:.7rem 1.2rem;background:#65407a;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.swg-message-note{font-size:.94rem;line-height:1.5}

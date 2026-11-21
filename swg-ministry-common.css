@@ -1,0 +1,11 @@
+/* Ministry-only compatibility layer; shared design without changing auth logic. */
+html[data-swg-theme="dark"] body{background:var(--paper);color:var(--ink)}
+html[data-swg-theme="dark"] header{background:linear-gradient(180deg,#2b2133,#19151f)}
+html[data-swg-theme="dark"] .card,html[data-swg-theme="dark"] .file,html[data-swg-theme="dark"] .password-panel{background:#28212f;color:#f1eaf0;border-color:#51415b}
+html[data-swg-theme="dark"] .muted,html[data-swg-theme="dark"] .small,html[data-swg-theme="dark"] .file span,html[data-swg-theme="dark"] .preview-note,html[data-swg-theme="dark"] .calendar-note{color:#d3c5d8}
+html[data-swg-theme="dark"] .pill,html[data-swg-theme="dark"] .button.secondary{background:#40304b;color:#f1eaf0}
+html[data-swg-theme="dark"] .partner-form input,html[data-swg-theme="dark"] .password-panel input{background:#f8f5fa;color:#29262b}
+html[data-swg-theme="dark"] .viewer-dialog{background:#28212f;color:#f1eaf0}
+html[data-swg-theme="dark"] .session-panel{background:#34283e;color:white}
+html[data-swg-theme="dark"] .site-menu a{color:#e4c9f2}
+.site-menu{position:relative;z-index:2}

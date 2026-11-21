@@ -1,21 +1,23 @@
-/* Songs With Grace: shared copyright attribution. Edit this file for future changes. */
-(function () {
-  'use strict';
-  const copyrightYear = '2026';
-  const copyrightName = 'Madelyn Dionne Ministry';
-  function updateCopyright() {
-    document.querySelectorAll('[data-swg-copyright]').forEach(function (paragraph) {
-      const name = document.createElement('em');
-      name.textContent = copyrightName;
-      const license = paragraph.querySelector('a[href="license.html"]');
-      paragraph.replaceChildren(document.createTextNode('© ' + copyrightYear + ' '), name);
-      if (license) {
-        paragraph.append(document.createTextNode('. Free noncommercial use is welcome under the '));
-        paragraph.append(license);
-        paragraph.append(document.createTextNode('. Other rights reserved.'));
-      }
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateCopyright);
-  else updateCopyright();
-}());
+/* Shared footer: normalize existing footer text while retaining page-specific content. */
+(function(){'use strict';
+function ready(){
+ const footer=document.querySelector('footer.site-footer,footer.swg-shared-footer,footer');
+ if(!footer)return;
+ footer.classList.add('site-footer');
+ let p=footer.querySelector('[data-swg-copyright]')||Array.from(footer.querySelectorAll('p')).find(x=>/©|copyright|all rights reserved/i.test(x.textContent));
+ if(!p){p=document.createElement('p');footer.appendChild(p)}
+ p.setAttribute('data-swg-copyright','true');
+ const year=new Date().getFullYear();
+ p.replaceChildren(document.createTextNode('© '+year+' '));
+ const em=document.createElement('em');em.textContent='Madelyn Dionne Ministry';p.append(em);
+ const isMinistry=/^ministry(?:-|\.)/.test(location.pathname.split('/').pop().toLowerCase());
+ if(isMinistry){
+  p.append(document.createTextNode('. Ministry Partner use terms are handled separately. Other rights reserved.'));
+ }else{
+  const a=document.createElement('a');a.href='license.html';a.textContent='Free Use License';
+  p.append(document.createTextNode('. Free noncommercial use is welcome under the '),a,document.createTextNode('. Other rights reserved.'));
+ }
+ Array.from(footer.querySelectorAll('p')).filter(x=>x!==p&&/©|copyright/i.test(x.textContent)).forEach(x=>x.remove());
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready);else ready();
+})();

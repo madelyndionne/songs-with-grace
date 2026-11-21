@@ -108,3 +108,20 @@ html[data-swg-theme="dark"] .file {border-style:dashed}
 html[data-swg-theme="dark"] .preview-cover {background:#302739;border-color:#685774}
 /* The projection PDF viewer remains white: its embedded PDF is authored independently. */
 @media print {html[data-swg-theme="dark"] .content-card,html[data-swg-theme="dark"] .update,html[data-swg-theme="dark"] .mission,html[data-swg-theme="dark"] .intro {background:white!important;color:black!important}}
+
+/* Consistent accessible footer in both themes */
+footer, .swg-shared-footer {text-align:center;padding:24px 18px;border-top:1px solid #d8cce0;background:#f3edf6;color:#382742;font-family:Caladea,Georgia,serif;line-height:1.55}
+footer [data-swg-copyright],.swg-shared-footer [data-swg-copyright]{color:inherit!important;margin:10px auto}
+footer [data-swg-copyright] a{color:#65407a!important;text-decoration:underline}
+html[data-swg-theme="dark"] footer,html[data-swg-theme="dark"] .swg-shared-footer{background:#241d2b!important;color:#f0e4f5!important;border-color:#5d4c69!important}
+html[data-swg-theme="dark"] footer [data-swg-copyright] a{color:#e1b9f7!important}
+.swg-free-use-section{max-width:900px;margin:40px auto;padding:24px;border:1px solid #d8cce0;border-radius:14px;background:#f8f4fa;color:#382742}
+.swg-free-use-section h2{margin-top:0}
+html[data-swg-theme="dark"] .swg-free-use-section{background:#302739;color:#f1eaf0;border-color:#685774}
+@media print{.swg-shared-footer{display:none!important}}
+
+/* Shared message dropdown and conditional subject field */
+.swg-message-form select{display:block;width:100%;min-width:0;box-sizing:border-box;margin:6px 0 0;padding:12px;border:1px solid #d1c4d9;border-radius:9px;background:#fff;color:#29262b;font:inherit}
+.swg-message-form [hidden]{display:none!important}
+.swg-form-status{min-height:1em;margin:0;font-size:.9rem}
+html[data-swg-theme="dark"] .swg-message-form select{background:#302739;color:#f1eaf0;border-color:#685774}
